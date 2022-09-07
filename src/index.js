@@ -1,0 +1,11 @@
+import './js/homepage';
+import './js/popular';
+import './js/watch-queue';
+import './js/card';
+import './js/header';
+import './js/searching';
+import './js/modal';
+import './js/pagination';
+import './js/footer';
+import './js/loader';
+import './js/authorization';
