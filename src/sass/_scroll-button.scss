@@ -1,0 +1,63 @@
+.to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+
+    opacity: 1;
+    background-color: $main-grey-color;
+    color: #fff;
+    z-index: 10;
+    cursor: pointer;
+    transition-property: opacity, background-color, box-shadow;
+    transition-duration: 1s,;
+
+    &:hover {
+        background-color: $accent-orange;
+        box-shadow: 0 3px 1px #0000001a, 0 1px 2px #00000014, 0 2px 2px #0000001f;
+    }
+
+    &--hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    @include mq(tablet){
+        bottom: 50px;
+        right: 50px;
+    
+        width: 60px;
+        height: 60px;
+    }
+    
+    @include mq(desktop){
+        width: 100px;
+        height: 100px;
+    }
+
+    &__icon {
+        display: block;
+        width: 40%;
+        height: 40%;
+        margin-bottom: -10px;
+        border-radius: 3px;
+        border-right: 3px solid #fff;
+        border-top: 3px solid #fff;
+    
+        transform: rotate(-45deg);
+
+        @include mq(desktop){
+            margin-bottom: -20px;
+            border-right-width: 5px;
+            border-top-width: 5px;
+        }
+    }
+}
