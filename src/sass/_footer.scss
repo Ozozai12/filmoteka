@@ -1,5 +1,4 @@
 .footer {
-    width: 100%;
     background-color: $footer-color;
     color: $sec-grey-color;
     font-weight: 400;
@@ -8,6 +7,10 @@
     @include mq(tablet) {
         font-size: 16px;
     }
+}
+
+.footer .container {
+    width: auto;
 }
 
 .footer__wrapper {
