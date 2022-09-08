@@ -1,0 +1,62 @@
+.footer {
+    background-color: $footer-color;
+    color: $sec-grey-color;
+    font-weight: 400;
+    font-size: 14px;
+
+    @include mq(tablet) {
+        font-size: 16px;
+    }
+}
+
+.footer .container {
+    width: auto;
+}
+
+.footer__wrapper {
+    align-items: center;
+    text-align: center;
+    padding: 30px 0;
+    @include mq(mobile) {
+            grid-gap: 30px;
+        }
+}
+
+.footer__text {
+    display: inline-block;
+    @include mq(tablet) {
+            display: flex;
+            justify-content: center;
+        }
+}
+
+.footer__authors {
+
+    align-items: center;
+    @include mq(mobile) {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        margin-left: 4px;
+    }
+    @include mq(tablet) {
+        margin-top: 0px;
+    }
+}
+
+.footer__icon {
+    margin: 0 10px;
+    @include mq(mobile) {
+        align-self: baseline;
+        }
+    @include mq(tablet) {
+        align-self: center;
+        }
+}
+
+.footer__credits {
+    border-bottom: 1px solid $sec-grey-color;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
