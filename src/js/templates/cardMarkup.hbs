@@ -4,15 +4,15 @@
       {{#if poster_path}}
         <picture class='card__image'>
           <source
-            srcset='https://image.tmdb.org/t/p/original{{poster_path}} 1x, https://image.tmdb.org/t/p/original{{poster_path}} 2x'
+            srcset='https://image.tmdb.org/t/p/original{{poster_path}}'
             media='(min-width: 1280px)'
           />
           <source
-            srcset='https://image.tmdb.org/t/p/w780{{poster_path}} 1x, https://image.tmdb.org/t/p/w780{{poster_path}} 2x'
+            srcset='https://image.tmdb.org/t/p/w780{{poster_path}}'
             media='(min-width: 768px)'
           />
           <source
-            srcset='https://image.tmdb.org/t/p/w342{{poster_path}} 1x, https://image.tmdb.org/t/p/w342{{poster_path}} 2x'
+            srcset='https://image.tmdb.org/t/p/w342{{poster_path}}'
             media='(min-width: 320px)'
           />
 
@@ -21,7 +21,8 @@
             src='https://image.tmdb.org/t/p/w342{{poster_path}}'
             alt='{{title}}'
             loading='lazy'
-            class='CardImage'
+            class='card__image'
+            style='object-fit: contain'
           />
         </picture>
       {{else}}
@@ -31,12 +32,12 @@
           alt='{{title}}'
           loading='lazy'
           class='card__image'
-          style='object-fit: contain;'
+          style='object-fit: contain'
         />
       {{/if}}
-      <div class='card__overlay'>
+      {{!-- <div class='card__overlay'>
         <p class='card__text'>{{overview}}</p>
-      </div>
+      </div> --}}
     </div>
     <h2 data-id='{{id}}' class='card__title'>{{title}}</h2>
     <div class='card__caption'>
