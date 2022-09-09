@@ -31,3 +31,7 @@ function cardMarkup(data) {
     const realeaseData = el.release_date.slice(0, 4);
   });
 }
+
+
+
+

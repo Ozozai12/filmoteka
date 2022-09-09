@@ -1,14 +1,25 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @include mq(tablet) {
+  gap: 12px;
+  }
+  @include mq(desktop) {
+   gap: 16px;
+  }
+}
+
 .сard {
   box-sizing: border-box;
   width: 280px;
 
   @include mq(tablet) {
-   
-    width: 336px;
+   width: 336px;
   }
   @include mq(desktop) {
-    
-    width: 395px;
+   width: 395px;
   }
   border-radius: $radius;
 }
@@ -29,46 +40,46 @@
   }
 }
 
-.card__overlay {
-  position: absolute;
-  left: 0;
-  bottom: 0;
+// .card__overlay {
+//   position: absolute;
+//   left: 0;
+//   bottom: 0;
 
- display: flex;
- justify-content: center;
+//  display: flex;
+//  justify-content: center;
 
- opacity: 0;
+//  opacity: 0;
 
-  width: 100%;
-  height: 100%;
+//   width: 100%;
+//   height: 100%;
 
-  background-color: rgba(255, 255, 255, 0.5);
+//   background-color: rgba(255, 255, 255, 0.5);
 
-  transition: opacity $animation-timing-function;
-  &:hover,
-  &:focus {
-    opacity: 1;
-  }
-}
+//   transition: opacity $animation-timing-function;
+//   &:hover,
+//   &:focus {
+//     opacity: 1;
+//   }
+// }
 .card__text {
-display: flex;
-justify-content: center;
-align-items: center;
+// display: flex;
+// justify-content: center;
+// align-items: center;
   width: 100%;
 
-  padding: 0 40px;
+//   padding: 0 40px;
 
-  font-size: 18px;
-  line-height: 1.56;
-  letter-spacing: 0.03em;
+//   font-size: 18px;
+//   line-height: 1.56;
+//   letter-spacing: 0.03em;
 
-  color: $main-black-color;
+//   color: $main-black-color;
 }
 
 .card__image {
   width: 100%;
   height: 398px;
-  object-fit: cover;
+  object-fit: contain;
   
   @include mq(tablet) {
     height: 455px;
