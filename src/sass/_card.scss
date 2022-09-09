@@ -109,26 +109,26 @@ align-items: center;
   }
 }
 
-.CardGenres {
-  margin-right: 3px;
-}
+// .CardGenres {
+//   margin-right: 3px;
+// }
 
-.CardYear {
-  &::before {
-    content: '';
-    display: inline-block;
+// .CardYear {
+//   &::before {
+//     content: '';
+//     display: inline-block;
 
-    width: 1px;
-    height: 11px;
-    margin-right: 5px;
-    background-color: $accent-orange;
+//     width: 1px;
+//     height: 11px;
+//     margin-right: 5px;
+//     background-color: $accent-orange;
 
-    @include mq(desktop) {
-      height: 18px;
-      width: 2px;
-    }
-  }
-}
+//     @include mq(desktop) {
+//       height: 18px;
+//       width: 2px;
+//     }
+//   }
+// }
 
 .CardRating {
   display: flex;
