@@ -1,4 +1,4 @@
-.Card {
+.сard {
   box-sizing: border-box;
   width: 280px;
 
@@ -13,7 +13,7 @@
   border-radius: $radius;
 }
 
-.CardThumb {
+.сard__thumb {
   position: relative;
 
   width: 100%;
@@ -29,7 +29,7 @@
   }
 }
 
-.CardOverlay {
+.card__overlay {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -50,7 +50,7 @@
     opacity: 1;
   }
 }
-.CardText {
+.card__text {
 display: flex;
 justify-content: center;
 align-items: center;
@@ -65,7 +65,7 @@ align-items: center;
   color: $main-black-color;
 }
 
-.CardImage {
+.card__image {
   width: 100%;
   height: 398px;
   object-fit: cover;
@@ -78,7 +78,7 @@ align-items: center;
   }
 }
 
-.CardTitle {
+.card__title {
   text-transform: uppercase;
   font-size: 12px;
   line-height: 1.33;
@@ -91,13 +91,13 @@ align-items: center;
   }
 }
 
-.CardCaption {
+.card__caption {
   display: flex;
   align-items: center;
   // padding: 5px 0;
 }
 
-.CardInfo {
+.card__info {
   font-size: 12px;
   line-height: 1.33;
 
@@ -109,7 +109,7 @@ align-items: center;
   }
 }
 
-.CardRating {
+.card__rating {
   display: flex;
   justify-content: center;
   align-items: center;

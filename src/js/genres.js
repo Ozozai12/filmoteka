@@ -1,4 +1,4 @@
-export const ganresInfo = [
+export const genresInfo = [
   {
     id: 28,
     name: 'Action',

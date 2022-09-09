@@ -1,27 +1,27 @@
 // рендерить розмітку однієї картки
 
-import { ganresInfo } from './ganres';
+import { genresInfo } from './genres';
 
 export { cardMarkup };
 
 function cardMarkup(data) {
   data.forEach(el => {
     //порівняння айді з масивом всіх жанрів
-    ganresInfo.map(genre => {
+    genresInfo.map(genre => {
       if (genre.id === el.genre_ids[0]) {
-        el.genre_ids[0] = ganre.name;
+        el.genre_ids[0] = genre.name;
       }
       if (genre.id === el.genre_ids[1]) {
-        el.genre_ids[1] = ganre.name;
+        el.genre_ids[1] = genre.name;
       }
       if (genre.id === el.genre_ids[2]) {
-        el.genre_ids[2] = ganre.name;
+        el.genre_ids[2] = genre.name;
       }
       if (genre.id === el.genre_ids[3]) {
-        el.genre_ids[3] = ganre.name;
+        el.genre_ids[3] = genre.name;
       }
       if (genre.id === el.genre_ids[4]) {
-        el.genre_ids[4] = ganre.name;
+        el.genre_ids[4] = genre.name;
       }
     });
     //список жанрів
