@@ -1,0 +1,44 @@
+.gallery{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  
+}
+  
+.card {
+  cursor: pointer;
+  
+    @include mq(mobile-only) {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+        }
+    }
+  
+    @include mq(tablet-only) {
+        margin: 16px;
+        flex-basis: calc((100% - 2 * 32px) / 2);
+    }
+  
+    @include mq (desktop) {
+        margin: 16px;
+        flex-basis: calc((100% - 3 * 32px) / 3);
+      }
+    
+  
+}
+
+//   .сard__thumb{
+//   width: 280px;
+//   height: 398px;
+
+//   @include mq(tablet-only) {
+//     width: 336px;
+//     height: 455px;
+//   }
+//   @include mq (desktop) {
+//     width: 394px;
+//     height: 574px;
+//   }
+// }
