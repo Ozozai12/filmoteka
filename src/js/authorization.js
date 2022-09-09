@@ -37,7 +37,7 @@ export default class NewServiceApi {
     }
   }
 
-  // сервіс пошку фыльмыв по айді
+  // сервіс пошку фільмів по айді
   async serviceIdMovie(id) {
     try {
       const resp = await fetch(`${url}/movie/${this.id},?api_key=${key}`);

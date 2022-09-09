@@ -1,9 +1,16 @@
 import { NewServiceApi } from './authorization';
-import { cardMarkup } from './card';
-const serviceApi = new NewServiceApi();
+import { substitutionOfValues } from './card';
+import createMarkupCard from './templates/cardMarkup.hbs';
 
-const serviceTopApi = async () => {
-  const data = await serviceApi.serviceMovieTopApi();
-  cardMarkup(data.results);
-};
-serviceTopApi();
+const newserviceApi = new NewServiceApi();
+
+async function popularMovies() {
+  const gallery = document.querySelector('.gallery');
+
+  const popular = await newserviceApi.serviceMovieTopApi();
+  substitutionOfValues(popular.results);
+  console.log(popular.results);
+
+  gallery.innerHTML = createMarkupCard(popular.results);
+}
+popularMovies();

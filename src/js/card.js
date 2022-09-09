@@ -2,9 +2,9 @@
 
 import { genresInfo } from './genres';
 
-export { cardMarkup };
+export { substitutionOfValues };
 
-function cardMarkup(data) {
+function substitutionOfValues(data) {
   data.forEach(el => {
     //порівняння айді з масивом всіх жанрів
     genresInfo.map(genre => {
@@ -29,5 +29,6 @@ function cardMarkup(data) {
 
     //лишає з дати тільки рік
     const realeaseData = el.release_date.slice(0, 4);
+    el.release_date = realeaseData;
   });
 }
