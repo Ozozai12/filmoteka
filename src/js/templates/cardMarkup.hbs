@@ -1,0 +1,53 @@
+{{#each this}}
+  <div class='Card' data-id='{{id}}'>
+    <div class='CardThumb'>
+      {{#if poster_path}}
+        <picture class='poster'>
+          <source
+            srcset='https://image.tmdb.org/t/p/original{{poster_path}} 1x, https://image.tmdb.org/t/p/original{{poster_path}} 2x'
+            media='(min-width: 1280px)'
+          />
+          <source
+            srcset='https://image.tmdb.org/t/p/w780{{poster_path}} 1x, https://image.tmdb.org/t/p/w780{{poster_path}} 2x'
+            media='(min-width: 768px)'
+          />
+          <source
+            srcset='https://image.tmdb.org/t/p/w342{{poster_path}} 1x, https://image.tmdb.org/t/p/w342{{poster_path}} 2x'
+            media='(min-width: 320px)'
+          />
+
+          <img
+            data-id='{{id}}'
+            src='https://image.tmdb.org/t/p/w342{{poster_path}}'
+            alt='{{title}}'
+            loading='lazy'
+            class='CardImage'
+          />
+        </picture>
+      {{else}}
+        <img
+          data-id='{{id}}'
+          src='https://cdn.pixabay.com/photo/2014/03/25/16/27/movie-297135_960_720.png'
+          alt='{{title}}'
+          loading='lazy'
+          class='CardImage'
+          style='object-fit: contain;'
+        />
+      {{/if}}
+      <div class='CardOverlay'>
+        <p class='CardText'>{{overview}}</p>
+      </div>
+    </div>
+    <h2 data-id='{{id}}' class='CardTitle'>{{title}}</h2>
+    <div class='CardCaption'>
+      <span data-id='{{id}}' class='CardInfo'>
+        {{genre_ids}}
+        |
+        {{release_date}}
+      </span>
+      <span class='CardRating'>
+        {{vote_average}}
+      </span>
+    </div>
+  </div>
+{{/each}}

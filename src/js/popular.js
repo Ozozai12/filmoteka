@@ -1,9 +1,9 @@
 import { NewServiceApi } from './authorization';
-import { createMarkup } from './card';
+import { cardMarkup } from './card';
 const serviceApi = new NewServiceApi();
 
 const serviceTopApi = async () => {
   const data = await serviceApi.serviceMovieTopApi();
-  createMarkup(data.results);
+  cardMarkup(data.results);
 };
 serviceTopApi();
