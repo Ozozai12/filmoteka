@@ -35,7 +35,7 @@ async function openModal(id) {
 
   // получаем список жанров
 
-  genres = Object.values(respData.genres);
+  const genres = Object.values(respData.genres);
 
   for (const genre of genres) {
     genreList.push(genre.name)
