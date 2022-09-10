@@ -1,6 +1,4 @@
 import ApiService from './authorization';
-import cardFilmsTpl from './templates/cardMarkup.hbs';
-import { homePageMarkup } from './homepage';
 
 // получаем переменные
 
@@ -9,7 +7,6 @@ const modalBox = document.querySelector('.box');
 const cardImg = document.querySelector('.gallery');
 
 let id;
-let backdrop;
 let respData;
 let genreList = [];
 let listOfGenres;
@@ -25,7 +22,7 @@ cardImg.addEventListener('click', getId)
 
 function getId(evt) {
 
-  if (evt.target.nodeName !== "P") {
+  if (evt.target.nodeName !== "P" && evt.target.nodeName !== "IMG") {
     return
   }
   const id = evt.target.getAttribute('data-id')
@@ -58,7 +55,7 @@ export default async function openModal(id) {
   const btnClose = document.querySelector('.button__modal-close');
   btnClose.addEventListener('click', onModalClose);
 
-  backdrop = document.querySelector('.backdrop')
+  
 }
 
 // разметка одной карточки модального окна фильма
@@ -141,11 +138,15 @@ function onModalCloseEsc(evt) {
 
 // закрытие модалки по клику на бекдроп
 
+const backdrop = document.querySelector('.backdrop')
+console.log(backdrop)
+
 window.addEventListener('click', onModalCloseBckdrp)
 
 function onModalCloseBckdrp(evt) {
+  console.log(evt.target)
   if (evt.target === backdrop) {
-    onModalClose();
+    onModalClose()
   } else {
     return
   }
