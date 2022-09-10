@@ -10,7 +10,7 @@ async function popularMovies() {
 
   const popular = await newserviceApi.serviceMovieTopApi();
   substitutionOfValues(popular.results);
-  console.log(popular.results);
+
 
   gallery.innerHTML = createMarkupCard(popular.results);
 }

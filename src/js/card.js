@@ -26,6 +26,8 @@ function substitutionOfValues(data) {
         el.genre_ids[4] = genre.name;
       }
     });
+    // із масиву єанрів лишаю максимум тільки два
+    el.genre_ids = el.genre_ids.splice(0, 2)
     //список жанрів, переводить в стрінг, робить пробіли між комами
     el.genre_ids = String(el.genre_ids).replaceAll(',', ', ');
     //лишає з дати тільки рік
