@@ -1,25 +1,25 @@
 .gallery {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 
   @include mq(tablet) {
-  gap: 12px;
+    gap: 12px;
   }
   @include mq(desktop) {
-   gap: 16px;
+    gap: 16px;
   }
 }
 
 .сard {
-  box-sizing: border-box;
   width: 280px;
 
   @include mq(tablet) {
-   width: 368px;
+    width: 368px;
   }
   @include mq(desktop) {
-   width: 395px;
+    width: 395px;
   }
   border-radius: $radius;
 }
@@ -29,58 +29,65 @@
 
   width: 100%;
   overflow: hidden;
-  
+
   transition: box-shadow $animation-timing-function;
 
   &:hover,
   &:focus {
-
     box-shadow: 0 0 20px 5px rgba(255, 107, 1, 0.1),
       0 0 12px 3px rgb(255, 107, 0.1);
   }
 }
 
-// .card__overlay {
-//   position: absolute;
-//   left: 0;
-//   bottom: 0;
+.card__overlay {
+  position: absolute;
+  left: 0;
+  bottom: 0;
 
-//  display: flex;
-//  justify-content: center;
+  display: flex;
+  justify-content: center;
 
-//  opacity: 0;
+  opacity: 0;
 
-//   width: 100%;
-//   height: 100%;
+  width: 280px;
 
-//   background-color: rgba(255, 255, 255, 0.5);
+  @include mq(tablet) {
+    width: 368px;
+  }
+  @include mq(desktop) {
+    width: 395px;
+  }
 
-//   transition: opacity $animation-timing-function;
-//   &:hover,
-//   &:focus {
-//     opacity: 1;
-//   }
-// }
+  height: 100%;
+
+  background-color: rgba(255, 255, 255, 0.5);
+
+  transition: opacity $animation-timing-function;
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
 .card__text {
-// display: flex;
-// justify-content: center;
-// align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
 
-//   padding: 0 40px;
+  padding: 40px;
 
-//   font-size: 18px;
-//   line-height: 1.56;
-//   letter-spacing: 0.03em;
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
 
-//   color: $main-black-color;
+  color: $main-black-color;
 }
 
 .card__image {
   width: 100%;
   height: 398px;
-  object-fit: contain;
-  
+
   @include mq(tablet) {
     height: 455px;
   }
@@ -90,10 +97,23 @@
 }
 
 .card__title {
+  width: 280px;
+
+  @include mq(tablet) {
+    width: 368px;
+  }
+  @include mq(desktop) {
+    width: 395px;
+  }
+
+  padding-top: 8px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   text-transform: uppercase;
   font-size: 12px;
   line-height: 1.33;
-  padding-top: 8px;
 
   @include mq(desktop) {
     font-size: 20px;
@@ -105,7 +125,7 @@
 .card__caption {
   display: flex;
   align-items: center;
-  }
+}
 
 .card__info {
   font-size: 12px;
@@ -146,4 +166,3 @@
     margin-left: 8px;
   }
 }
-

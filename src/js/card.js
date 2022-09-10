@@ -37,12 +37,3 @@ function substitutionOfValues(data) {
     el.vote_average = el.vote_average.toFixed(1);
   });
 }
-<<<<<<< HEAD
-
-
-
-
-
-
-=======
->>>>>>> main
