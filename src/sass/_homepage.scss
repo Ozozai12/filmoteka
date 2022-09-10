@@ -1,7 +1,7 @@
 .gallery, 
 .library {
-  // display: flex;
-  // flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
   
 
   padding-top: 20px;
@@ -9,27 +9,15 @@
   gap: 20px;
 
         @include mq(tablet-only) {
-          display: grid;
-          justify-items: center;
-          grid-template-columns: 50% 50%;
           padding-top: 60px;
           padding-bottom: 60px;
-          // padding-left: 32px;
-          // padding-right: 32px;
-          // gap: 32px;
-          // flex-basis: calc((100% - 2 * 32px) / 2);
+          gap: 31px;
         }
       
         @include mq (desktop) {
-          display: grid;
-          justify-items: center;
-          grid-template-columns: 33% 33% 33%;
           padding-top: 60px;
-            padding-bottom: 60px;
-          // padding-left: 32px;
-          //   padding-right: 32px;
-            // gap: 18px;
-        //   flex-basis: calc((100% - 3 * 32px) / 3);
+          padding-bottom: 60px;
+          gap: 14px;
         }
   
 }
