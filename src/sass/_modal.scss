@@ -55,9 +55,8 @@
     }
 }
 
-img {
+.modal__image {
     margin-bottom: 20px;
-    height: 357px;
     border-radius: 10px;
 
     transition: scale 500ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -68,14 +67,11 @@ img {
 
     @include mq(tablet) {
         min-width: 264px;
-        height: 373px;
         margin-right: 68px;
         margin-bottom: 0;
     }
 
     @include mq(desktop) {
-        width: 375px;
-        height: 478px;
         margin-right: 16px;
     }
 }
