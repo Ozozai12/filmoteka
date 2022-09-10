@@ -1,0 +1,23 @@
+.plagination__list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.plagination__conatiner{
+    justify-content: center;
+}
+.plagination__btn{
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      appearance: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+}
+.is__hidden{
+    visibility: hidden;
+}

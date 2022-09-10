@@ -2,9 +2,11 @@
 
 import { genresInfo } from './genres';
 
-export { cardMarkup };
+export { substitutionOfValues };
 
-function cardMarkup(data) {
+
+// функція, змінює значення з дати яку надає апі
+function substitutionOfValues(data) {
   data.forEach(el => {
     //порівняння айді з масивом всіх жанрів
     genresInfo.map(genre => {
@@ -24,16 +26,23 @@ function cardMarkup(data) {
         el.genre_ids[4] = genre.name;
       }
     });
-    //список жанрів
-    const genre = el.genre_ids;
-
+    // із масиву єанрів лишаю максимум тільки два
+    el.genre_ids = el.genre_ids.splice(0, 2)
+    //список жанрів, переводить в стрінг, робить пробіли між комами
+    el.genre_ids = String(el.genre_ids).replaceAll(',', ', ');
     //лишає з дати тільки рік
-    const realeaseData = el.release_date.slice(0, 4);
+    el.release_date = el.release_date.slice(0, 4);
+
+    //заокруглює число рейтинга
+    el.vote_average = el.vote_average.toFixed(1);
   });
 }
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+>>>>>>> main
