@@ -16,7 +16,7 @@
   width: 280px;
 
   @include mq(tablet) {
-   width: 336px;
+   width: 368px;
   }
   @include mq(desktop) {
    width: 395px;
@@ -105,8 +105,7 @@
 .card__caption {
   display: flex;
   align-items: center;
-  // padding: 5px 0;
-}
+  }
 
 .card__info {
   font-size: 12px;
