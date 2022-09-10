@@ -51,7 +51,7 @@ function createSearchingList(event) {
             return;
         }
         
-        searchingListMarkup = res.results.slice(0, 5).map(movie => 
+        const searchingListMarkup = res.results.slice(0, 5).map(movie => 
 
             movie.poster_path ? 
         `<li class="searching-list__item" id='${movie.id}'>
