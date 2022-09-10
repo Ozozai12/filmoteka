@@ -1,0 +1,35 @@
+.searching-list {
+    position: absolute;
+    top: 100%;
+
+    width: 100%;
+}
+
+.searching-list__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-color: $main-black-color;
+
+    border-radius: 4px;
+    border: 1px $main-white-color solid;
+    cursor: pointer;
+}
+
+.searching-list__title {
+
+    font-size: 14px;
+
+    padding: 10px;
+    color: $main-white-color;
+
+}
+
+
+.error-notification {
+    color: $accent-red;
+    font-size: 14;
+    padding: 20px 0;
+}
