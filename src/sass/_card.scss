@@ -1,18 +1,20 @@
-.gallery {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+// .gallery {
+//   width: 100%;
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 20px;
 
-  @include mq(tablet) {
-    gap: 12px;
-  }
-  @include mq(desktop) {
-    gap: 16px;
-  }
-}
+//   @include mq(tablet) {
+//     gap: 12px;
+//   }
+//   @include mq(desktop) {
+//     gap: 16px;
+//   }
+// }
 
-.сard {
+.card {
+  cursor: pointer;
+
   width: 280px;
 
   @include mq(tablet) {
@@ -21,10 +23,12 @@
   @include mq(desktop) {
     width: 395px;
   }
+
   border-radius: $radius;
+ 
 }
 
-.сard__thumb {
+.card__thumb {
   position: relative;
 
   width: 100%;
@@ -40,6 +44,7 @@
 }
 
 .card__overlay {
+  
   position: absolute;
   left: 0;
   bottom: 0;
@@ -97,6 +102,7 @@
 }
 
 .card__title {
+  // cursor: pointer;
   width: 280px;
 
   @include mq(tablet) {
