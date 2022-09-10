@@ -1,4 +1,6 @@
 import ApiService from './authorization';
+import cardFilmsTpl from './templates/cardMarkup.hbs';
+import { homePageMarkup } from './homepage';
 
 // получаем переменные
 
@@ -22,7 +24,11 @@ cardImg.addEventListener('click', getId)
 // получаем id карточки, на которую кликнули
 
 function getId(evt) {
-  id = evt.target.getAttribute('data-id')
+
+  if (evt.target.nodeName !== "P") {
+    return
+  }
+  const id = evt.target.getAttribute('data-id')
 
   openModal(id)
 }
