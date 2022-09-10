@@ -1,0 +1,168 @@
+.gallery {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  @include mq(tablet) {
+    gap: 12px;
+  }
+  @include mq(desktop) {
+    gap: 16px;
+  }
+}
+
+.сard {
+  width: 280px;
+
+  @include mq(tablet) {
+    width: 368px;
+  }
+  @include mq(desktop) {
+    width: 395px;
+  }
+  border-radius: $radius;
+}
+
+.сard__thumb {
+  position: relative;
+
+  width: 100%;
+  overflow: hidden;
+
+  transition: box-shadow $animation-timing-function;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 20px 5px rgba(255, 107, 1, 0.1),
+      0 0 12px 3px rgb(255, 107, 0.1);
+  }
+}
+
+.card__overlay {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+
+  opacity: 0;
+
+  width: 280px;
+
+  @include mq(tablet) {
+    width: 368px;
+  }
+  @include mq(desktop) {
+    width: 395px;
+  }
+
+  height: 100%;
+
+  background-color: rgba(255, 255, 255, 0.7);
+
+  transition: opacity $animation-timing-function;
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+.card__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 40px;
+
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+
+  color: $main-black-color;
+}
+
+.card__image {
+  width: 100%;
+  height: 398px;
+
+  @include mq(tablet) {
+    height: 455px;
+  }
+  @include mq(desktop) {
+    height: 574px;
+  }
+}
+
+.card__title {
+  width: 280px;
+
+  @include mq(tablet) {
+    width: 368px;
+  }
+  @include mq(desktop) {
+    width: 395px;
+  }
+
+  padding-top: 8px;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.33;
+
+  @include mq(desktop) {
+    font-size: 20px;
+    line-height: 1.2;
+    padding-top: 10px;
+  }
+}
+
+.card__caption {
+  display: flex;
+  align-items: center;
+}
+
+.card__info {
+  font-size: 12px;
+  line-height: 1.33;
+
+  color: $accent-orange;
+
+  @include mq(desktop) {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.card__rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 16px;
+  width: 36px;
+
+  margin-left: 9px;
+  border-radius: $radius;
+
+  font-size: 12px;
+  line-height: 1, 17;
+
+  color: $main-white-color;
+  background-color: $accent-orange;
+
+  @include mq(tablet) {
+    margin-left: 8px;
+  }
+  @include mq(desktop) {
+    height: 20px;
+    width: 40px;
+
+    margin-left: 8px;
+  }
+}

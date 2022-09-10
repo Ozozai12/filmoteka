@@ -1,30 +1,39 @@
-import { ganresInfo } from './ganres';
+// рендерить розмітку однієї картки
 
-export { createMarkup };
-export default function createMarkup(data) {
+import { genresInfo } from './genres';
+
+export { substitutionOfValues };
+
+
+// функція, змінює значення з дати яку надає апі
+function substitutionOfValues(data) {
   data.forEach(el => {
     //порівняння айді з масивом всіх жанрів
-    ganresInfo.map(ganre => {
-      if (ganre.id === el.genre_ids[0]) {
-        el.genre_ids[0] = ganre.name;
+    genresInfo.map(genre => {
+      if (genre.id === el.genre_ids[0]) {
+        el.genre_ids[0] = genre.name;
       }
-      if (ganre.id === el.genre_ids[1]) {
-        el.genre_ids[1] = ganre.name;
+      if (genre.id === el.genre_ids[1]) {
+        el.genre_ids[1] = genre.name;
       }
-      if (ganre.id === el.genre_ids[2]) {
-        el.genre_ids[2] = ganre.name;
+      if (genre.id === el.genre_ids[2]) {
+        el.genre_ids[2] = genre.name;
       }
-      if (ganre.id === el.genre_ids[3]) {
-        el.genre_ids[3] = ganre.name;
+      if (genre.id === el.genre_ids[3]) {
+        el.genre_ids[3] = genre.name;
       }
-      if (ganre.id === el.genre_ids[4]) {
-        el.genre_ids[4] = ganre.name;
+      if (genre.id === el.genre_ids[4]) {
+        el.genre_ids[4] = genre.name;
       }
     });
-    //список жанрів
-    const ganre = el.genre_ids;
-
+    // із масиву єанрів лишаю максимум тільки два
+    el.genre_ids = el.genre_ids.splice(0, 2)
+    //список жанрів, переводить в стрінг, робить пробіли між комами
+    el.genre_ids = String(el.genre_ids).replaceAll(',', ', ');
     //лишає з дати тільки рік
-    const realeaseData = el.release_date.slice(0, 4);
+    el.release_date = el.release_date.slice(0, 4);
+
+    //заокруглює число рейтинга
+    el.vote_average = el.vote_average.toFixed(1);
   });
 }
