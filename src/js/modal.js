@@ -1,25 +1,36 @@
 import ApiService from './authorization';
 
-let newApiService = new ApiService();
-
 // получаем переменные
 
-// const container = document.querySelector('.film-card');
 const modalBox = document.querySelector('.box');
-const btn = document.querySelector('.open-btn');
+
+const cardImg = document.querySelector('.gallery');
+
 let backdrop;
 let respData;
-let genreList = []
+let genreList = [];
+let newApiService = new ApiService();
 
 modalBox.innerHTML = ''
 
-// вызов модального окна с карточкой
+// вызываем модальное окно с карточкой
 
-const openModal = async () => {
-  console.log('window opened')
-  newApiService.idNumber = 852448;
+cardImg.addEventListener('click', getId)
 
-  // newApiService.serviceMovieTopApi().then(data => console.log(data.results))
+// получаем id карточки, на которую кликнули
+
+function getId(evt) {
+  const id = evt.target.getAttribute('data-id')
+
+  openModal(id)
+}
+
+// вызываем модалку
+
+async function openModal(id) {
+
+  newApiService.idNumber = id;
+
   respData = await newApiService.serviceIdMovie()
 
   // получаем список жанров
@@ -30,15 +41,14 @@ const openModal = async () => {
     genreList.push(genre.name)
   }
 
+  // рендерим динамическую разметку модалки при клике на карточку с фильмом
+
   modalBox.insertAdjacentHTML('afterBegin', createModal());
 
   const btnClose = document.querySelector('.button__modal-close');
   btnClose.addEventListener('click', onModalClose);
 
-  // backdrop = document.querySelector('.backdrop')
-  // window.addEventListener('click', onModalCloseBckdrp)
-
-  // window.addEventListener('keydown', onModalCloseEsc)
+  backdrop = document.querySelector('.backdrop')
 }
 
 // разметка одной карточки модального окна фильма
@@ -47,7 +57,7 @@ function createModal() {
     const markup =  `
     <div class="backdrop">
       <div class="film-card modal">
-        <img src="https://image.tmdb.org/t/p/original${respData.poster_path}" alt="Txt" />
+        <img src="https://image.tmdb.org/t/p/original${respData.poster_path}" alt="Txt" class="modal__image"/>
         <div>
           <h2 class="film-card__title">${respData.title}</h2>
           <div class="film-card__features">
@@ -59,9 +69,9 @@ function createModal() {
             </ul>
             
             <ul>
-              <li class="film-card__feature-description"><span class="vote">${respData.vote_average}</span> <span
+              <li class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(1)}</span> <span
                                 class="divider"> / </span> ${respData.vote_count}</li>
-              <li class="film-card__feature-description">${respData.popularity}</li>
+              <li class="film-card__feature-description">${respData.popularity.toFixed(1)}</li>
               <li class="film-card__feature-description original-title">${respData.original_title}</li>
               <li class="film-card__feature-description">${genreList}</li>
             </ul>
@@ -94,17 +104,16 @@ function createModal() {
   return markup;
 }
 
-btn.addEventListener('click', openModal);
-
-// openModal()
-
 // закрытие модалки при клике на кнопку закрытия
 
 function onModalClose() {
-  modalBox.innerHTML = ''
+  modalBox.innerHTML = '';
+  genreList = [];
 }
 
 // закрытие модалки по нажатию клавиши
+
+window.addEventListener('keydown', onModalCloseEsc)
 
 function onModalCloseEsc(evt) {
     if (evt.code === 'Escape' &&  modalBox.innerHTML === '') {     
@@ -115,6 +124,8 @@ function onModalCloseEsc(evt) {
 }
 
 // закрытие модалки по клику на бекдроп
+
+window.addEventListener('click', onModalCloseBckdrp)
 
 function onModalCloseBckdrp(evt) {
   if (evt.target === backdrop) {
