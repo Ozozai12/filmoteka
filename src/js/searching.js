@@ -107,8 +107,7 @@ function createMoviesList(event) {
             searchingList.innerHTML = errorNotificationMarkup;    
             return;
         }
-
-
+        searchingList.innerHTML = '';
         gallery.innerHTML = createCardMarkup(res.results)
     })
 
