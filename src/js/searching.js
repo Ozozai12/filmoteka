@@ -2,6 +2,8 @@ import NewServiceApi from './authorization';
 
 import createCardMarkup from './templates/cardMarkup.hbs';
 
+import openModal from './modal';
+
 const newServiceApi = new NewServiceApi();
 
 const form = document.querySelector('.search__form');
@@ -21,7 +23,7 @@ function onMovieClick(event) {
             const arr = [];
             arr[0] = res
             searchingList.innerHTML = ''
-            gallery.innerHTML = createCardMarkup(arr);
+            openModal(event.target.closest('li').getAttribute('id'))
         })
         .catch(err => console.log(err))
 };
@@ -51,7 +53,7 @@ function createSearchingList(event) {
             return;
         }
         
-        searchingListMarkup = res.results.slice(0, 5).map(movie => 
+        const searchingListMarkup = res.results.slice(0, 5).map(movie => 
 
             movie.poster_path ? 
         `<li class="searching-list__item" id='${movie.id}'>

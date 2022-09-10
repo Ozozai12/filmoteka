@@ -5,19 +5,13 @@
   justify-content: center;
   padding-top: 20px;
   padding-bottom: 40px;
-  margin:0 -15px;
-      @include mq(mobile-only) {
-          &:not(:last-child) {
-            margin-bottom: 20px;
-          }
-        }
-      
+
         @include mq(tablet-only) {
-          flex-basis: calc((100% - 2 * 30px) / 2);
+          flex-basis: calc((100% - 2 * 32px) / 2);
         }
       
         @include mq (desktop) {
-          flex-basis: calc((100% - 3 * 30px) / 3);
+          flex-basis: calc((100% - 3 * 32px) / 3);
         }
   
 }
