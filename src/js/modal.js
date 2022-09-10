@@ -6,9 +6,11 @@ const modalBox = document.querySelector('.box');
 
 const cardImg = document.querySelector('.gallery');
 
+let id;
 let backdrop;
 let respData;
 let genreList = [];
+let listOfGenres;
 let newApiService = new ApiService();
 
 modalBox.innerHTML = ''
@@ -20,14 +22,14 @@ cardImg.addEventListener('click', getId)
 // получаем id карточки, на которую кликнули
 
 function getId(evt) {
-  const id = evt.target.getAttribute('data-id')
+  id = evt.target.getAttribute('data-id')
 
   openModal(id)
 }
 
 // вызываем модалку
 
-async function openModal(id) {
+export default async function openModal(id) {
 
   newApiService.idNumber = id;
 
@@ -41,6 +43,8 @@ async function openModal(id) {
     genreList.push(genre.name)
   }
 
+  listOfGenres = genreList.join(', ')
+  
   // рендерим динамическую разметку модалки при клике на карточку с фильмом
 
   modalBox.insertAdjacentHTML('afterBegin', createModal());
@@ -56,26 +60,32 @@ async function openModal(id) {
 function createModal() {
     const markup =  `
     <div class="backdrop">
-      <div class="film-card modal">
+      <div class="film-card modal" data-id=${id}>
         <img src="https://image.tmdb.org/t/p/original${respData.poster_path}" alt="Txt" class="modal__image"/>
         <div>
           <h2 class="film-card__title">${respData.title}</h2>
-          <div class="film-card__features">
-            <ul class="film-card__feature-list">
-              <li class="film-card__feature-name">Vote / Votes</li>
-              <li class="film-card__feature-name">Popularity</li>
-              <li class="film-card__feature-name">Original Title</li>
-              <li class="film-card__feature-name">Genre</li>
-            </ul>
-            
-            <ul>
-              <li class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(1)}</span> <span
-                                class="divider"> / </span> ${respData.vote_count}</li>
-              <li class="film-card__feature-description">${respData.popularity.toFixed(1)}</li>
-              <li class="film-card__feature-description original-title">${respData.original_title}</li>
-              <li class="film-card__feature-description">${genreList}</li>
-            </ul>
-          </div>
+
+          <table class="film-card__features">
+            <tbody>
+              <tr class="film-card__feature-list">
+                  <td class="film-card__feature-name">Vote / Votes</td>
+                  <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(1)}</span> <span class="divider"> / </span> ${respData.vote_count}</td>
+              </tr>
+              <tr class="film-card__feature-list">
+                  <td class="film-card__feature-name">Popularity</td>
+                  <td class="film-card__feature-description">${respData.popularity.toFixed(1)}</td>
+              </tr>
+              <tr class="film-card__feature-list">
+                  <td class="film-card__feature-name">Original Title</td>
+                  <td class="film-card__feature-description original-title">${respData.original_title}</td>
+              </tr>
+              <tr class="film-card__feature-list">
+                  <td class="film-card__feature-name">Genre</td>
+                  <td class="film-card__feature-description">${listOfGenres}</td>
+              </tr>
+            </tbody>
+          </table>
+
           <h3 class="about__title">About</h3>
           <p class="about__text">
             ${respData.overview}
