@@ -6,7 +6,7 @@ const btnWatchedHeader = document.querySelector('#watched-header');
 const btnQueueHeader = document.querySelector('#queue-header');
 const modalBtnWatched = document.querySelector('.button__watch');
 const modalBtnWQueue = document.querySelector('.button__queue');
-const libraryGallaryDiv = document.querySelector('.gallary')
+const libraryGallaryDiv = document.querySelector('.library');
 
 let STORAGE_KEY = 'filmId';
 
