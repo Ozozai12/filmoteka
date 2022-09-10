@@ -5,7 +5,6 @@
   justify-content: center;
   padding-top: 20px;
   padding-bottom: 40px;
-  margin:0 -16px;
       @include mq(mobile-only) {
           &:not(:last-child) {
             margin-bottom: 20px;
