@@ -117,11 +117,25 @@
 
     &__list {
         display: flex;
-        align-items: baseline;
+        align-items: center;
     }
 
-    &__item:not(:last-child) {
-        margin-right: 40px;
+    @include mq(mobile-only){
+        &__item:not(:last-child) {
+                margin-right: 20px;
+            }
+        }
+
+    @include mq(tablet-only){
+        &__item:not(:last-child) {
+                margin-right: 40px;
+            }
+    }
+
+    @include mq (desktop){
+        &__item:not(:last-child) {
+                margin-right: 40px;
+            }
     }
 
     &__button--home,
@@ -397,11 +411,14 @@
 .icon-enter {
     fill: $main-white-color;
     position: relative;
-    bottom: -5px;
+    bottom: 0px;
     left: -5px;
 }
 
 .sign-in {
+    display: flex;
+    align-items: center;
+
     background-color: transparent;
     color: $main-white-color;
     text-transform: uppercase;
