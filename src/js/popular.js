@@ -63,7 +63,7 @@ async function popularMovies() {
     
 
       // console.log(res);
-      totalPages = res.total_results
+      const totalPages = res.total_results
       // console.log(totalPages);
       return res;});
   substitutionOfValues(popular.results);
