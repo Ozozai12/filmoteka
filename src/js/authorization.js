@@ -26,7 +26,7 @@ export default class NewServiceApi {
   async serviceSearchMovie() {
     try {
       const resp = await fetch(
-        `${url}/search/movie?api_key=${key}&query="${this.searchValue}`
+        `${url}/search/movie?api_key=${key}&query="${this.searchValue}&page=${this.page}`
       );
 
       const respData = await resp.json();

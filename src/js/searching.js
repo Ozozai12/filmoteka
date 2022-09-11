@@ -6,6 +6,10 @@ import openModal from './modal';
 
 import { substitutionOfValues } from './card';
 
+// Пагинация
+import Pagination from 'tui-pagination';
+// Пагинация
+
 const newServiceApi = new NewServiceApi();
 
 const form = document.querySelector('.search__form');
@@ -15,6 +19,35 @@ const input = document.querySelector('.search__form--input');
 const gallery = document.querySelector('.gallery');
 
 const searchingList = document.querySelector('.searching-list');
+
+
+// Пагинация
+const tuiBox = document.getElementById("tui-pagination-container__search")
+
+tuiBox.addEventListener('click', testClick)
+function testClick(e){
+    
+  const pageList = e.target.textContent
+  console.log(e.target.textContent);
+  if(Number(pageList) > 0){
+    // window.scrollTo(0, 0)
+    newServiceApi.pageNumber = Number(pageList)
+    console.log(pageList);
+    newServiceApi.serviceSearchMovie().then(res => {gallery.innerHTML = createCardMarkup(res.results)
+    console.log(res);})
+  
+  } else if(pageList === "next"){
+    console.log(pageList);
+    newServiceApi.incrementPage()
+    newServiceApi.serviceSearchMovie().then(res => {gallery.innerHTML = createCardMarkup(res.results)})
+  }else if(pageList === "prev" ){
+    newServiceApi.decrementPage()
+    newServiceApi.serviceSearchMovie().then(res => {gallery.innerHTML = createCardMarkup(res.results)})
+  }
+
+}
+// Пагинация
+
 
 function onMovieClick(event) {
 
@@ -40,6 +73,7 @@ function createSearchingList(event) {
     newServiceApi.searchValue = event.target.value;
 
     newServiceApi.serviceSearchMovie().then(res => {
+      
 
         if (res.results.length === 0) {
 
@@ -79,6 +113,7 @@ function createSearchingList(event) {
         </li>`
         
         ).join('')
+            
 
         searchingList.innerHTML = searchingListMarkup
 
@@ -96,7 +131,45 @@ function createMoviesList(event) {
 
     newServiceApi.searchValue = event.target.search.value;
 
+    // Пагинация 
+    const delBox = document.getElementById("tui-pagination-container")
+    delBox.innerHTML = ''
+    // Пагинация
+
     newServiceApi.serviceSearchMovie().then(res => {
+        console.log(res);
+
+
+                        // Пагинация
+                        const container = document.getElementById('tui-pagination-container__search');
+                        const options = { 
+                            totalItems: res.total_results,
+                            itemsPerPage: 20,
+                            
+                            page: res.page ,
+                            centerAlign: true,
+                            firstItemClassName: 'tui-first-child',
+                            lastItemClassName: 'tui-last-child',
+                            template: {
+                                page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+                                currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+                                moveButton:
+                                    '<a href="#" class="tui-page-btn tui-{{type}}">' +
+                                        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+                                    '</a>',
+                                disabledMoveButton:
+                                    '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+                                        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+                                    '</span>',
+                                moreButton:
+                                    '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+                                        '<span class="tui-ico-ellip">...</span>' +
+                                    '</a>'
+                            }
+                        };                  
+                        const pagination = new Pagination(container, options);
+                    
+                        // Пагинация
 
         if (res.results.length === 0) {
 
@@ -112,6 +185,8 @@ function createMoviesList(event) {
             return;
         }
         searchingList.innerHTML = '';
+
+                
 
         substitutionOfValues(res.results);
 
