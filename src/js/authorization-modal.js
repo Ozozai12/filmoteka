@@ -3,11 +3,6 @@ const userName = document.querySelector('.sign-name');
 
 // 2) These are our configurations.
 const uiConfig = {
-  callbacks: {
-    signInSuccessWithAuthResult(authResult, redirectUrl) {
-      return true;
-    },
-  },
   signInFlow: 'popup',
   signInSuccessUrl: 'signedIn',
   signInOptions: [
