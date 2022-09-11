@@ -6,6 +6,7 @@ export default class NewServiceApi {
     this.searchValue = '';
     this.page = 1;
     this.id = NaN;
+    this.videoId = NaN;
   }
 
   // сервіс  топ популярних фільмів за тиждень
@@ -50,6 +51,20 @@ export default class NewServiceApi {
     }
   }
 
+  // сервіс пошуку трейлерів до фільмів
+  async serviceTrailerMovie() {
+    try {
+      const resp = await fetch(
+        `${url}/movie/${this.videoId}/videos?api_key=${key}`
+      );
+      const respData = await resp.json();
+
+      return respData;
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
   ressetPage() {
     this.page = 1;
   }
@@ -72,5 +87,9 @@ export default class NewServiceApi {
 
   set idNumber(nuwId) {
     this.id = nuwId;
+  }
+
+  set idVideo(nuwVideoId) {
+    this.videoId = nuwVideoId;
   }
 }
