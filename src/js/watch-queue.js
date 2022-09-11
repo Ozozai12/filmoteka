@@ -56,7 +56,9 @@ function onBtnWatchedClick() {
 //   localStorage.removeItem(STORAGE_KEY_WATCHED);
 // }
 
-btnWatchedHeader.addEventListener('click', renderWatchedList);
+if (libraryDiv) {
+  btnWatchedHeader.addEventListener('click', renderWatchedList);
+}
 
 function renderWatchedList() {
   libraryDiv.innerHTML = '';
