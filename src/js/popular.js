@@ -5,6 +5,7 @@ import Pagination from 'tui-pagination';
 
 const newserviceApi = new NewServiceApi();
 
+
 const tuiBox = document.getElementById("tui-pagination-container")
 
 tuiBox.addEventListener('click', testClick)
@@ -32,8 +33,14 @@ function testClick(e){
 
 
 
+
+
 async function popularMovies() {
   const gallery = document.querySelector('.gallery');
+
+
+ 
+
 
   const popular = await newserviceApi.serviceMovieTopApi().then( res => {
 
@@ -64,15 +71,18 @@ async function popularMovies() {
          }
     };
 
+
     const pagination = new Pagination(container, options);
     
 
-    
+
       return res;});
   substitutionOfValues(popular.results);
-
   
-gallery.innerHTML = createMarkupCard(popular.results);
+  if (gallery) {
+    gallery.innerHTML = createMarkupCard(popular.results);
+  }
+
 }
 
 

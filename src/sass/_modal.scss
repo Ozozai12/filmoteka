@@ -1,4 +1,4 @@
-.backdrop {
+.backdrop-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -60,6 +60,7 @@
 .modal__image {
     margin-bottom: 20px;
     border-radius: 10px;
+    object-fit: cover;
 
     @include mq(tablet) {
         min-width: 264px;

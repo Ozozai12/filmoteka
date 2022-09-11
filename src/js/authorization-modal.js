@@ -4,7 +4,7 @@ const userName = document.querySelector('.sign-name');
 // 2) These are our configurations.
 const uiConfig = {
   signInFlow: 'popup',
-  signInSuccessUrl: 'signedIn',
+  signInSuccessUrl: 'https://ozozai12.github.io/filmoteka/',
   signInOptions: [
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -13,9 +13,7 @@ const uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function (authResult) {
       if (authResult) {
-        location.reload();
-
-        // setUserData(firebaseUser.uid);
+        window.location.href = 'http://localhost:1234';
         return true;
       }
     },
@@ -26,18 +24,9 @@ const uiConfig = {
 // including our configuration options.
 const uiStart = () => ui.start('#firebaseui-auth-container', uiConfig);
 // const userName = document.querySelector('.name');
-function setUserData(userId) {
-  const userLibrary = {
-    userId: userId,
-    userWatched: [],
-    userQueue: [],
-  };
-  const updates = {};
-  updates['users/' + userId] = userLibrary;
-  return firebase.database().ref().update(updates);
-}
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
+  // window.location.href = 'http://localhost:1234';
   if (firebaseUser) {
     let displayName = firebaseUser.displayName;
     if (displayName === null) {
