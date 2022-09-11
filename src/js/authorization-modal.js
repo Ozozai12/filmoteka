@@ -4,6 +4,7 @@ const userName = document.querySelector('.sign-name');
 // 2) These are our configurations.
 const uiConfig = {
   signInFlow: 'popup',
+  signInSuccessUrl: 'https://ozozai12.github.io/filmoteka/',
   signInOptions: [
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
