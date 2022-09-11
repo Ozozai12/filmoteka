@@ -1,6 +1,4 @@
 import ApiService from './authorization';
-import cardFilmsTpl from './templates/cardMarkup.hbs';
-import { homePageMarkup } from './homepage';
 
 // получаем переменные
 
@@ -9,7 +7,6 @@ const modalBox = document.querySelector('.box');
 const cardImg = document.querySelector('.gallery');
 
 let id;
-let backdrop;
 let respData;
 let genreList = [];
 let listOfGenres;
@@ -25,7 +22,7 @@ cardImg.addEventListener('click', getId)
 
 function getId(evt) {
 
-  if (evt.target.nodeName !== "P") {
+  if (evt.target.nodeName !== "P" && evt.target.nodeName !== "IMG") {
     return
   }
   const id = evt.target.getAttribute('data-id')
@@ -56,16 +53,19 @@ export default async function openModal(id) {
   modalBox.insertAdjacentHTML('afterBegin', createModal());
 
   const btnClose = document.querySelector('.button__modal-close');
-  btnClose.addEventListener('click', onModalClose);
 
-  backdrop = document.querySelector('.backdrop')
+  // вызов закрытия модалки
+
+  btnClose.addEventListener('click', onModalClose);
+  window.addEventListener('keydown', onModalCloseEsc)
+  window.addEventListener('click', onModalCloseBckdrp)
 }
 
 // разметка одной карточки модального окна фильма
 
 function createModal() {
     const markup =  `
-    <div class="backdrop">
+    <div class="backdrop-modal">
       <div class="film-card modal" data-id=${id}>
         <img src="https://image.tmdb.org/t/p/original${respData.poster_path}" alt="Txt" class="modal__image"/>
         <div>
@@ -120,32 +120,30 @@ function createModal() {
   return markup;
 }
 
-// закрытие модалки при клике на кнопку закрытия
+// функция закрытия модалки при клике на кнопку закрытия
 
 function onModalClose() {
+  // console.log('btn click')
   modalBox.innerHTML = '';
   genreList = [];
+  window.removeEventListener('keydown', onModalCloseEsc)
 }
 
-// закрытие модалки по нажатию клавиши
-
-window.addEventListener('keydown', onModalCloseEsc)
+// функция закрытия модалки по нажатию клавиши
 
 function onModalCloseEsc(evt) {
     if (evt.code === 'Escape' &&  modalBox.innerHTML === '') {     
       return
     } else if (evt.code === 'Escape') {
-        onModalClose();
+      onModalClose();
     }
 }
 
-// закрытие модалки по клику на бекдроп
-
-window.addEventListener('click', onModalCloseBckdrp)
+// функция закрытия модалки по клику на бекдроп
 
 function onModalCloseBckdrp(evt) {
-  if (evt.target === backdrop) {
-    onModalClose();
+  if (evt.target === document.querySelector('.backdrop-modal')) {
+    onModalClose()
   } else {
     return
   }
