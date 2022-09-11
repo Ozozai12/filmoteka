@@ -30,6 +30,10 @@ function testClick(e){
 async function popularMovies() {
   const gallery = document.querySelector('.gallery');
 
+
+ 
+
+
   const popular = await newserviceApi.serviceMovieTopApi().then( res => {
 
     const container = document.getElementById('tui-pagination-container');
@@ -59,6 +63,7 @@ async function popularMovies() {
          }
     };
 
+
     const pagination = new Pagination(container, options);
     
 
@@ -67,9 +72,11 @@ async function popularMovies() {
       // console.log(totalPages);
       return res;});
   substitutionOfValues(popular.results);
-
   
-gallery.innerHTML = createMarkupCard(popular.results);
+  if (gallery) {
+    gallery.innerHTML = createMarkupCard(popular.results);
+  }
+
 }
 
 
