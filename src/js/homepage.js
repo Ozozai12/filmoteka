@@ -9,4 +9,8 @@ export default async function homePageMarkup() {
   galleryContainer.innerHTML = cardFilmsTpl(data.results);  
 }
 
-homePageMarkup()
+if (!galleryContainer) {
+  return;
+} else { 
+  homePageMarkup();
+}
