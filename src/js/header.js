@@ -27,6 +27,7 @@ function onOpenModal() {
   document.body.style.overflow = "hidden";
 }
 
+
 function onCloseModal() {
   refs.modal.classList.add('is-hidden');
   document.body.style.overflow = "";

@@ -1,5 +1,5 @@
 import ApiService from './authorization';
-
+import { onBtnWatchedClick, onBtnRemoveClick } from './watch-queue';
 // получаем переменные
 
 const modalBox = document.querySelector('.box');
@@ -12,42 +12,42 @@ let genreList = [];
 let listOfGenres;
 let newApiService = new ApiService();
 
-modalBox.innerHTML = ''
+modalBox.innerHTML = '';
 
 // вызываем модальное окно с карточкой
 
-cardImg.addEventListener('click', getId)
+if (cardImg) {
+  cardImg.addEventListener('click', getId);
+}
 
 // получаем id карточки, на которую кликнули
 
 function getId(evt) {
-
-  if (evt.target.nodeName !== "P" && evt.target.nodeName !== "IMG") {
-    return
+  if (evt.target.nodeName !== 'P' && evt.target.nodeName !== 'IMG') {
+    return;
   }
-  const id = evt.target.getAttribute('data-id')
+  id = evt.target.getAttribute('data-id');
 
-  openModal(id)
+  openModal(id);
 }
 
 // вызываем модалку
 
 export default async function openModal(id) {
-
   newApiService.idNumber = id;
 
-  respData = await newApiService.serviceIdMovie()
+  respData = await newApiService.serviceIdMovie();
 
   // получаем список жанров
 
   const genres = Object.values(respData.genres);
 
   for (const genre of genres) {
-    genreList.push(genre.name)
+    genreList.push(genre.name);
   }
 
-  listOfGenres = genreList.join(', ')
-  
+  listOfGenres = genreList.join(', ');
+
   // рендерим динамическую разметку модалки при клике на карточку с фильмом
 
   modalBox.insertAdjacentHTML('afterBegin', createModal());
@@ -57,17 +57,28 @@ export default async function openModal(id) {
   // вызов закрытия модалки
 
   btnClose.addEventListener('click', onModalClose);
-  window.addEventListener('keydown', onModalCloseEsc)
-  window.addEventListener('click', onModalCloseBckdrp)
+  window.addEventListener('keydown', onModalCloseEsc);
+  window.addEventListener('click', onModalCloseBckdrp);
+
+  // Слушатели на кнопки для локалсторедж (Олег)
+  const modalBtnWatched = document.querySelector('.button__watch');
+  modalBtnWatched.addEventListener('click', onBtnWatchedClick);
+
+  const removeBtnWatch = document.querySelector('.button__remove--watch');
+  removeBtnWatch.addEventListener('click', onBtnRemoveClick);
+
+  // Конец)
 }
 
 // разметка одной карточки модального окна фильма
 
 function createModal() {
-    const markup =  `
+  const markup = `
     <div class="backdrop-modal">
       <div class="film-card modal" data-id=${id}>
-        <img src="https://image.tmdb.org/t/p/original${respData.poster_path}" alt="Txt" class="modal__image"/>
+        <img src="https://image.tmdb.org/t/p/original${
+          respData.poster_path
+        }" alt="Txt" class="modal__image"/>
         <div>
           <h2 class="film-card__title">${respData.title}</h2>
 
@@ -75,15 +86,23 @@ function createModal() {
             <tbody>
               <tr class="film-card__feature-list">
                   <td class="film-card__feature-name">Vote / Votes</td>
-                  <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(1)}</span> <span class="divider"> / </span> ${respData.vote_count}</td>
+                  <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(
+                    1
+                  )}</span> <span class="divider"> / </span> ${
+    respData.vote_count
+  }</td>
               </tr>
               <tr class="film-card__feature-list">
                   <td class="film-card__feature-name">Popularity</td>
-                  <td class="film-card__feature-description">${respData.popularity.toFixed(1)}</td>
+                  <td class="film-card__feature-description">${respData.popularity.toFixed(
+                    1
+                  )}</td>
               </tr>
               <tr class="film-card__feature-list">
                   <td class="film-card__feature-name">Original Title</td>
-                  <td class="film-card__feature-description original-title">${respData.original_title}</td>
+                  <td class="film-card__feature-description original-title">${
+                    respData.original_title
+                  }</td>
               </tr>
               <tr class="film-card__feature-list">
                   <td class="film-card__feature-name">Genre</td>
@@ -99,6 +118,7 @@ function createModal() {
             
           <div class="button__box">
             <button type="button" class="button__watch button">Add to watched</button>
+            <button type="button" class="button__remove--watch">Remove watched</button>
             <button type="button" class="button__queue button">Add to queue</button>
           </div>
 
@@ -116,7 +136,7 @@ function createModal() {
       </div>
     </div>
   </div>
-  `
+  `;
   return markup;
 }
 
@@ -126,27 +146,27 @@ function onModalClose() {
   // console.log('btn click')
   modalBox.innerHTML = '';
   genreList = [];
-  window.removeEventListener('keydown', onModalCloseEsc)
+  window.removeEventListener('keydown', onModalCloseEsc);
 }
 
 // функция закрытия модалки по нажатию клавиши
 
 function onModalCloseEsc(evt) {
-    if (evt.code === 'Escape' &&  modalBox.innerHTML === '') {     
-      return
-    } else if (evt.code === 'Escape') {
-      onModalClose();
-    }
+  if (evt.code === 'Escape' && modalBox.innerHTML === '') {
+    return;
+  } else if (evt.code === 'Escape') {
+    onModalClose();
+  }
 }
 
 // функция закрытия модалки по клику на бекдроп
 
 function onModalCloseBckdrp(evt) {
   if (evt.target === document.querySelector('.backdrop-modal')) {
-    onModalClose()
+    onModalClose();
   } else {
-    return
+    return;
   }
 }
 
-
+export { id };
