@@ -36,7 +36,7 @@ function setUserData(userId) {
 }
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
-  window.location.href = 'https://ozozai12.github.io/filmoteka/';
+  // window.location.href = 'https://ozozai12.github.io/filmoteka/';
   if (firebaseUser) {
     let displayName = firebaseUser.displayName;
     if (displayName === null) {
