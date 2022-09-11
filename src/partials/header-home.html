@@ -1,64 +1,54 @@
 <header class="header">
-  <div class="container">
-    <nav class="navigation">
-      <a class="logo__header" href="./index.html">
-        <svg
-          class="logo__header-icon"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 23 23"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19.82 2H4.18A2.18 2.18 0 0 0 2 4.18v15.64A2.18 2.18 0 0 0 4.18 22h15.64A2.18 2.18 0 0 0 22 19.82V4.18A2.18 2.18 0 0 0 19.82 2ZM7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"
-            stroke="#fff"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+    <div class="container">
+        <nav class="navigation">
+            <a class="logo__header" href="./index.html">
 
-        <!-- <svg class="logo__header-icon" width="24" height="24">
-                    <use href="./img/film.svg"></use>
-                </svg> -->
+                <svg class="logo__header-icon" width="24" height="24">
+                    <use href="./images/icons.svg#logo"></use>
+                </svg>
 
-
-                <p class="logo__head">Filmoteka</p>
+                <p class="logo__header--text">Filmoteka</p>
             </a>
-            <ul class="navigation__list">
-                <li class="navigation__item">
-                    <button class="sign-in" data-modal-open>
-                        <svg class="icon-enter" width="20" height="20">
-                            <use href="./images/icons.svg#icon-enter"></use>
-                        </svg>
-                        <p class="sign-name">Sign in</p>
-                    </button>
-                </li>
-                <li class="navigation__item">
-                    <a class="navigation__button--home navigation__button--current" id="button__home"
-                        href="./index.html">
-                        HOME
-                    </a>
-                </li>
-                <li class="navigation__item">
-                    <a class="navigation__button--library" id="button__library" href="./library.html">MY LIBRARY</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="form-header">
-            <form class="search__form" id="search-form">
 
-                <input class="search__form--input" type="text" name="search" id="searchQuery" placeholder="Search films"
-                    autocomplete="off" />
-                <button type="submit" class="search__form--button">
-                    <svg class="search-icon" width="20" height="20">
-                        <use href="./images/icons.svg#search"></use>
-                    </svg>
-                </button>
-                <ul class="searching-list"></ul>
-            </form>
-        </div>
+                <ul class="navigation__list">
+                    <li class="navigation__item">
+                        <button class="sign-in" data-modal-open>
+                            <svg class="icon-enter" width="20" height="20">
+                                <use href="./images/icons.svg#icon-enter"></use>
+                            </svg>
+                            Sign in
+                        </button>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation__button--home navigation__button--current" id="button__home"
+                            href="./index.html">
+                            HOME
+                        </a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation__button--library" id="button__library" href="./library.html">MY LIBRARY</a>
+                    </li>
+                </ul>
+            </nav>
+
+            
+            <div class="form-header__container">
+                <div class="form-header">
+                    <form class="search__form" id="search-form">
+                
+                        <input class="search__form--input" type="text" name="search" id="searchQuery" placeholder="Movie search"
+                            autocomplete="off" />
+                        <button type="submit" class="search__form--button">
+                            <svg class="search-icon" width="20" height="20">
+                                <use href="./images/icons.svg#search"></use>
+                            </svg>
+                        </button>
+                
+                        <ul class="searching-list"></ul>
+                    </form>
+                    <p class="warning-message is-hidden">Search result not successful. Enter the correct movie name and ty again!</p>
+                </div>
+            </div>
     </div>
 
 
