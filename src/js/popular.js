@@ -23,8 +23,9 @@ async function popularMovies() {
 
   const popular = await newserviceApi.serviceMovieTopApi();
   substitutionOfValues(popular.results);
-
-  gallery.innerHTML = createMarkupCard(popular.results);
+  if (gallery) {
+    gallery.innerHTML = createMarkupCard(popular.results);
+  }
 
   if (newserviceApi.page === 1) {
     prevBtn.classList.add('is__hidden');
