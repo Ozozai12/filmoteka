@@ -4,7 +4,7 @@ import { onBtnWatchedClick, onBtnRemoveClick } from './watch-queue';
 
 const modalBox = document.querySelector('.box');
 
-const cardImg = document.querySelector('.gallery');
+const cardImg = document.querySelector('body');
 
 let id;
 let respData;
@@ -16,9 +16,7 @@ modalBox.innerHTML = '';
 
 // вызываем модальное окно с карточкой
 
-if (cardImg) {
-  cardImg.addEventListener('click', getId);
-}
+cardImg.addEventListener('click', getId);
 
 // получаем id карточки, на которую кликнули
 
