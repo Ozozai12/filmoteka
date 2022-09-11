@@ -13,8 +13,6 @@ const uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: function (authResult) {
       if (authResult) {
-        location.reload();
-
         // setUserData(firebaseUser.uid);
         return true;
       }
@@ -38,6 +36,7 @@ function setUserData(userId) {
 }
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
+  window.location.href = 'https://ozozai12.github.io/filmoteka/';
   if (firebaseUser) {
     let displayName = firebaseUser.displayName;
     if (displayName === null) {
