@@ -1,19 +1,68 @@
 .header {
+    position: relative;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url(../images/header-main.jpg);
+            url(../images/header-main.jpg);
 
-    padding: 40px 30px 80px 30px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+
+    @include mq(retina){
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+                url(../images/header-main@2x.jpg);
+    }
+
+    @include mq(mobile-only){
+        
+        
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            padding: 40px 0px 90px 0px;
+    }
+    
+    
+    
+    @include mq(tablet-only){
+        background-size: 100% 100%;
+        padding: 40px 0px 80px 0px;
+    }
+    
+    @include mq (desktop){
+        background-size: 100% 100%;
+        padding: 40px 0px 80px 0px;
+    }
+
+    
+    
+    // background-size: cover;
 
     &__library {
         background: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
             url(../images/header-lib.jpg);
-        padding: 40px 20px 60px 20px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+
+        @include mq(retina) {
+                background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+                    url(../images/header-lib@2x.jpg);
+            }
+
+        @include mq(mobile-only) {
+        
+        
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100% 100%;
+                padding: 40px 0px 60px 0px;
+            }
+        
+        
+        
+            @include mq(tablet-only) {
+                background-size: 100% 100%;
+                padding: 40px 0px 60px 0px;
+            }
+        
+            @include mq (desktop) {
+                background-size: 100% 100%;
+                padding: 40px 0px 60px 0px;
+            }
     }
 
 }
@@ -27,28 +76,37 @@
     margin-right: 10px;
 }
 
-.logo__head {
+.logo__header--text {
+    display: none;
     font-size: 30px;
     font-weight: 500;
     color: #fff;
     letter-spacing: 5px;
     cursor: pointer;
-
     transition: 0.5s;
+    
+        &:hover {
+            fill: #fff;
+            text-shadow: 0 0 5px $accent-orange,
+                0 0 25px $accent-orange,
+                0 0 50px $accent-orange,
+                0 0 100px $accent-orange;
+        }
+
+    @include mq(tablet-only){
+        display: block;
+        
+    }
+        @include mq (desktop){
+            display: block;
+        }
 }
 
-.logo__head:hover {
-    fill: #fff;
-    text-shadow: 0 0 5px $accent-orange,
-        0 0 25px $accent-orange,
-        0 0 50px $accent-orange,
-        0 0 100px $accent-orange;
-}
 
 .navigation {
     display: flex;
-    justify-content: space-around;
-    align-items: baseline;
+    justify-content: space-between;
+    align-items: center;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
@@ -98,11 +156,20 @@
 }
 
 .search__form {
-    width: 280px;
+    
     display: flex;
     justify-content: center;
     position: relative;
 
+    @include mq(mobile-only){
+        width: 100%;
+    }
+        @include mq(tablet-only){
+            width: 336px;;
+        }
+                @include mq (desktop) {
+                    width: 394px;;
+                }
 
 }
 
@@ -154,15 +221,33 @@
     display: flex;
     justify-content: center;
     margin-top: 60px;
+    // flex-direction: column;
 }
 
+// .form-header__container {
+//     display: flex;
+//     justify-content: center;
+// }
+
+.warning-message {
+    position: absolute;
+    bottom: 45px;
+    margin-top: 20px;
+    padding: 0 10px;
+    color: $accent-red;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.warning-message.is-hidden {
+    opacity: 0;
+}
 
 // library
 
 .btn__library {
     font-weight: 500;
     font-size: 12px;
-    line-height: 16px;
     display: flex;
     align-items: center;
     text-align: center;
@@ -173,13 +258,34 @@
     padding: 13px 36px;
     border: 1px solid $main-white-color;
     border-radius: 5px;
-    width: 130px;
+    
     height: 44px;
     cursor: pointer;
 
-    &:not(:last-child) {
-        margin-right: 20px;
+    @include mq(mobile-only){
+        width: 130px;
+        &:not(:last-child) {
+                margin-right: 20px;
+            }
     }
+
+    @include mq(tablet-only){
+        width: 152px;
+        
+            &:not(:last-child) {
+                margin-right: 32px;
+            }
+    }
+
+    @include mq (desktop){
+        width: 148px;
+        
+            &:not(:last-child) {
+                margin-right: 16px;
+            }
+    }
+
+    
 
     &:hover {
         border: 1px solid $accent-orange;
