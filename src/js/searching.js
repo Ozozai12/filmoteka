@@ -4,6 +4,8 @@ import createCardMarkup from './templates/cardMarkup.hbs';
 
 import openModal from './modal';
 
+import { substitutionOfValues } from './card';
+
 const newServiceApi = new NewServiceApi();
 
 const form = document.querySelector('.search__form');
@@ -110,6 +112,9 @@ function createMoviesList(event) {
             return;
         }
         searchingList.innerHTML = '';
+
+        substitutionOfValues(res.results);
+
         gallery.innerHTML = createCardMarkup(res.results)
     })
 

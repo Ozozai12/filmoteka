@@ -35,7 +35,7 @@ async function popularMovies() {
   }
   
 }
-popularMovies();
+// popularMovies();
 
 
 function onClickNextBtn(){
@@ -63,3 +63,4 @@ function onClickNextBtn(){
    }
 
    
+

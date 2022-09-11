@@ -10,3 +10,5 @@ import './js/footer';
 import './js/loader';
 import './js/authorization';
 import './js/scroll_button';
+import './js/firebaseinit';
+import './js/authorization-modal';
