@@ -11,7 +11,6 @@
   }
 
   border-radius: $radius;
- 
 }
 
 .card__thumb {
@@ -20,18 +19,19 @@
   width: 100%;
   overflow: hidden;
 
-  transition: box-shadow $animation-timing-function;
+  @include mq(desktop) {
+    transition: box-shadow $animation-timing-function;
 
-  &:hover,
-  &:focus {
-    overflow: hidden;
-    box-shadow: 0 0 20px 5px rgba(255, 107, 1, 0.1),
-      0 0 12px 3px rgb(255, 107, 0.1);
+    &:hover,
+    &:focus {
+      overflow: hidden;
+      box-shadow: 0 0 20px 5px rgba(255, 107, 1, 0.1),
+        0 0 12px 3px rgb(255, 107, 0.1);
+    }
   }
 }
 
 .card__overlay {
-  
   position: absolute;
   left: 0;
   bottom: 0;
@@ -50,17 +50,17 @@
   }
   @include mq(desktop) {
     width: 395px;
+
+    background-color: rgba(255, 255, 255, 0.7);
+
+    transition: opacity $animation-timing-function;
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
   }
 
   height: 100%;
-
-  background-color: rgba(255, 255, 255, 0.7);
-
-  transition: opacity $animation-timing-function;
-  &:hover,
-  &:focus {
-    opacity: 1;
-  }
 }
 .card__text {
   display: block;
