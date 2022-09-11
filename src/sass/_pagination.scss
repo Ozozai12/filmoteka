@@ -1,23 +1,74 @@
-.plagination__list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.tui-page-btn {
+  margin: 10px;
+  display: inline-block;
+  position: relative;
+  width: 38px;
+  padding: 8px 0 6px;
+  margin-left: 0;
+  color: #333;
+  font-size: 12px;
+ 
+  text-decoration: none;
+  vertical-align: middle;
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+
+line-height: 16px;
 }
-.plagination__conatiner{
-    justify-content: center;
+
+.tui-pagination{
+display: flex;
+justify-content: center;
+align-items: center;
 }
-.plagination__btn{
-    display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      appearance: none;
-      border: none;
-      outline: none;
-      cursor: pointer;
-}
-.is__hidden{
-    visibility: hidden;
-}
+
+
+// .tui-first{
+//   position: absolute;
+//   width: 1px;
+//   height: 1px;
+//   margin: -1px;
+//   border: 0;
+//   padding: 0;
+//   white-space: nowrap;
+//   -webkit-clip-path: inset(100%);
+//           clip-path: inset(100%);
+//   clip: rect(0 0 0 0);
+//   overflow: hidden;
+// }
+// .tui-ico-last{
+//   position: absolute;
+//   width: 0px;
+//   height: 1px;
+//   margin: -1px;
+//   border: 0;
+//   padding: 0;
+//   white-space: nowrap;
+//   -webkit-clip-path: inset(100%);
+//           clip-path: inset(100%);
+//   clip: rect(0 0 0 0);
+//   overflow: hidden;
+
+//   border: 0px;
+// }
+
+.tui-page-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+padding: 0;}
+
+
+
+.tui-is-selected {
+  color: rgb(0, 0, 0);
+  background: #FF6B08;
+  border-color: #FF6B08;
+  cursor: default;
+  width: 40px;
+  height: 40px;
+
+  
+  
+  border-radius: 5px;}
