@@ -1,58 +1,92 @@
 // import filmCard from './templates/image-card.hbs';
-import filmCard from './templates/cardMarkup.hbs';
+import filmCard from './templates/markupOneCard.hbs';
+import filmCards from './templates/cardMarkup.hbs';
 import { NewServiceApi } from './authorization';
+import modal, { id } from './modal';
+import { substitutionOfValues } from './card';
 
 const btnWatchedHeader = document.querySelector('#watched-header');
 const btnQueueHeader = document.querySelector('#queue-header');
-const modalBtnWatched = document.querySelector('.button__watch');
-const modalBtnWQueue = document.querySelector('.button__queue');
-const libraryGallaryDiv = document.querySelector('.library');
+// const modalBtnWatched = document.querySelector('.button__watch');
+// const modalBtnWQueue = document.querySelector('.button__queue');
+const libraryDiv = document.querySelector('.library');
 
-let STORAGE_KEY = 'filmId';
+// console.log(btnWatchedHeader);
+
+// для варианта с одним ключом
+let STORAGE_KEY_WATCHED = 'watched';
+let STORAGE_KEY_QUEUE = 'queue';
+let localstorageFilmIdWatched = [];
+let localstorageFilmIdQueue = [];
+
+// разные ключи айди но одно значение
+// let STORAGE_VALUE_WATCHED = 'watched';
+// let STORAGE_VALUE_QUEUE = 'queue';
+// const keyArray = [];
 
 const newServiceApi = new NewServiceApi();
 
-const watched = document.querySelector('.watched');
-const watchedDiv = document.querySelector('.watched__container');
-const wachedFilms = document.querySelector('.watched__films');
+// modalBtnWatched.addEventListener('click', onBtnWatchedClick);
 
-watched.addEventListener('click', renderWatchPage);
-
-function onBtnWatchedClick() {
-  newServiceApi.serviceMovieTopApi().then(renderWatchPage);
-}
-
-function renderWatchPage() {
-  // watchedDiv.insertAdjacentHTML('beforeend', filmCard);
-  // console.log(filmCard);
-  console.log(
-    newServiceApi.serviceMovieTopApi().then(data => {
-      const apiCardId = `film ID: ${data.results[0].id}`;
-      // watchedDiv.insertAdjacentHTML('beforeend', apiCardId);
-      console.log(data.results);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(apiCardId));
-      // console.log(testApiCard);
-    })
+export default function onBtnWatchedClick() {
+  localstorageFilmIdWatched.push(id);
+  localStorage.setItem(
+    STORAGE_KEY_WATCHED,
+    JSON.stringify(localstorageFilmIdWatched)
   );
+
+  //   if (!keyArray.includes(id)) {
+  //     keyArray.push(id);
+  //   }
+
+  //   localStorage.setItem(id, STORAGE_KEY_WATCHED);
+
+  //   console.log(keyArray);
 }
 
-const remove = document.querySelector('.remove');
-remove.addEventListener('click', localStorageRemove);
+//   const modalBtnWQueue = document.querySelector('.button__queue');
+//   modalBtnWQueue.addEventListener('click', onBtnQueueClick);
 
-function localStorageRemove() {
-  localStorage.removeItem(STORAGE_KEY);
-}
+// export default function onBtnQueueClick() {
+//      localstorageFilmIdQueue.push(id);
+//   localStorage.setItem(
+//     STORAGE_KEY_QUEUE,
+//     JSON.stringify(localstorageFilmIdQueue)
+//   );
+// }
 
-wachedFilms.addEventListener('click', readLocalStorage);
+//   НУЖНА КНОПКА REMOVE В МОДАЛКЕ!!!!!!!!!!
+// function localStorageRemove() {
+//   localStorage.removeItem(STORAGE_KEY_WATCHED);
+// }
 
-function readLocalStorage() {
-  watchedDiv.innerHTML = '';
+btnWatchedHeader.addEventListener('click', renderWatchedList);
+
+function renderWatchedList() {
+  //   libraryDiv.innerHTML = '';
   const noWatchedMessage = 'There are no films in watched!';
-  const localStorageFilm = localStorage.getItem(STORAGE_KEY);
-  const parsedStorageFilm = JSON.parse(localStorageFilm);
+  const watchedFilmsById = JSON.parse(
+    localStorage.getItem(STORAGE_KEY_WATCHED)
+  );
 
-  if (!parsedStorageFilm) {
-    return watchedDiv.insertAdjacentHTML('beforeend', noWatchedMessage);
-  }
-  return watchedDiv.insertAdjacentHTML('beforeend', parsedStorageFilm);
+  //   if (libraryDiv === '') {
+  //     return libraryDiv.insertAdjacentHTML('beforeend', noWatchedMessage);
+  //   }
+  watchedFilmsById.map(film => {
+    newServiceApi.id = Number(film);
+    newServiceApi.serviceIdMovie().then(res => {
+      libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
+    });
+  });
 }
+
+// const removeWatched = document.querySelector('.???')
+// removeWatched.addEventListener('click');
+
+// function onRemoveBtnClick() {
+//     localStorage.removeItem('???');
+// }
+
+btnQueueHeader.addEventListener('click', renderQueueList);
+
+function renderQueueList() {}
