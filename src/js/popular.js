@@ -5,6 +5,7 @@ import Pagination from 'tui-pagination';
 
 const newserviceApi = new NewServiceApi();
 
+
 const tuiBox = document.getElementById("tui-pagination-container")
 
 tuiBox.addEventListener('click', testClick)
@@ -21,6 +22,8 @@ function testClick(e){
   } 
   
 }
+
+
 
 
 
