@@ -12,16 +12,24 @@
     justify-content: flex-start;
     align-items: center;
 
+    height: 80px;
+
     background-color: $main-black-color;
 
     border-radius: 4px;
     border: 1px $main-white-color solid;
     cursor: pointer;
 
+    box-shadow: 0px 3px 15px rgba(249, 247, 247, 0.2);
+
     scale: 1;
+    transition: scale $animation-timing-function;
+
 
     &:hover {
         scale: 1.1;
+        box-shadow: 0 0 20px 5px rgba(255, 107, 1, 0.1),
+                0 0 12px 3px rgb(255, 107, 0.1);
     }
 }
 
@@ -39,4 +47,10 @@
     color: $accent-red;
     font-size: 14;
     padding: 20px 0;
+}
+
+
+.searching-list__photo {
+    border-radius: 4px;
+    height: 80px;
 }
