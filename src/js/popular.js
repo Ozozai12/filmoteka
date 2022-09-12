@@ -26,9 +26,11 @@ function testClick(e){
     
     newserviceApi.incrementPage()
     popularMovies();
+    window.scrollTo(0, 0);
   }else if(pageList.classList.contains("tui-ico-prev") ||pageList.classList.contains("tui-prev")){
     newserviceApi.decrementPage()
     popularMovies();
+    window.scrollTo(0, 0);
   }
   
 }
