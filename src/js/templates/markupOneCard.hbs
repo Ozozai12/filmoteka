@@ -41,7 +41,8 @@
     <h2 data-id='{{id}}' class='card__title'>{{title}}</h2>
     <div class='card__caption'>
       <span data-id='{{id}}' class='card__info'>
-        {{genre_ids}}
+        {{#each genres}}{{#if @index}},{{/if}}
+        {{name}}{{/each}}
         |
         {{release_date}}
       </span>
