@@ -14,9 +14,9 @@
 //   }
 // })();
 const refs = {
-    openModalBtn: document.querySelector('[data-modal-open]'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
-    modal: document.querySelector('[data-modal]'),
+    openModalBtn: document.querySelector('[data-modal-open-autorisation]'),
+    closeModalBtn: document.querySelector('[data-modal-close-autorisation]'),
+    modal: document.querySelector('[data-modal-autorisation]'),
 }
 
 refs.openModalBtn.addEventListener('click', onOpenModal);
