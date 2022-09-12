@@ -33,16 +33,19 @@ function testClick(e){
     // window.scrollTo(0, 0)
     newServiceApi.pageNumber = Number(pageList)
     console.log(pageList);
-    newServiceApi.serviceSearchMovie().then(res => {gallery.innerHTML = createCardMarkup(res.results)
+    newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
+      gallery.innerHTML = createCardMarkup(res.results)
     console.log(res);})
   
   } else if(pageList === "next"){
     console.log(pageList);
     newServiceApi.incrementPage()
-    newServiceApi.serviceSearchMovie().then(res => {gallery.innerHTML = createCardMarkup(res.results)})
+    newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
+      gallery.innerHTML = createCardMarkup(res.results)})
   }else if(pageList === "prev" ){
     newServiceApi.decrementPage()
-    newServiceApi.serviceSearchMovie().then(res => {gallery.innerHTML = createCardMarkup(res.results)})
+    newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
+      gallery.innerHTML = createCardMarkup(res.results)})
   }
 
 }
