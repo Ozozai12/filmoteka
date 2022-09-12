@@ -18,21 +18,13 @@ const newServiceApi = new NewServiceApi();
 renderWatchedList();
 
 function onBtnWatchedClick() {
-  const watchedFilmsById = JSON.parse(
-    localStorage.getItem(STORAGE_KEY_WATCHED)
-  );
+  let watchedFilmsById = [];
+  watchedFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_WATCHED));
 
   if (watchedFilmsById && watchedFilmsById.includes(id)) {
     return;
   }
-  if (!watchedFilmsById) {
-    localstorageFilmIdWatched.push(id);
-    localStorage.setItem(
-      STORAGE_KEY_WATCHED,
-      JSON.stringify(localstorageFilmIdWatched)
-    );
-  }
-  localstorageFilmIdWatched = watchedFilmsById.concat(id);
+  localstorageFilmIdWatched.push(id);
   localStorage.setItem(
     STORAGE_KEY_WATCHED,
     JSON.stringify(localstorageFilmIdWatched)
@@ -46,19 +38,13 @@ function onBtnWatchedClick() {
 }
 
 function onBtnQueueClick() {
-  const watchedFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_QUEUE));
+  let watchedFilmsById = [];
+  watchedFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_QUEUE));
 
   if (watchedFilmsById && watchedFilmsById.includes(id)) {
     return;
   }
-  if (!watchedFilmsById) {
-    localstorageFilmIdQueue.push(id);
-    localStorage.setItem(
-      STORAGE_KEY_QUEUE,
-      JSON.stringify(localstorageFilmIdQueue)
-    );
-  }
-  localstorageFilmIdQueue = watchedFilmsById.concat(id);
+  localstorageFilmIdQueue.push(id);
   localStorage.setItem(
     STORAGE_KEY_QUEUE,
     JSON.stringify(localstorageFilmIdQueue)
@@ -85,7 +71,9 @@ function renderWatchedList() {
     localStorage.getItem(STORAGE_KEY_WATCHED)
   );
 
-  renderCards(watchedFilmsById);
+  if (libraryDiv) {
+    renderCards(watchedFilmsById);
+  }
 }
 
 function renderQueueList() {
@@ -94,7 +82,10 @@ function renderQueueList() {
   }
 
   const watchedFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_QUEUE));
-  renderCards(watchedFilmsById);
+
+  if (libraryDiv) {
+    renderCards(watchedFilmsById);
+  }
 }
 
 function onBtnWatchedRemoveClick() {
@@ -148,11 +139,13 @@ function onBtnQueueRemoveClick() {
 }
 
 function renderCards(watchedFilmsById) {
-  if (libraryDiv) {
+  if (watchedFilmsById) {
     watchedFilmsById.map(film => {
       newServiceApi.id = Number(film);
       newServiceApi.serviceIdMovie().then(res => {
-        libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
+        if (libraryDiv) {
+          libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
+        }
       });
     });
   }

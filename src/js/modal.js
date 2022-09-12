@@ -128,7 +128,7 @@ function createModal() {
             <button type="button" class="button__watch button">Add to watched</button>
             <button type="button" class="button__remove--watch">Remove watched</button>
             <button type="button" class="button__queue button">Add to queue</button>
-            <button type="button" class="button__remove--queue">Remove watched</button>
+            <button type="button" class="button__remove--queue">Remove queue</button>
           </div>
 
         <button class="button__modal-close">
