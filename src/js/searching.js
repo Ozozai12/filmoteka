@@ -23,30 +23,76 @@ const searchingList = document.querySelector('.searching-list');
 
 // Пагинация
 const tuiBox = document.getElementById("tui-pagination-container__search")
+let currentPage = 1
+let maxPage = 1;
+   
 
-tuiBox.addEventListener('click', testClick)
-function testClick(e){
+tuiBox.addEventListener('click', testTargetClick)
+function testTargetClick(e){
+
+//   const testPrev = document.querySelector(".tui-prev")
+//   const testNext = document.querySelector(".tui-next")
+//   if(currentPage === 1){
     
-  const pageList = e.target.textContent
-  console.log(e.target.textContent);
-  if(Number(pageList) > 0){
-    // window.scrollTo(0, 0)
-    newServiceApi.pageNumber = Number(pageList)
-    console.log(pageList);
+// testPrev.classList.add('visibility')
+//   }
+ 
+//   if(currentPage === maxPage){
+//     testNext.classList.add('visibility')
+    
+//   }
+//   function test(res){
+//     currentPage = res.page
+//     maxPage = res.total_pages
+//      console.log(currentPage);
+//   console.log(maxPage);
+//   const testPrev = document.querySelector(".tui-prev")
+
+//   // if(currentPage === 1){
+//   //   testPrev.classList.add('visibility')
+//   // }
+//   // console.log(currentPage);
+//   // console.log(maxPage);
+//   // if(currentPage === maxPage){
+//   //   testNext.classList.add('visibility')
+//   // }
+//   }
+  const pageList = e.target
+ 
+  if( Number(pageList.textContent) > 0){
+    window.scrollTo(0, 0)
+    newServiceApi.pageNumber = Number(pageList.textContent)
+
     newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
-      gallery.innerHTML = createCardMarkup(res.results)
-    console.log(res);})
-  
-  } else if(pageList === "next"){
-    console.log(pageList);
-    newServiceApi.incrementPage()
-    newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
+      
+      console.log(res);
       gallery.innerHTML = createCardMarkup(res.results)})
-  }else if(pageList === "prev" ){
-    newServiceApi.decrementPage()
-    newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
-      gallery.innerHTML = createCardMarkup(res.results)})
-  }
+      // test(res)
+      window.scrollTo(0, 0) 
+  } 
+  // else if(pageList.classList.contains("tui-ico-next") ||pageList.classList.contains("tui-next")){
+  //   window.scrollTo(0, 0) 
+    
+  //   newServiceApi.incrementPage()
+  //   newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
+      
+  //     gallery.innerHTML = createCardMarkup(res.results)
+  //     // test(res)
+  //   }
+      
+  //     )
+  // }else if(pageList.classList.contains("tui-ico-prev") ||pageList.classList.contains("tui-prev")){
+  //   newServiceApi.decrementPage()
+  //   newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
+      
+  //     gallery.innerHTML = createCardMarkup(res.results)
+  //     // test(res)
+  //   } 
+
+  //        )
+  //     // window.scrollTo(0, 0) 
+      
+  // }
 
 }
 // Пагинация
@@ -140,16 +186,18 @@ function createMoviesList(event) {
 
   newServiceApi.searchValue = event.target.search.value;
 
-  // Пагинация 
+  
+
+  newServiceApi.serviceSearchMovie().then(res => {
+   
+// Пагинация 
+ 
   const delBox = document.getElementById("tui-pagination-container")
   delBox.innerHTML = ''
   // Пагинация
 
-  newServiceApi.serviceSearchMovie().then(res => {
-    console.log(res);
-
-
     // Пагинация
+    
     const container = document.getElementById('tui-pagination-container__search');
     const options = {
       totalItems: res.total_results,
@@ -164,20 +212,24 @@ function createMoviesList(event) {
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
         moveButton:
           '<a href="#" class="tui-page-btn tui-{{type}}">' +
-          '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '<span ></span>' +
           '</a>',
         disabledMoveButton:
           '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-          '<span class="tui-ico-{{type}}">{{type}}</span>' +
+          '<span ></span>' +
           '</span>',
         moreButton:
           '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-          '<span class="tui-ico-ellip">...</span>' +
+          '<span class="tui-ico-ellip"></span>' +
           '</a>'
       }
     };
     const pagination = new Pagination(container, options);
-                    
+    
+    // const testNext = document.querySelector(".tui-next")
+    
+    
+    
     // Пагинация
 
     newServiceApi.serviceSearchMovie().then(res => {
@@ -199,9 +251,12 @@ function createMoviesList(event) {
                 
 
       substitutionOfValues(res.results);
+     
 
       gallery.innerHTML = createCardMarkup(res.results)
     })
+   
+         
 
   })
 }
