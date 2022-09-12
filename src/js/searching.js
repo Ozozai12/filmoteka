@@ -104,9 +104,10 @@ function createSearchingList(event) {
             ? `<li class="searching-list__item" id='${movie.id}'>
             <img
               class="searching-list__photo"
-              src="https://image.tmdb.org/t/p/original/${movie.poster_path}"
+              src="https://image.tmdb.org/t/p/w500/${movie.poster_path}"
               alt="movie poster"
               width="50"
+              height="80"
             />
             <p class="searching-list__title">${movie.title}</p>
         </li>`
