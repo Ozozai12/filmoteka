@@ -4,27 +4,29 @@ import createMarkupCard from './templates/cardMarkup.hbs';
 import Pagination from 'tui-pagination';
 
 const newserviceApi = new NewServiceApi();
-
+let currentPage = 1
 
 const tuiBox = document.getElementById("tui-pagination-container")
 
-tuiBox.addEventListener('click', testClick)
-function testClick(e){
 
+tuiBox.addEventListener('click', testClick)
+
+function testClick(e){
   
-  const pageList = e.target.textContent
-  // console.log(e.target.textContent);
-  if( Number(pageList) > 0){
-    console.log(pageList);
+  
+  const pageList = e.target
+ 
+  if( Number(pageList.textContent) > 0){
+    
     window.scrollTo(0, 0)
-  newserviceApi.pageNumber = Number(pageList)
+  newserviceApi.pageNumber = Number(pageList.textContent)
   popularMovies();
     
-  } else if(pageList === "next"){
-    console.log(pageList);
+  } else if(pageList.classList.contains("tui-ico-next") ||pageList.classList.contains("tui-next")){
+    
     newserviceApi.incrementPage()
     popularMovies();
-  }else if(pageList === "prev"){
+  }else if(pageList.classList.contains("tui-ico-prev") ||pageList.classList.contains("tui-prev")){
     newserviceApi.decrementPage()
     popularMovies();
   }
@@ -41,8 +43,10 @@ async function popularMovies() {
 
  
 
-
+  
   const popular = await newserviceApi.serviceMovieTopApi().then( res => {
+    currentPage = res.page
+    console.log(currentPage);
 
     const container = document.getElementById('tui-pagination-container');
     const options = { 
@@ -73,7 +77,32 @@ async function popularMovies() {
 
 
     const pagination = new Pagination(container, options);
-    
+   const delHTml = document.querySelector(".tui-ico-prev")
+   const delHTmlrg = document.querySelector(".tui-ico-next")
+   delHTmlrg.innerHTML = ``
+  //  `<svg width="16" height="16" fill="none" 
+  //  xmlns="http://www.w3.org/2000/svg"><path 
+  //  d="M3.333 8h9.334M8 12.667 12.667 8 8 3.333" 
+  //  stroke="#000" 
+  //  stroke-width="1.333"
+  //  stroke-linecap="round"
+  // stroke-linejoin="round"/></svg>`
+  delHTml.innerHTML = ``
+  // `<svg width="16" height="16" fill="none" 
+  // class="tui-ico-prev"
+  // xmlns="http://www.w3.org/2000/svg">
+  // <path d="M12.667 8H3.333M8 12.667 3.333 8 8 3.333" 
+  // stroke="#000" 
+  // stroke-width="1.333" 
+  // stroke-linecap="round" 
+  // stroke-linejoin="round"/></svg>`
+  const test = document.querySelector(".tui-prev")
+  console.log(test);
+  if(currentPage === 1){
+    test.classList.add('visibility')
+  }
+  
+  
 
 
       return res;});

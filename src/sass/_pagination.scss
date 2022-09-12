@@ -1,5 +1,5 @@
 .tui-page-btn {
-  margin: 10px;
+  // margin: 10px;
   display: inline-block;
   position: relative;
   width: 38px;
@@ -7,14 +7,24 @@
   margin-left: 0;
   color: #333;
   font-size: 12px;
- 
+  width: 40px;
+  height: 40px;
   text-decoration: none;
   vertical-align: middle;
   font-family: 'Roboto';
 font-style: normal;
 font-weight: 500;
-
+border-radius: 5px;
 line-height: 16px;
+
+}
+.tui-page-btn:hover{
+  // background: #FF6B08;
+  border: 2px solid $accent-orange;
+    border-radius: 5px;
+    width: 36px;
+    height: 36px;
+ 
 }
 
 .tui-pagination{
@@ -33,12 +43,42 @@ padding: 0;}
 
 .tui-is-selected {
   color: rgb(0, 0, 0);
-  background: #FF6B08;
-  border-color: #FF6B08;
+  background: $accent-orange;
+  border-color: $accent-orange;
   cursor: default;
-  width: 40px;
-  height: 40px;
+ 
 
   
   
   border-radius: 5px;}
+
+.tui-first,.tui-last,.visibility{
+  position: absolute;
+    width: 0px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    -webkit-clip-path: inset(100%);
+            clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  
+    border: 0px;
+}
+.tui-ico-prev{
+  background-image: url(../images/left.svg);
+  width: 16px;
+  height: 16px;
+}
+.tui-ico-next{
+  background-image: url(../images/right.svg);
+  width: 16px;
+  height: 16px;
+}
+
+.tui-ico-prev{
+  width: 16px;
+  height: 16px;
+}
