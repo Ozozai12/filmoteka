@@ -12,14 +12,22 @@ tuiBox.addEventListener('click', testClick)
 function testClick(e){
 
   
-  const pageList = Number(e.target.textContent)
+  const pageList = e.target.textContent
   // console.log(e.target.textContent);
-  if(pageList > 0){
+  if( Number(pageList) > 0){
+    console.log(pageList);
     window.scrollTo(0, 0)
-  newserviceApi.pageNumber = pageList
+  newserviceApi.pageNumber = Number(pageList)
   popularMovies();
     
-  } 
+  } else if(pageList === "next"){
+    console.log(pageList);
+    newserviceApi.incrementPage()
+    popularMovies();
+  }else if(pageList === "prev"){
+    newserviceApi.decrementPage()
+    popularMovies();
+  }
   
 }
 
@@ -67,9 +75,7 @@ async function popularMovies() {
     const pagination = new Pagination(container, options);
     
 
-      // console.log(res);
-      const totalPages = res.total_results
-      // console.log(totalPages);
+
       return res;});
   substitutionOfValues(popular.results);
   
