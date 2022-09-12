@@ -19,11 +19,7 @@
     }
 }
 
-.box {
-    position: relative;
-}
-
-.modal {
+.modal-window {
     position: relative;
     background-color: $main-white-color;
     max-width: 280px;
@@ -42,6 +38,7 @@
 
 
     @include mq(tablet) {
+        max-height: 552px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -52,19 +49,24 @@
     }
 
     @include mq (desktop) {
-        max-width: 806px;
+        max-width: 840px;
+        max-height: 700px;
         padding: 40px 12px;
     }
+}
+
+.film-card {
+    @include mq(tablet) {
+        display: flex;
+    }  
 }
 
 .modal__image {
     margin-bottom: 20px;
     border-radius: 10px;
-    object-fit: cover;
 
     @include mq(tablet) {
         min-width: 264px;
-        max-height: 374px;
         margin-right: 68px;
         margin-bottom: 0;
     }
@@ -72,7 +74,6 @@
     @include mq(desktop) {
         min-width: 375px;
         margin-right: 16px;
-        max-height: 478px;
     }
 }
 
@@ -87,13 +88,13 @@
     margin-bottom: 20px;
 
     @include mq(tablet) {
-        min-width: 264px;
+        max-width: 264px;
         min-height: 20px;
         line-height: 1.15;
     }
 
     @include mq (desktop) {
-        min-width: 266px;
+        max-width: 266px;
         min-height: 31px;
 
         font-size: 30px;
@@ -295,13 +296,104 @@
     }
 }
 
-.visually-hidden {
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.play_video {
     position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    overflow: hidden;
+    top: 20%;
+    left: 35%;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+
+    @include mq(tablet) {
+        top: 40%;
+        left: 18%;
+    }
+
+    @include mq(desktop) {
+        top: 45%;
+        left: 20%;
+    }
+}
+
+.circle {
+    stroke: #ff6b01;
+    stroke-dasharray: 650;
+    stroke-dashoffset: 650;
+    transition: all 0.5s ease-in-out;
+    opacity: 0.3;
+}
+
+.playBut {
+    // border: 1px solid red;
+    display: inline-block;
+    transition: all 0.5s ease;
+
+    .triangle {
+        transition: all 0.7s ease-in-out;
+        stroke-dasharray: 240;
+        stroke-dashoffset: 480;
+        stroke: #ff6b01;
+        transform: translateY(0);
+    }
+
+    &:hover {
+        .triangle {
+            stroke-dashoffset: 0;
+            opacity: 1;
+            stroke: #ff6b01;
+            animation: nudge 0.7s ease-in-out;
+
+            @keyframes nudge {
+                0% {
+                    transform: translateX(0);
+                }
+
+                30% {
+                    transform: translateX(-5px);
+                }
+
+                50% {
+                    transform: translateX(5px);
+                }
+
+                70% {
+                    transform: translateX(-2px);
+                }
+
+                100% {
+                    transform: translateX(0);
+                }
+            }
+        }
+
+        .circle {
+            stroke-dashoffset: 0;
+            opacity: 1;
+        }
+    }
+}
+
+///відео плеєр
+.treiler_iframe {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    object-fit: cover;
+
+    @include mq(tablet) {
+        min-width: 264px;
+        max-height: 374px;
+        margin-right: 68px;
+        margin-bottom: 0;
+    }
+
+    @include mq(desktop) {
+        min-width: 375px;
+        margin-right: 16px;
+        min-height: 562px;
+    }
 }
