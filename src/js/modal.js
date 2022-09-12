@@ -1,10 +1,15 @@
 import ApiService from './authorization';
-import { onBtnWatchedClick, onBtnRemoveClick } from './watch-queue';
+import {
+  onBtnWatchedClick,
+  onBtnWatchedRemoveClick,
+  onBtnQueueClick,
+  onBtnQueueRemoveClick,
+} from './watch-queue';
 // получаем переменные
 
 const modalBox = document.querySelector('.box');
 
-const cardImg = document.querySelector('.gallery');
+const cardImg = document.querySelector('body');
 
 let id;
 let respData;
@@ -16,9 +21,7 @@ modalBox.innerHTML = '';
 
 // вызываем модальное окно с карточкой
 
-if (cardImg) {
-  cardImg.addEventListener('click', getId);
-}
+cardImg.addEventListener('click', getId);
 
 // получаем id карточки, на которую кликнули
 
@@ -65,8 +68,13 @@ export default async function openModal(id) {
   modalBtnWatched.addEventListener('click', onBtnWatchedClick);
 
   const removeBtnWatch = document.querySelector('.button__remove--watch');
-  removeBtnWatch.addEventListener('click', onBtnRemoveClick);
+  removeBtnWatch.addEventListener('click', onBtnWatchedRemoveClick);
 
+  const modalBtnWQueue = document.querySelector('.button__queue');
+  modalBtnWQueue.addEventListener('click', onBtnQueueClick);
+
+  const removeBtnQueue = document.querySelector('.button__remove--queue');
+  removeBtnQueue.addEventListener('click', onBtnQueueRemoveClick);
   // Конец)
 }
 
@@ -120,6 +128,7 @@ function createModal() {
             <button type="button" class="button__watch button">Add to watched</button>
             <button type="button" class="button__remove--watch">Remove watched</button>
             <button type="button" class="button__queue button">Add to queue</button>
+            <button type="button" class="button__remove--queue">Remove watched</button>
           </div>
 
         <button class="button__modal-close">

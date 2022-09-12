@@ -3,11 +3,11 @@
       {{#if poster_path}}
         <picture class='card__image'>
           <source
-            srcset='https://image.tmdb.org/t/p/original{{poster_path}}'
+            srcset='https://image.tmdb.org/t/p/w780{{poster_path}}'
             media='(min-width: 1280px)'
           />
           <source
-            srcset='https://image.tmdb.org/t/p/w780{{poster_path}}'
+            srcset='https://image.tmdb.org/t/p/w500{{poster_path}}'
             media='(min-width: 768px)'
           />
           <source
@@ -21,7 +21,7 @@
             alt='{{title}}'
             loading='lazy'
             class='card__image'
-            style='object-fit: contain'
+            style='object-fit: cover'
           />
         </picture>
       {{else}}
@@ -31,12 +31,12 @@
           alt='{{title}}'
           loading='lazy'
           class='card__image'
-          style='object-fit: contain'
+          style='object-fit: cover'
         />
       {{/if}}
-      {{!-- <div class='card__overlay'>
-        <p class='card__text'>{{overview}}</p>
-      </div> --}}
+      <div class='card__overlay'>
+        <p class='card__text' data-id='{{id}}'>{{overview}}</p>
+      </div>
     </div>
     <h2 data-id='{{id}}' class='card__title'>{{title}}</h2>
     <div class='card__caption'>
