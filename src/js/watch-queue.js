@@ -82,12 +82,12 @@ function renderWatchedList() {
 // const removeBtnWatch = document.querySelector('.button__remove');
 // modalBtnWQueue.addEventListener('click', onBtnRemoveClick);
 
-// function onBtnRemoveClick() {
-//   const watchedFilmsById = JSON.parse(
-//     localStorage.getItem(STORAGE_KEY_WATCHED)
-//   );
-//   console.log(watchedFilmsById);
-// localStorage.removeItem();
-// }
+function onBtnRemoveClick() {
+  const watchedFilmsById = JSON.parse(
+    localStorage.getItem(STORAGE_KEY_WATCHED)
+  );
+  console.log(watchedFilmsById);
+  //   localStorage.removeItem();
+}
 
 export { onBtnWatchedClick, onBtnRemoveClick };
