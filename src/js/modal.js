@@ -22,7 +22,7 @@ cardImg.addEventListener('click', getId)
 
 function getId(evt) {
 
-  if (evt.target.nodeName !== "P" && evt.target.nodeName !== "IMG") {
+  if (evt.target.nodeName !== "P" && evt.target.nodeName !== "IMG" && evt.target.nodeName !== "H2") {
     return
   }
   const id = evt.target.getAttribute('data-id')
@@ -67,7 +67,7 @@ function createModal() {
     const markup =  `
     <div class="backdrop-modal">
       <div class="film-card modal" data-id=${id}>
-        <img src="https://image.tmdb.org/t/p/original${respData.poster_path}" alt="Txt" class="modal__image"/>
+        <img src="https://image.tmdb.org/t/p/w500${respData.poster_path}" alt="Txt" class="modal__image" width=240px/>
         <div>
           <h2 class="film-card__title">${respData.title}</h2>
 
@@ -123,7 +123,6 @@ function createModal() {
 // функция закрытия модалки при клике на кнопку закрытия
 
 function onModalClose() {
-  // console.log('btn click')
   modalBox.innerHTML = '';
   genreList = [];
   window.removeEventListener('keydown', onModalCloseEsc)
