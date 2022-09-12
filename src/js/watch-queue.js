@@ -143,6 +143,10 @@ function renderCards(watchedFilmsById) {
     watchedFilmsById.map(film => {
       newServiceApi.id = Number(film);
       newServiceApi.serviceIdMovie().then(res => {
+     
+      res.genres = res.genres.splice(0, 2)
+      res.release_date = res.release_date.slice(0, 4);
+      res.vote_average = res.vote_average.toFixed(1);
         if (libraryDiv) {
           libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
         }
