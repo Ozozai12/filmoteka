@@ -11,9 +11,8 @@
     opacity: 1;
     visibility: visible;
 
-    // transition: opacity $animation-timing-function,
-    //             visibility $animation-timing-function,
-    //             transform $animation-timing-function;
+    transition: opacity $animation-timing-function,
+                transform $animation-timing-function;
 
     @include mq(mobile-only) {
         overflow-y: scroll;
@@ -22,6 +21,7 @@
     @include mq(tablet) {
         &.modal {
             transform: translate(-50%, -50%) scale(0.5);
+            transition: scale $animation-timing-function;
         }
     }
 }
@@ -42,7 +42,7 @@
             23px 0 20px -23px rgba(0, 0, 0, .6),
             inset 0 0 40px rgba(0, 0, 0, .1);
 
-    // transition: transform $animation-timing-function;
+    transition: transform $animation-timing-function;
 
     @media screen and (min-width: 330px) {
         left: 50%;
@@ -55,13 +55,15 @@
         left: 50%;
         transform: translate(-50%, -50%) scale(1);
         min-width: 704px;
+        min-height: 552px;
         max-width: 806px;
         display: flex;
         padding: 40px 72px 40px 36px;
+
+        transition: scale $animation-timing-function;
     }
 
     @include mq (desktop) {
-        
         padding: 40px 12px;
     }
 }
@@ -72,11 +74,13 @@
 
     @include mq(tablet) {
         min-width: 264px;
+        height: 373px;
         margin-right: 68px;
         margin-bottom: 0;
     }
 
     @include mq(desktop) {
+        height: auto;
         min-width: 375px;
         margin-right: 16px;
     }

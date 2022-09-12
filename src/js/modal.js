@@ -67,7 +67,7 @@ function createModal() {
     const markup =  `
     <div class="backdrop-modal">
       <div class="film-card modal" data-id=${id}>
-        <img src="https://image.tmdb.org/t/p/w500${respData.poster_path}" alt="Txt" class="modal__image" width=240px/>
+        <img src="https://image.tmdb.org/t/p/w500${respData.poster_path}" alt="${respData.title}" class="modal__image" width=240px loading='lazy'/>
         <div>
           <h2 class="film-card__title">${respData.title}</h2>
 
