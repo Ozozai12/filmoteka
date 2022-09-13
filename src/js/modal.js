@@ -41,7 +41,7 @@ if (cardImgL) {
 // получаем id карточки, на которую кликнули
 
 function getId(evt) {
-  if (evt.target.nodeName !== 'P' && evt.target.nodeName !== 'IMG') {
+  if (evt.target.nodeName !== 'P' && evt.target.nodeName !== 'IMG' || evt.target.classList.contains('kitten')) {
     return;
   }
 
