@@ -162,7 +162,9 @@ function onBtnQueueRemoveClick() {
 function renderCards(watchedFilmsById) {
 
   if (!watchedFilmsById || watchedFilmsById.length === 0) {
-    libraryDiv.innerHTML = `<img src="${nothingHereUrl}" STYLE="margin:0 auto" width="600" alt="nothingHere"></img>`;
+    libraryDiv.innerHTML = `<div STYLE="margin:0 auto"><img src="${nothingHereUrl}" min-width="600" min-height="600" alt="nothingHere"></img></div>`;
+    let intViewportHeight = window.innerHeight-522;
+    libraryDiv.style.minHeight = `${intViewportHeight}px`;
   }
   if (watchedFilmsById) {
     watchedFilmsById.map(film => {
