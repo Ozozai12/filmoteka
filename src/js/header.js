@@ -34,19 +34,82 @@ function toggleCurrentActiveBtn(ev) {
   btnEl.classList.add('btn__library--current');
 }
 
-const toggle = document.getElementById('toggle');
+// THEME Toggle
+
+const toggle = document.querySelector('.theme-switch__toggle');
 const body = document.body;
+const footerDarktheme = document.querySelector('.footer');
 
-toggle.addEventListener('input', (e) => {
-	const isChecked = e.target.checked;
-	
-	if(isChecked) {
-		body.classList.add('dark-theme');
-	} else {
-		body.classList.remove('dark-theme');
-	}
-});
+// const modalHeader = document.querySelector('.modal__header');
+// const wrapperModalLogin = document.querySelector('.wrapper');
 
+const theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
+const savedTheme = localStorage.getItem('theme');
+
+// const savedTheme = localStorage.getItem('theme');
+updataTheme();
+checkboxChecked();
+updataThemeFooter();
+
+toggle.addEventListener('change', toggleTheme)
+
+function toggleTheme() {
+  // const isChecked = e.target.checked;
+	// if(isChecked) {
+  //   body.classList.add('dark-theme');
+  //   modalHeader.classList.add('dark-theme');
+  //   wrapperModalLogin.classList.add('dark-theme'); 
+	// } else {
+  //   body.classList.remove('dark-theme');
+  //   modalHeader.classList.remove('dark-theme');
+  //   wrapperModalLogin.classList.remove('dark-theme');
+	// }
+  
+  if (body.classList.contains('dark-theme')) {
+    body.classList.remove('dark-theme');
+    // modalHeader.classList.remove('dark-theme');
+    // wrapperModalLogin.classList.remove('dark-theme');
+    body.classList.add('light-theme');
+    // modalHeader.classList.add('light-theme');
+    // wrapperModalLogin.classList.add('light-theme');
+    footerDarktheme.classList.remove('dark-theme');
+  } else {
+    body.classList.remove('light-theme');
+    // modalHeader.classList.remove('light-theme');
+    // wrapperModalLogin.classList.remove('light-theme');
+    body.classList.add('dark-theme');
+    // modalHeader.classList.add('dark-theme');
+    // wrapperModalLogin.classList.add('dark-theme');
+    footerDarktheme.classList.add('dark-theme');
+  }
+
+  localStorage.setItem('theme', body.classList);
+}
+
+
+
+
+
+function updataTheme() {
+  if (savedTheme) {
+    body.classList = savedTheme;
+  }
+}
+
+function checkboxChecked() {
+  if (savedTheme === 'loaded dark-theme') {
+    toggle.setAttribute('checked', true);
+  }
+}
+
+function updataThemeFooter() {
+  if (savedTheme === 'loaded dark-theme') {
+    footerDarktheme.classList.add('dark-theme');
+  }
+}
 
 // function onClickBtn(event) {
 //   const refs = {
