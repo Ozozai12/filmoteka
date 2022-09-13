@@ -27,6 +27,7 @@
     position: relative;
     background-color: $main-white-color;
     max-width: 280px;
+    min-height: 940px;
     box-sizing: border-box;
     padding: 48px 20px 40px 20px;
     box-sizing: border-box;
@@ -59,7 +60,7 @@
 
     @include mq (desktop) {
         max-width: 840px;
-        min-height: 558px;
+        min-height: 643px;
         padding: 40px 12px;
     }
 }
@@ -71,6 +72,7 @@
 }
 
 .modal__image {
+    min-height: 357px;
     margin-bottom: 20px;
     border-radius: 10px;
 
