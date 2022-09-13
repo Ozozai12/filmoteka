@@ -1,3 +1,5 @@
+
+
 .header {
     position: relative;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
@@ -102,6 +104,64 @@
         }
 }
 
+// TOOGLE THEME
+
+body.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
+
+.toggle input[type=checkbox] {
+    display: none;
+}
+
+.toggle label {
+    background-color: #777;
+    border: 2px solid #555;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: all ease-in-out 0.3s;
+    width: 60px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.toggle label::after {
+    background-color: #555;
+    border-radius: 50%;
+    content: ' ';
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    transition: all ease-in-out 0.3s;
+    width: 21px;
+    height: 21px;
+}
+
+.toggle input[type=checkbox]:checked~label {
+    background-color: $accent-orange;
+    border-color: $accent-orange;
+}
+
+.toggle input[type=checkbox]:checked~label::after {
+    background-color: $main-black-color;
+    transform: translateX(35px);
+}
+
+.toggle {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.theme-icon--sun {
+    margin-right: 5px;
+}
+
+// _____________
 
 .navigation {
     display: flex;
@@ -259,6 +319,32 @@
 
 // library
 
+.btn__container--item {
+    @include mq(mobile-only) {
+            
+    
+            &:not(:last-child) {
+                margin-right: 20px;
+            }
+        }
+    
+        @include mq(tablet-only) {
+            
+    
+            &:not(:last-child) {
+                margin-right: 32px;
+            }
+        }
+    
+        @include mq (desktop) {
+            
+    
+            &:not(:last-child) {
+                margin-right: 16px;
+            }
+        }
+}
+
 .btn__library {
     font-weight: 500;
     font-size: 12px;
@@ -278,25 +364,25 @@
 
     @include mq(mobile-only){
         width: 130px;
-        &:not(:last-child) {
-                margin-right: 20px;
-            }
+        // &:not(:last-child) {
+        //         margin-right: 20px;
+        //     }
     }
 
     @include mq(tablet-only){
         width: 152px;
         
-            &:not(:last-child) {
-                margin-right: 32px;
-            }
+            // &:not(:last-child) {
+            //     margin-right: 32px;
+            // }
     }
 
     @include mq (desktop){
         width: 148px;
         
-            &:not(:last-child) {
-                margin-right: 16px;
-            }
+            // &:not(:last-child) {
+            //     margin-right: 16px;
+            // }
     }
 
     
@@ -425,8 +511,10 @@
     background-color: transparent;
     color: $main-white-color;
     text-transform: uppercase;
+    font-family: 'Roboto';
     font-size: 12px;
     font-weight: 500;
+    font-style: normal;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
     cursor: pointer;

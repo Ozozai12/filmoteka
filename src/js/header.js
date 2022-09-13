@@ -1,22 +1,9 @@
-// (() => {
-//   const refs = {
-//     openModalBtn: document.querySelector('[data-modal-open]'),
-//     closeModalBtn: document.querySelector('[data-modal-close]'),
-//     modal: document.querySelector('[data-modal]'),
-//   };
 
-//   refs.openModalBtn.addEventListener('click', onOpenModal);
-//   refs.closeModalBtn.addEventListener('click', onCloseModal);
-
-//   function onOpenModal() {
-//     refs.modal.classList.add('is-hidden');
-//     document.body.style.overflow = "hidden";
-//   }
-// })();
 const refs = {
-    openModalBtn: document.querySelector('[data-modal-open]'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
-    modal: document.querySelector('[data-modal]'),
+  openModalBtn: document.querySelector('[data-modal-open-autorisation]'),
+  closeModalBtn: document.querySelector('[data-modal-close-autorisation]'),
+  modal: document.querySelector('[data-modal-autorisation]'),
+  btnLibrary: document.querySelector('#btn-library'),
 }
 
 refs.openModalBtn.addEventListener('click', onOpenModal);
@@ -32,6 +19,51 @@ function onCloseModal() {
   refs.modal.classList.add('is-hidden');
   document.body.style.overflow = "";
 }
+
+if (refs.btnLibrary) {
+  refs.btnLibrary.addEventListener('click', toggleCurrentActiveBtn);
+}
+
+function toggleCurrentActiveBtn(ev) {
+  const currentActiveBtn = document.querySelector('.btn__library.btn__library--current');
+  if (currentActiveBtn) {
+    currentActiveBtn.classList.remove('btn__library--current')
+  }
+
+  const btnEl = ev.target.closest('.btn__library');
+  btnEl.classList.add('btn__library--current');
+}
+
+const toggle = document.getElementById('toggle');
+const body = document.body;
+
+toggle.addEventListener('input', (e) => {
+	const isChecked = e.target.checked;
+	
+	if(isChecked) {
+		body.classList.add('dark-theme');
+	} else {
+		body.classList.remove('dark-theme');
+	}
+});
+
+
+// function onClickBtn(event) {
+//   const refs = {
+//     btnWatched: document.querySelector('#watched-header'),
+//     btnQueue: document.querySelector('#queue-header'),
+//   }
+
+//   if (event.target === refs.btnWatched) {
+//     event.target.classList.add('btn__library--current');
+//     refs.btnQueue.classList.remove('btn__library--current');
+    
+//   } else if (event.target === refs.btnQueue) {
+//     event.target.classList.add('btn__library--current');
+//     refs.btnWatched.classList.remove('btn__library--current');
+    
+//   }
+// }
 
 // const loginText = document.querySelector(".title-text .login");
 //          const loginForm = document.querySelector("form.login");
@@ -50,3 +82,20 @@ function onCloseModal() {
 //            signupBtn.click();
 //            return false;
 // });
+
+
+// (() => {
+//   const refs = {
+//     openModalBtn: document.querySelector('[data-modal-open]'),
+//     closeModalBtn: document.querySelector('[data-modal-close]'),
+//     modal: document.querySelector('[data-modal]'),
+//   };
+
+//   refs.openModalBtn.addEventListener('click', onOpenModal);
+//   refs.closeModalBtn.addEventListener('click', onCloseModal);
+
+//   function onOpenModal() {
+//     refs.modal.classList.add('is-hidden');
+//     document.body.style.overflow = "hidden";
+//   }
+// })();

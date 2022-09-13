@@ -19,17 +19,28 @@ const newServiceApi = new NewServiceApi();
 renderWatchedList();
 
 function onBtnWatchedClick() {
-  let watchedFilmsById = [];
-  watchedFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_WATCHED));
+  const watchedFilmsById = JSON.parse(
+    localStorage.getItem(STORAGE_KEY_WATCHED)
+  );
 
   if (watchedFilmsById && watchedFilmsById.includes(id)) {
     return;
   }
-  localstorageFilmIdWatched.push(id);
-  localStorage.setItem(
-    STORAGE_KEY_WATCHED,
-    JSON.stringify(localstorageFilmIdWatched)
-  );
+  if (!watchedFilmsById) {
+    localstorageFilmIdWatched.push(id);
+    localStorage.setItem(
+      STORAGE_KEY_WATCHED,
+      JSON.stringify(localstorageFilmIdWatched)
+    );
+  }
+
+  if (watchedFilmsById) {
+    localstorageFilmIdWatched = watchedFilmsById.concat(id);
+    localStorage.setItem(
+      STORAGE_KEY_WATCHED,
+      JSON.stringify(localstorageFilmIdWatched)
+    );
+  }
 
   if (libraryDiv) {
     libraryDiv.innerHTML = '';
@@ -39,17 +50,26 @@ function onBtnWatchedClick() {
 }
 
 function onBtnQueueClick() {
-  let watchedFilmsById = [];
-  watchedFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_QUEUE));
+  const watchedFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_QUEUE));
 
   if (watchedFilmsById && watchedFilmsById.includes(id)) {
     return;
   }
-  localstorageFilmIdQueue.push(id);
-  localStorage.setItem(
-    STORAGE_KEY_QUEUE,
-    JSON.stringify(localstorageFilmIdQueue)
-  );
+  if (!watchedFilmsById) {
+    localstorageFilmIdQueue.push(id);
+    localStorage.setItem(
+      STORAGE_KEY_QUEUE,
+      JSON.stringify(localstorageFilmIdQueue)
+    );
+  }
+
+  if (watchedFilmsById) {
+    localstorageFilmIdQueue = watchedFilmsById.concat(id);
+    localStorage.setItem(
+      STORAGE_KEY_QUEUE,
+      JSON.stringify(localstorageFilmIdQueue)
+    );
+  }
 
   if (libraryDiv) {
     libraryDiv.innerHTML = '';
@@ -148,11 +168,13 @@ function renderCards(watchedFilmsById) {
     watchedFilmsById.map(film => {
       newServiceApi.id = Number(film);
       newServiceApi.serviceIdMovie().then(res => {
+
      
       res.genres = res.genres.splice(0, 2)
       res.release_date = res.release_date.slice(0, 4);
       res.vote_average = res.vote_average.toFixed(1);
         
+
         if (libraryDiv) {
           libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
         } 
