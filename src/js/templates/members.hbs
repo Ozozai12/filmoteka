@@ -1,12 +1,38 @@
 {{#each this}}
 <li class='glide__slide--elem footer-modal__card'>
-    <div class='border__outside'>
-        <div class='border__inside'>
-            <img class='student-foto' src={{img}} alt={{name}} />
+    <div class='headshot headshot-2'>
+        <img class='student-foto' src={{img}} alt={{name}} />
+    </div>
+    {{!-- <div><h2>{{blockquote}}</h2></div> --}}
+    <div class='student__card'>
+        <h3 class='student__name'>{{name}}</h3>
+        <p class='student__role'>{{role}}</p>
+        <div class="quotes">
+            <blockquote>
+            <p class="quote">{{blockquote}}</p>
+            </blockquote>
         </div>
+
+        <ul class='footer__social'>
+            <li class='footer__sociallink'>
+                <a class='student__link' href={{gitHubLink}} target='_blank'>
+                </a>
+            </li>
+            <li class='footer__sociallink'>
+                <a class='student__link' href={{LinkdInLink}} target='_blank'>
+                </a>
+            </li>
+        </ul>
+        <h3 class='student__name'>My favorite <span class="fav-movie">Movies</span> and <span>Series</span> are:</h3>
+        <p class='fav_movie'>
+            {{movies}}
+        </p>
+        <p class='fav-serie'>
+            {{series}}
+        </p>
     </div>
     
-    <div class='student__card'>
+    {{!-- <div class='student__card'>
         <h3 class='student__name'>{{name}}</h3>
         <p class='student__role'>{{role}}</p>
         <ul class='footer__social'>
@@ -20,9 +46,12 @@
             </li>
         </ul>
 
-        <p class='student__about'>
-            {{discription}}
+        <p class='fav_movie'>
+            {{movies}}
         </p>
-    </div>
+        <p class='fav-serie'>
+            {{series}}
+        </p>
+    </div> --}}
 </li>
 {{/each}}

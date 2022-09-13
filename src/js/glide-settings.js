@@ -1,4 +1,4 @@
-import Glide from '@glidejs/glide';
+import Glide from '@glidejs/glide'
 
 export const config = {
     type: 'carousel',

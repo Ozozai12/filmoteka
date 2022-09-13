@@ -6,8 +6,10 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/101360953?v=4',
     gitHubLink: 'https://github.com/Ozozai12',
     LinkdInLink:'',
-    discription:
-      'Styding at GoIT as a full-stack developer.',
+    movies:
+      'Equilibrium, Back to the Future, Star Wars ep. 1-6',
+    series: 'Chernobyl (HBO), Travelers',
+    blockquote: `If it's stupid, but it works - it's not stupid`,
   },
   {
     id: '2',
@@ -16,8 +18,8 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/100313107?v=4',
     gitHubLink: 'https://github.com/OlgaMykhailova',
     LinkdInLink: '',
-    discription:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies:`Forrest Gump (1994),  Don't Look Up (2021)`,
+    series: 'Bron/Broen, Black Mirror',  
   },
   {
     id: '3',
@@ -26,7 +28,8 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/100197147?v=4',
     gitHubLink: 'https://github.com/OlenaHras',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: '',
+    series: 'The Expanse, The Umbrella Academy',
   },
   {
     id: '4',
@@ -35,7 +38,8 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/93829935?v=4',
     gitHubLink: 'https://github.com/AnastasiyaOlhovik',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: '',
+    series: '',
   },
   {
     id: '5',
@@ -44,16 +48,18 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/99120090?v=4',
     gitHubLink: 'https://github.com/PavelKreitsberg',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: 'Shutter Island, The Shawshank Redemption, Harry Potter, The Lord of the Rings',
+    series: 'The Simpsons, 11.22.63, Ozark, Game of Thrones, Arcane',
   },
   {
     id: '6',
-    name: 'Xdecent',
+    name: 'Timofiy ',
     role: 'Developer',
     img: 'https://avatars.githubusercontent.com/u/100188867?v=4',
     gitHubLink: 'https://github.com/Xdecent0',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: '',
+    series: 'Family Guy',
   },
   {
     id: '7',
@@ -62,7 +68,8 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/94850347?v=4',
     gitHubLink: 'https://github.com/oleksii-she',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: 'Snatch, RocknRolla, Django Unchained',
+    series: 'The Sopranos, Sons of Anarchy',
   },
   {
     id: '8',
@@ -71,7 +78,8 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/101503219?v=4',
     gitHubLink: 'https://github.com/wi2410',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: ' ',
+    series: '',
   },
   {
     id: '9',
@@ -80,7 +88,8 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/99878558?v=4',
     gitHubLink: 'https://github.com/ValeriiaMasiuk',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: ' ',
+    series: '',
   },
   {
     id: '10',
@@ -89,7 +98,8 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/99878558?v=4',
     gitHubLink: 'https://github.com/ValeriiaMasiuk',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: 'The Age of Adaline',
+    series: '',
   },
   {
     id: '11',
@@ -98,7 +108,8 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/99616484?v=4',
     gitHubLink: 'https://github.com/klimchanskii',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: 'Shutter Island, Inception, Inglourious Basterds,',
+    series: '',
   },
   {
     id: '12',
@@ -107,6 +118,7 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/55344626?v=4',
     gitHubLink: 'https://github.com/oreshnyk',
     LinkdInLink: '',
-    discription: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic nulla distinctio molestias unde omnis cum error, aliquid tempora veritatis vitae.',
+    movies: 'The Prestige, Titanic, Citizen Kane',
+    series: 'Dark, One Piece, Office',
   },
 ];
