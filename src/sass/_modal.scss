@@ -11,9 +11,7 @@
     opacity: 1;
     visibility: visible;
 
-    transition: opacity $animation-timing-function,
-                transform $animation-timing-function,
-                visibility $animation-timing-function;
+    transition: all $animation-timing-function;
 
     @include mq(mobile-only) {
         overflow-y: scroll;
@@ -31,6 +29,7 @@
     max-width: 280px;
     box-sizing: border-box;
     padding: 48px 20px 40px 20px;
+    box-sizing: border-box;
 
     box-shadow: 0 1px 4px rgba(0, 0, 0, .3),
             -23px 0 20px -23px rgba(0, 0, 0, .6),
@@ -46,7 +45,7 @@
 
 
     @include mq(tablet) {
-        max-height: 552px;
+        min-height: 552px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -60,7 +59,7 @@
 
     @include mq (desktop) {
         max-width: 840px;
-        max-height: 700px;
+        min-height: 558px;
         padding: 40px 12px;
     }
 }

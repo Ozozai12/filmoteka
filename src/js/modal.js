@@ -63,10 +63,7 @@ export default async function openModal(id) {
 
   modalBox.insertAdjacentHTML('afterBegin', createModal());
 
-  document.body.style.position = 'fixed';
-  document.body.style.top = '0';
-  document.body.style.left = '0';
-  document.body.style.right = '0'
+  document.body.style.overflow = 'hidden';
 
   // подставляем дефолтное изображение если нет постера
 
@@ -250,7 +247,7 @@ function onModalClose() {
   modalBox.innerHTML = '';
   genreList = [];
 
-  document.body.style.position = '';
+  document.body.style.overflow = 'scroll';
   document.body.style.top = '';
 
   window.removeEventListener('keydown', onModalCloseEsc);
