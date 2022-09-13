@@ -174,6 +174,7 @@ export default async function openModal(id) {
 // разметка одной карточки модального окна фильма
 
 function createModal() {
+  modalBox.innerHTML = '';
   const markup = `
 <div class="modal-window">
         <div class="film-card" data-id=${id}>
@@ -244,7 +245,7 @@ function createModal() {
 
 function onModalClose() {
   modalBox.classList.add('is-hidden')
-  modalBox.innerHTML = '';
+  
   genreList = [];
 
   document.body.style.overflow = 'scroll';

@@ -7,18 +7,21 @@
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 2;
-
+    
     opacity: 1;
     visibility: visible;
+    
+    // transition: transform $animation-timing-function;
 
-    transition: all $animation-timing-function;
+    transition: all $long-animation-timing-function;
+    
 
     @include mq(mobile-only) {
         overflow-y: scroll;
     }
 
-    &.modal-window {
-        transform: translate(-50%, -50%) scale(0.5);
+    &.is-hidden .modal-window {
+        transform: translate(-50%, -50%) scale(1.1);
     }
 
 }
@@ -37,7 +40,10 @@
             23px 0 20px -23px rgba(0, 0, 0, .6),
             inset 0 0 40px rgba(0, 0, 0, .1);
 
-    transition: transform $animation-timing-function;
+    
+    transform: translate(-50%, -50%) scale(1.2);
+    transition: transform $long-animation-timing-function;
+    
 
     @media screen and (min-width: 330px) {
         left: 50%;
@@ -55,7 +61,7 @@
         display: flex;
         padding: 40px 72px 40px 36px;
 
-        transition: transform $animation-timing-function;
+        transition: transform $long-animation-timing-function;
     }
 
     @include mq (desktop) {
