@@ -24,6 +24,9 @@ let STORAGE_KEY_QUEUE = 'queue';
 let localstorageFilmIdWatched = [];
 let localstorageFilmIdQueue = [];
 
+const btnWatchedHeader = document.querySelector('#watched-header');
+const btnQueueHeader = document.querySelector('#queue-header');
+
 modalBox.innerHTML = '';
 
 // вызываем модальное окно с карточкой
@@ -178,7 +181,271 @@ export default async function openModal(id) {
   window.addEventListener('click', onModalCloseBckdrp);
 
   // Слушатели на кнопки для локалсторедж (Олег)
+  if (cardImgL) {
+    if (btnQueueHeader.classList.contains('btn__library--current')) {
+      const modalBtnWatched = document.querySelector('.button__watch');
+      modalBtnWatched.addEventListener('click', e => {
+        const watchedFilmsById = JSON.parse(
+          localStorage.getItem(STORAGE_KEY_WATCHED)
+        );
 
+        if (watchedFilmsById && watchedFilmsById.includes(id)) {
+          return;
+        }
+        if (!watchedFilmsById) {
+          modalBtnWatched.classList.toggle('visually-hidden');
+          removeBtnWatch.classList.toggle('visually-hidden');
+          localstorageFilmIdWatched.push(id);
+          localStorage.setItem(
+            STORAGE_KEY_WATCHED,
+            JSON.stringify(localstorageFilmIdWatched)
+          );
+        }
+
+        if (watchedFilmsById) {
+          modalBtnWatched.classList.toggle('visually-hidden');
+          removeBtnWatch.classList.toggle('visually-hidden');
+          localstorageFilmIdWatched = watchedFilmsById.concat(id);
+          localStorage.setItem(
+            STORAGE_KEY_WATCHED,
+            JSON.stringify(localstorageFilmIdWatched)
+          );
+        }
+
+        //  if (cardImgL) {
+        //    cardImgL.innerHTML = '';
+        //  }
+
+        //  renderCards(localstorageFilmIdWatched);
+      });
+
+      const removeBtnWatch = document.querySelector('.button__remove--watch');
+      removeBtnWatch.addEventListener('click', e => {
+        const watchedFilmsById = JSON.parse(
+          localStorage.getItem(STORAGE_KEY_WATCHED)
+        );
+
+        localstorageFilmIdWatched = watchedFilmsById;
+
+        const filmId = id;
+        const index = localstorageFilmIdWatched.indexOf(filmId);
+
+        if (!watchedFilmsById.includes(filmId)) {
+          return;
+        }
+        modalBtnWatched.classList.toggle('visually-hidden');
+        removeBtnWatch.classList.toggle('visually-hidden');
+        localstorageFilmIdWatched.splice(index, 1);
+        localStorage.setItem(
+          STORAGE_KEY_WATCHED,
+          JSON.stringify(localstorageFilmIdWatched)
+        );
+
+        //  if (cardImgL) {
+        //    cardImgL.innerHTML = '';
+        //  }
+
+        //  renderCards(watchedFilmsById);
+      });
+
+      const modalBtnWQueue = document.querySelector('.button__queue');
+      modalBtnWQueue.addEventListener('click', e => {
+        const watchedFilmsById = JSON.parse(
+          localStorage.getItem(STORAGE_KEY_QUEUE)
+        );
+
+        if (watchedFilmsById && watchedFilmsById.includes(id)) {
+          return;
+        }
+        if (!watchedFilmsById) {
+          modalBtnWQueue.classList.toggle('visually-hidden');
+          removeBtnQueue.classList.toggle('visually-hidden');
+          localstorageFilmIdQueue.push(id);
+          localStorage.setItem(
+            STORAGE_KEY_QUEUE,
+            JSON.stringify(localstorageFilmIdQueue)
+          );
+        }
+
+        if (watchedFilmsById) {
+          modalBtnWQueue.classList.toggle('visually-hidden');
+          removeBtnQueue.classList.toggle('visually-hidden');
+          localstorageFilmIdQueue = watchedFilmsById.concat(id);
+          localStorage.setItem(
+            STORAGE_KEY_QUEUE,
+            JSON.stringify(localstorageFilmIdQueue)
+          );
+        }
+
+        if (cardImgL) {
+          cardImgL.innerHTML = '';
+        }
+
+        renderCards(localstorageFilmIdQueue);
+      });
+
+      const removeBtnQueue = document.querySelector('.button__remove--queue');
+      removeBtnQueue.addEventListener('click', e => {
+        const watchedFilmsById = JSON.parse(
+          localStorage.getItem(STORAGE_KEY_QUEUE)
+        );
+
+        localstorageFilmIdQueue = watchedFilmsById;
+
+        const filmId = id;
+        const index = localstorageFilmIdQueue.indexOf(filmId);
+
+        if (!watchedFilmsById.includes(filmId)) {
+          return;
+        }
+        modalBtnWQueue.classList.toggle('visually-hidden');
+        removeBtnQueue.classList.toggle('visually-hidden');
+        localstorageFilmIdQueue.splice(index, 1);
+        localStorage.setItem(
+          STORAGE_KEY_QUEUE,
+          JSON.stringify(localstorageFilmIdQueue)
+        );
+
+        if (cardImgL) {
+          cardImgL.innerHTML = '';
+        }
+
+        renderCards(watchedFilmsById);
+      });
+    }
+
+    if (btnWatchedHeader.classList.contains('btn__library--current')) {
+      const modalBtnWatched = document.querySelector('.button__watch');
+      modalBtnWatched.addEventListener('click', e => {
+        const watchedFilmsById = JSON.parse(
+          localStorage.getItem(STORAGE_KEY_WATCHED)
+        );
+
+        if (watchedFilmsById && watchedFilmsById.includes(id)) {
+          return;
+        }
+        if (!watchedFilmsById) {
+          modalBtnWatched.classList.toggle('visually-hidden');
+          removeBtnWatch.classList.toggle('visually-hidden');
+          localstorageFilmIdWatched.push(id);
+          localStorage.setItem(
+            STORAGE_KEY_WATCHED,
+            JSON.stringify(localstorageFilmIdWatched)
+          );
+        }
+
+        if (watchedFilmsById) {
+          modalBtnWatched.classList.toggle('visually-hidden');
+          removeBtnWatch.classList.toggle('visually-hidden');
+          localstorageFilmIdWatched = watchedFilmsById.concat(id);
+          localStorage.setItem(
+            STORAGE_KEY_WATCHED,
+            JSON.stringify(localstorageFilmIdWatched)
+          );
+        }
+
+        if (cardImgL) {
+          cardImgL.innerHTML = '';
+        }
+
+        renderCards(localstorageFilmIdWatched);
+      });
+
+      const removeBtnWatch = document.querySelector('.button__remove--watch');
+      removeBtnWatch.addEventListener('click', e => {
+        const watchedFilmsById = JSON.parse(
+          localStorage.getItem(STORAGE_KEY_WATCHED)
+        );
+
+        localstorageFilmIdWatched = watchedFilmsById;
+
+        const filmId = id;
+        const index = localstorageFilmIdWatched.indexOf(filmId);
+
+        if (!watchedFilmsById.includes(filmId)) {
+          return;
+        }
+        modalBtnWatched.classList.toggle('visually-hidden');
+        removeBtnWatch.classList.toggle('visually-hidden');
+        localstorageFilmIdWatched.splice(index, 1);
+        localStorage.setItem(
+          STORAGE_KEY_WATCHED,
+          JSON.stringify(localstorageFilmIdWatched)
+        );
+
+        if (cardImgL) {
+          cardImgL.innerHTML = '';
+        }
+
+        renderCards(watchedFilmsById);
+      });
+
+      const modalBtnWQueue = document.querySelector('.button__queue');
+      modalBtnWQueue.addEventListener('click', e => {
+        const watchedFilmsById = JSON.parse(
+          localStorage.getItem(STORAGE_KEY_QUEUE)
+        );
+
+        if (watchedFilmsById && watchedFilmsById.includes(id)) {
+          return;
+        }
+        if (!watchedFilmsById) {
+          modalBtnWQueue.classList.toggle('visually-hidden');
+          removeBtnQueue.classList.toggle('visually-hidden');
+          localstorageFilmIdQueue.push(id);
+          localStorage.setItem(
+            STORAGE_KEY_QUEUE,
+            JSON.stringify(localstorageFilmIdQueue)
+          );
+        }
+
+        if (watchedFilmsById) {
+          modalBtnWQueue.classList.toggle('visually-hidden');
+          removeBtnQueue.classList.toggle('visually-hidden');
+          localstorageFilmIdQueue = watchedFilmsById.concat(id);
+          localStorage.setItem(
+            STORAGE_KEY_QUEUE,
+            JSON.stringify(localstorageFilmIdQueue)
+          );
+        }
+
+        // if (cardImgL) {
+        //   cardImgL.innerHTML = '';
+        // }
+
+        // renderCards(localstorageFilmIdQueue);
+      });
+
+      const removeBtnQueue = document.querySelector('.button__remove--queue');
+      removeBtnQueue.addEventListener('click', e => {
+        const watchedFilmsById = JSON.parse(
+          localStorage.getItem(STORAGE_KEY_QUEUE)
+        );
+
+        localstorageFilmIdQueue = watchedFilmsById;
+
+        const filmId = id;
+        const index = localstorageFilmIdQueue.indexOf(filmId);
+
+        if (!watchedFilmsById.includes(filmId)) {
+          return;
+        }
+        modalBtnWQueue.classList.toggle('visually-hidden');
+        removeBtnQueue.classList.toggle('visually-hidden');
+        localstorageFilmIdQueue.splice(index, 1);
+        localStorage.setItem(
+          STORAGE_KEY_QUEUE,
+          JSON.stringify(localstorageFilmIdQueue)
+        );
+
+        // if (cardImgL) {
+        //   cardImgL.innerHTML = '';
+        // }
+
+        // renderCards(watchedFilmsById);
+      });
+    }
+  }
   const modalBtnWatched = document.querySelector('.button__watch');
   modalBtnWatched.addEventListener('click', e => {
     const watchedFilmsById = JSON.parse(
@@ -308,9 +575,11 @@ export default async function openModal(id) {
 
     renderCards(watchedFilmsById);
   });
-  // Конец)
 }
 
+// Конец)
+
+// console.log(btnWatchedHeader.classList.contains('btn__library--current'));
 // разметка одной карточки модального окна фильма
 
 function createModal() {
