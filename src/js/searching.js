@@ -23,29 +23,61 @@ const searchingList = document.querySelector('.searching-list');
 
 // Пагинация
 const tuiBox = document.getElementById("tui-pagination-container__search")
+let currentPage = 1
 
-tuiBox.addEventListener('click', testClick)
-function testClick(e){
-    
-  const pageList = e.target.textContent
-  console.log(e.target.textContent);
-  if(Number(pageList) > 0){
-    // window.scrollTo(0, 0)
-    newServiceApi.pageNumber = Number(pageList)
-    console.log(pageList);
-    newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
-      gallery.innerHTML = createCardMarkup(res.results)
-    console.log(res);})
+function testting (){
+  const tuibtn = document.querySelectorAll('.tui-page-btn')
+  const body = document.body;
+  if(body.classList.contains("dark-theme")){
+    tuibtn.forEach(el => el.classList.add('dark-btn'))
+  }
+}
+tuiBox.addEventListener('click', testTargetClick)
+function testTargetClick(e){
+
   
-  } else if(pageList === "next"){
-    console.log(pageList);
+
+  const pageList = e.target
+ 
+  if( Number(pageList.textContent) > 0){
+    
+    newServiceApi.pageNumber = Number(pageList.textContent)
+    
+    newServiceApi.serviceSearchMovie().then(res => {  testting()
+      substitutionOfValues(res.results)
+      
+      currentPage = res.page
+     
+      gallery.innerHTML = createCardMarkup(res.results)})
+      
+      window.scrollTo(0, 0) 
+  } 
+  else if(pageList.classList.contains("tui-ico-next") ||pageList.classList.contains("tui-next")){
+    window.scrollTo(0, 0) 
+    
     newServiceApi.incrementPage()
-    newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
-      gallery.innerHTML = createCardMarkup(res.results)})
-  }else if(pageList === "prev" ){
+    newServiceApi.serviceSearchMovie().then(res => {  testting()
+      substitutionOfValues(res.results)
+      
+      gallery.innerHTML = createCardMarkup(res.results)
+
+      currentPage = res.page
+    }
+      
+      )
+  }else if(pageList.classList.contains("tui-ico-prev") ||pageList.classList.contains("tui-prev")){
     newServiceApi.decrementPage()
-    newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
-      gallery.innerHTML = createCardMarkup(res.results)})
+    newServiceApi.serviceSearchMovie().then(res => {  testting()
+      substitutionOfValues(res.results)
+      
+      gallery.innerHTML = createCardMarkup(res.results)
+
+      currentPage = res.page
+    } 
+
+         )
+      window.scrollTo(0, 0) 
+      
   }
 
 }
@@ -140,16 +172,18 @@ function createMoviesList(event) {
 
   newServiceApi.searchValue = event.target.search.value;
 
-  // Пагинация 
+  
+  newServiceApi.ressetPage()
+  newServiceApi.serviceSearchMovie().then(res => {
+   
+// Пагинация 
+ 
   const delBox = document.getElementById("tui-pagination-container")
   delBox.innerHTML = ''
-  // Пагинация
-
-  newServiceApi.serviceSearchMovie().then(res => {
-    console.log(res);
 
 
-    // Пагинация
+
+    
     const container = document.getElementById('tui-pagination-container__search');
     const options = {
       totalItems: res.total_results,
@@ -159,25 +193,50 @@ function createMoviesList(event) {
       centerAlign: true,
       firstItemClassName: 'tui-first-child',
       lastItemClassName: 'tui-last-child',
+      visiblePages:5,
+      // template: {
+      //   page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      //   currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      //   moveButton:
+      //     '<a href="#" class="tui-page-btn tui-{{type}} visibility">' +
+      //     '<span ></span>' +
+      //     '</a>',
+      //   disabledMoveButton:
+      //     '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+      //     '<span ></span>' +
+      //     '</span>',
+      //   moreButton:
+      //     '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+      //     '<span class="tui-ico-ellip"></span>' +
+      //     '</a>'
+      // }
       template: {
         page: '<a href="#" class="tui-page-btn">{{page}}</a>',
         currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
         moveButton:
-          '<a href="#" class="tui-page-btn tui-{{type}}">' +
-          '<span class="tui-ico-{{type}}">{{type}}</span>' +
-          '</a>',
+            '<a href="#" class="tui-page-btn tui-{{type}}">' +
+                '<span class="tui-ico-{{type}}"></span>' +
+            '</a>',
         disabledMoveButton:
-          '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-          '<span class="tui-ico-{{type}}">{{type}}</span>' +
-          '</span>',
+            '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+                '<span class="tui-ico-{{type}}"></span>' +
+            '</span>',
         moreButton:
-          '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-          '<span class="tui-ico-ellip">...</span>' +
-          '</a>'
-      }
+            '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+                '<span class="tui-ico-ellip">...</span>' +
+            '</a>'
+         
+    }
     };
+    
     const pagination = new Pagination(container, options);
-                    
+    const testPrev = document.querySelector(".tui-prev")
+
+    testPrev.classList.add('visibility')
+
+    
+    
+    
     // Пагинация
 
     newServiceApi.serviceSearchMovie().then(res => {
@@ -199,9 +258,12 @@ function createMoviesList(event) {
                 
 
       substitutionOfValues(res.results);
-
+     
+  
       gallery.innerHTML = createCardMarkup(res.results)
     })
+   
+         
 
   })
 }
@@ -211,3 +273,6 @@ if (gallery) {
     input.addEventListener('input', createSearchingList);
   }
 
+
+
+ 

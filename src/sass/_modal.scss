@@ -1,307 +1,421 @@
 .backdrop-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100%;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 2;
 
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 
-    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  // transition: transform $animation-timing-function;
 
-    @include mq(mobile-only) {
-        overflow-y: scroll;
-    }
+  transition: all $long-animation-timing-function;
+
+  @include mq(mobile-only) {
+    overflow-y: scroll;
+  }
+
+  &.is-hidden .modal-window {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 }
 
-.box {
-    position: relative;
+.modal-window {
+  position: relative;
+  background-color: $main-white-color;
+  max-width: 280px;
+  min-height: 940px;
+  box-sizing: border-box;
+  padding: 48px 20px 40px 20px;
+  box-sizing: border-box;
+
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+    -23px 0 20px -23px rgba(0, 0, 0, 0.6), 23px 0 20px -23px rgba(0, 0, 0, 0.6),
+    inset 0 0 40px rgba(0, 0, 0, 0.1);
+
+  transform: translate(-50%, -50%) scale(1.2);
+  transition: transform $long-animation-timing-function;
+
+  @media screen and (min-width: 330px) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @include mq(tablet) {
+    min-height: 552px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    max-width: 704px;
+    display: flex;
+    padding: 40px 72px 40px 36px;
+
+    transition: transform $long-animation-timing-function;
+  }
+
+  @include mq(desktop) {
+    max-width: 840px;
+    min-height: 643px;
+    padding: 40px 12px;
+  }
 }
 
-.modal {
-    position: relative;
-    background-color: $main-white-color;
-    max-width: 280px;
-    box-sizing: border-box;
-    padding: 48px 20px 40px 20px;
-
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .3),
-            -23px 0 20px -23px rgba(0, 0, 0, .6),
-            23px 0 20px -23px rgba(0, 0, 0, .6),
-            inset 0 0 40px rgba(0, 0, 0, .1);
-
-    @media screen and (min-width: 330px) {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-
-    @include mq(tablet) {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 704px;
-        display: flex;
-        padding: 40px 72px 40px 36px;
-    }
-
-    @include mq (desktop) {
-        max-width: 806px;
-        padding: 40px 12px;
-    }
+.film-card {
+  @include mq(tablet) {
+    display: flex;
+  }
 }
 
 .modal__image {
-    margin-bottom: 20px;
-    border-radius: 10px;
-    object-fit: cover;
+  min-height: 357px;
+  margin-bottom: 20px;
+  border-radius: 10px;
 
-    @include mq(tablet) {
-        min-width: 264px;
-        max-height: 374px;
-        margin-right: 68px;
-        margin-bottom: 0;
-    }
+  @include mq(tablet) {
+    min-width: 264px;
+    margin-right: 68px;
+    margin-bottom: 0;
+  }
 
-    @include mq(desktop) {
-        min-width: 375px;
-        margin-right: 16px;
-        max-height: 478px;
-    }
+  @include mq(desktop) {
+    min-width: 375px;
+    margin-right: 16px;
+  }
 }
 
 .film-card__title {
-    min-width: 240px;
-    min-height: 23px;
-    text-transform: uppercase;
-    font-size: 20px;
+  min-width: 240px;
+  min-height: 23px;
+  text-transform: uppercase;
+  font-size: 20px;
 
+  line-height: 1.15;
+
+  margin-bottom: 20px;
+
+  @include mq(tablet) {
+    max-width: 264px;
+    min-height: 20px;
     line-height: 1.15;
+  }
 
-    margin-bottom: 20px;
+  @include mq(desktop) {
+    min-width: 300px;
+    min-height: 31px;
 
-    @include mq(tablet) {
-        min-width: 264px;
-        min-height: 20px;
-        line-height: 1.15;
-    }
-
-    @include mq (desktop) {
-        min-width: 266px;
-        min-height: 31px;
-
-        font-size: 30px;
-        line-height: 1.17;
-    }
+    font-size: 30px;
+    line-height: 1.17;
+  }
 }
 
 .film-card__features {
-    margin-bottom: 20px;
-    margin-right: 0;
+  margin-bottom: 20px;
+  margin-right: 0;
 }
 
-.film-card__feature-list:not(:last-child) {        
-    margin-bottom: 8px;
+.film-card__feature-list:not(:last-child) {
+  margin-bottom: 8px;
 }
 
 .film-card__feature-name {
-    display: inline-block;
-    padding-right: 41px;
-    width: 69px;
-    text-align: left;
-    
-    font-size: 12px;
-    line-height: 1.33;
-    
-    color: $main-grey-color;
+  display: inline-block;
+  padding-right: 41px;
+  width: 69px;
+  text-align: left;
+
+  font-size: 12px;
+  line-height: 1.33;
+
+  color: $main-grey-color;
 }
 
 .film-card__feature-description {
-    width: 127px;
-    min-height: 16px;
+  width: 127px;
+  min-height: 16px;
 
-    font-size: 12px;
-    line-height: 1.33;
+  font-size: 12px;
+  line-height: 1.33;
 
-    @include mq(tablet) {
-        line-height: 1.17;
-        width: 153px;
-    }
+  @include mq(tablet) {
+    line-height: 1.17;
+    width: 153px;
+  }
 
-    @include mq (desktop) {
-        width: 280px;
-    }
+  @include mq(desktop) {
+    width: 280px;
+  }
 }
 
 .divider {
-    color: $main-grey-color;
-    width: 8px;
+  color: $main-grey-color;
+  width: 8px;
 }
 
 .original-title {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .vote {
-    display: inline-block;
-    max-width: 36px;
-    height: 14px;
-    padding: 1px 9px;
-    
-    background: #FF6B01;
-    border-radius: 5px;
+  display: inline-block;
+  max-width: 36px;
+  height: 14px;
+  padding: 1px 9px;
 
-    font-size: 12px;
-    line-height: 1.17;
+  background: #ff6b01;
+  border-radius: 5px;
 
-    align-items: center;
-    text-align: center;
-    text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.17;
 
-    color: $main-white-color;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: $main-white-color;
 }
 
 .about__title {
-    width: 39px;
-    height: 16px;
+  width: 39px;
+  height: 16px;
 
-    font-size: 12px;
-    line-height: 1.33;
-    
-    align-items: center;
-    text-transform: uppercase;
+  font-size: 12px;
+  line-height: 1.33;
 
-    margin-bottom: 8px;
+  align-items: center;
+  text-transform: uppercase;
 
-    @include mq(tablet) {
-        width: 78px;
-    }
+  margin-bottom: 8px;
 
-    @include mq(desktop) {
-        width: 65px;
-    }
+  @include mq(tablet) {
+    width: 78px;
+  }
+
+  @include mq(desktop) {
+    width: 65px;
+  }
 }
 
 .about__text {
-    width: 240px;
+  width: 240px;
 
-    font-size: 12px;
-    line-height: 1.67;
-    margin-bottom: 20px;
+  font-size: 12px;
+  line-height: 1.67;
+  margin-bottom: 20px;
 
-    @include mq(tablet) {
-        width: 264px;
-    }
+  @include mq(tablet) {
+    width: 264px;
+  }
 
-    @include mq(desktop) {
-        width: 391px;
-    }
+  @include mq(desktop) {
+    width: 391px;
+  }
 }
 
 .button__box {
-    display: flex;
+  display: flex;
 }
 
 .button {
-    font-family: 'Roboto';
-    font-size: 12px;
-    line-height: 1.33;
+  font-family: 'Roboto';
+  font-size: 12px;
+  line-height: 1.33;
 
-    align-items: center;
-    text-align: center;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: 1px solid $main-black-color;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid $main-black-color;
+  border-radius: 5px;
+
+  min-width: 110px;
+  height: 44px;
+
+  transition: background-color $animation-timing-function,
+    border $animation-timing-function, color $animation-timing-function,
+    scale $animation-timing-function;
+
+  &:hover,
+  &:focus {
+    background-color: #ff6b01;
     border-radius: 5px;
+    border: none;
+    color: $main-white-color;
+    scale: 1.1;
+  }
 
-    min-width: 110px;
-    height: 44px;
+  @include mq(mobile-only) {
+    height: 55px;
+  }
 
-    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                border 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                color 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                scale 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  @include mq(tablet) {
+    width: 125px;
+  }
 
-    &:hover,
-    &:focus {
-        background-color: #FF6B01;
-        border-radius: 5px;
-        border: none;
-        color: $main-white-color;
-        scale: 1.1;
-    }
-
-    @include mq(tablet) {
-        width: 125px;
-    }
-
-    @include mq(tablet) {
-        width: 136px;
-    }
+  @include mq(desktop) {
+    width: 136px;
+  }
 }
 
-.button__watch {
-    padding: 6px 27px;
-    
-    margin-right: 20px;
+.button__watch,
+.button__remove--watch {
+  display: flex;
+  justify-content: center;
+  padding: 6px 27px;
 
-    @include mq(tablet) {
-        padding: 14px 9px;
-        margin-right: 15px;
-    }
+  margin-right: 20px;
 
-    @include mq(desktop) {
-        padding: 14px 10px 12px 10px;
-    }
+  @include mq(tablet) {
+    padding: 14px 9px;
+    margin-right: 15px;
+  }
+
+  @include mq(desktop) {
+    padding: 14px 10px 12px 10px;
+  }
 }
 
-.button__queue {
-    padding: 13px 12px;
+.button__queue,
+.button__remove--queue {
+  display: flex;
+  justify-content: center;
+  padding: 13px 12px;
 
-    @include mq(tablet) {
-        padding: 13px 7px;
-    }
+  @include mq(tablet) {
+    padding: 13px 7px;
+  }
 
-    @include mq(desktop) {
-        padding: 13px 8px;
-    }
+  @include mq(desktop) {
+    padding: 13px 8px;
+  }
 }
 
 .button__modal-close {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 8px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 8px;
 
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 
-    transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                scale 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill $animation-timing-function, scale $animation-timing-function;
 
-    &:hover {
-        fill: $accent-orange;
-        scale: 1.5;
-    }
+  &:hover {
+    fill: $accent-orange;
+    scale: 1.5;
+  }
 }
 
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    overflow: hidden;
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.play_video {
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+
+  @include mq(tablet) {
+    top: 40%;
+    left: 18%;
+  }
+
+  @include mq(desktop) {
+    top: 45%;
+    left: 20%;
+  }
+}
+
+.circle {
+  stroke: #ff6b01;
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  transition: all $animation-timing-function;
+  opacity: 0.3;
+}
+
+.playBut {
+  // border: 1px solid red;
+  display: inline-block;
+  transition: all 0.5s ease;
+
+  .triangle {
+    transition: all $animation-timing-function;
+    stroke-dasharray: 240;
+    stroke-dashoffset: 480;
+    stroke: #ff6b01;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    .triangle {
+      stroke-dashoffset: 0;
+      opacity: 1;
+      stroke: #ff6b01;
+      animation: nudge $animation-timing-function;
+
+      @keyframes nudge {
+        0% {
+          transform: translateX(0);
+        }
+
+        30% {
+          transform: translateX(-5px);
+        }
+
+        50% {
+          transform: translateX(5px);
+        }
+
+        70% {
+          transform: translateX(-2px);
+        }
+
+        100% {
+          transform: translateX(0);
+        }
+      }
+    }
+
+    .circle {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+}
+
+///відео плеєр
+.treiler_iframe {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  object-fit: cover;
+
+  @include mq(tablet) {
+    min-width: 264px;
+    max-height: 374px;
+    margin-right: 68px;
+    margin-bottom: 0;
+  }
+
+  @include mq(desktop) {
+    min-width: 375px;
+    margin-right: 16px;
+    min-height: 562px;
+  }
 }

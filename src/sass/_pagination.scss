@@ -1,11 +1,52 @@
+
+.tui-pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include mq(mobile){
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+  
+  }
+  @include mq(tablet){
+   max-width: 450px;
+   margin-bottom: 60px;
+  
+  
+  }
+}
+.tui-pagination__search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include mq(mobile){
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+  
+  }
+  @include mq(tablet){
+   max-width: 450px;
+   margin-bottom: 60px;
+  
+  
+  }
+
+}
+
+
+
+
 .tui-page-btn {
-  // margin: 10px;
   display: inline-block;
   position: relative;
   width: 38px;
   padding: 8px 0 6px;
   margin-left: 0;
-  color: #333;
+  color: $main-black-color;
   font-size: 12px;
   width: 40px;
   height: 40px;
@@ -19,7 +60,7 @@ line-height: 16px;
 
 }
 .tui-page-btn:hover{
-  // background: #FF6B08;
+
   border: 2px solid $accent-orange;
     border-radius: 5px;
     width: 36px;
@@ -27,11 +68,7 @@ line-height: 16px;
  
 }
 
-.tui-pagination{
-display: flex;
-justify-content: center;
-align-items: center;
-}
+
 
 .tui-page-btn {
   display: flex;
@@ -42,7 +79,7 @@ padding: 0;}
 
 
 .tui-is-selected {
-  color: rgb(0, 0, 0);
+  color: $main-black-color;
   background: $accent-orange;
   border-color: $accent-orange;
   cursor: default;
@@ -51,8 +88,8 @@ padding: 0;}
   
   
   border-radius: 5px;}
-
-.tui-first,.tui-last,.visibility{
+  
+  .tui-first,.tui-last,.visibility{
   position: absolute;
     width: 0px;
     height: 1px;
@@ -81,4 +118,23 @@ padding: 0;}
 .tui-ico-prev{
   width: 16px;
   height: 16px;
+}
+.tui-next-is-ellip,.tui-prev-is-ellip {
+@media screen and (max-width:767px) {
+  position: absolute;
+    width: 0px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    -webkit-clip-path: inset(100%);
+            clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+   
+}
+}
+.dark-btn{
+  color: $main-white-color;
 }
