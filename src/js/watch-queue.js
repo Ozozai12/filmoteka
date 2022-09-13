@@ -160,6 +160,7 @@ function onBtnQueueRemoveClick() {
 }
 
 function renderCards(watchedFilmsById) {
+
   if (libraryDiv) {
     if (!watchedFilmsById || watchedFilmsById.length === 0) {
       libraryDiv.innerHTML = `<img src="${nothingHereUrl}" STYLE="margin:0 auto" width="600" alt="nothingHere"></img>`;
@@ -176,6 +177,7 @@ function renderCards(watchedFilmsById) {
             libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
           }
         });
+
       });
     }
   }
