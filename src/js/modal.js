@@ -63,6 +63,8 @@ export default async function openModal(id) {
 
   modalBox.insertAdjacentHTML('afterBegin', createModal());
 
+  document.body.style.overflow = 'hidden';
+
   // подставляем дефолтное изображение если нет постера
 
     const imgBox = document.querySelector('.image-box');
@@ -178,7 +180,7 @@ function createModal() {
             <div class="image-box">
             <img src="https://image.tmdb.org/t/p/original${
                           respData.poster_path
-                        }" alt="Txt" class="modal__image" />
+                        }" alt="${respData.title}" class="modal__image" loading='lazy'/>
             </div>
             <div>
                 <h2 class="film-card__title">${respData.title}</h2>
@@ -244,6 +246,10 @@ function onModalClose() {
   modalBox.classList.add('is-hidden')
   modalBox.innerHTML = '';
   genreList = [];
+
+  document.body.style.overflow = 'scroll';
+  document.body.style.top = '';
+
   window.removeEventListener('keydown', onModalCloseEsc);
 }
 
