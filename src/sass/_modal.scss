@@ -33,6 +33,9 @@
   padding: 48px 20px 40px 20px;
   box-sizing: border-box;
 
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
     -23px 0 20px -23px rgba(0, 0, 0, 0.6), 23px 0 20px -23px rgba(0, 0, 0, 0.6),
     inset 0 0 40px rgba(0, 0, 0, 0.1);
@@ -248,11 +251,15 @@
     scale: 1.1;
   }
 
+  @include mq(mobile-only) {
+    height: 55px;
+  }
+
   @include mq(tablet) {
     width: 125px;
   }
 
-  @include mq(tablet) {
+  @include mq(desktop) {
     width: 136px;
   }
 }
