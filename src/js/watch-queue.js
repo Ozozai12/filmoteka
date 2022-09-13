@@ -3,6 +3,7 @@ import filmCard from './templates/markupOneCard.hbs';
 import filmCards from './templates/cardMarkup.hbs';
 import { NewServiceApi } from './authorization';
 import modal, { id } from './modal';
+import nothingHereUrl from '../images/nothingHere.webp';
 
 const btnWatchedHeader = document.querySelector('#watched-header');
 const btnQueueHeader = document.querySelector('#queue-header');
@@ -159,16 +160,24 @@ function onBtnQueueRemoveClick() {
 }
 
 function renderCards(watchedFilmsById) {
+
+  if (watchedFilmsById.length===0) { 
+    libraryDiv.innerHTML = `<img src="${nothingHereUrl}" STYLE="margin:0 auto" width="300" alt="nothingHere"></img>`;
+}
   if (watchedFilmsById) {
     watchedFilmsById.map(film => {
       newServiceApi.id = Number(film);
       newServiceApi.serviceIdMovie().then(res => {
-        res.genres = res.genres.splice(0, 2);
-        res.release_date = res.release_date.slice(0, 4);
-        res.vote_average = res.vote_average.toFixed(1);
+
+     
+      res.genres = res.genres.splice(0, 2)
+      res.release_date = res.release_date.slice(0, 4);
+      res.vote_average = res.vote_average.toFixed(1);
+        
+
         if (libraryDiv) {
           libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
-        }
+        } 
       });
     });
   }
