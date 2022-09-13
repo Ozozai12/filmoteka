@@ -4,6 +4,7 @@ import {
   onBtnWatchedRemoveClick,
   onBtnQueueClick,
   onBtnQueueRemoveClick,
+  renderCards,
 } from './watch-queue';
 // получаем переменные
 
@@ -18,13 +19,18 @@ let genreList = [];
 let listOfGenres;
 let newApiService = new ApiService();
 
+let STORAGE_KEY_WATCHED = 'watched';
+let STORAGE_KEY_QUEUE = 'queue';
+let localstorageFilmIdWatched = [];
+let localstorageFilmIdQueue = [];
+
 modalBox.innerHTML = '';
 
 // вызываем модальное окно с карточкой
 
 if (cardImgG) {
   cardImgG.addEventListener('click', getId);
-} 
+}
 if (cardImgL) {
   cardImgL.addEventListener('click', getId);
 }
@@ -36,7 +42,7 @@ function getId(evt) {
     return;
   }
 
-  modalBox.classList.remove('is-hidden')
+  modalBox.classList.remove('is-hidden');
   id = evt.target.getAttribute('data-id');
 
   openModal(id);
@@ -45,6 +51,21 @@ function getId(evt) {
 // вызываем модалку
 
 export default async function openModal(id) {
+  if (
+    !localStorage.getItem(STORAGE_KEY_WATCHED) &&
+    !localStorage.getItem(STORAGE_KEY_QUEUE)
+  ) {
+    localStorage.setItem(
+      STORAGE_KEY_WATCHED,
+      JSON.stringify(localstorageFilmIdWatched)
+    );
+
+    localStorage.setItem(
+      STORAGE_KEY_QUEUE,
+      JSON.stringify(localstorageFilmIdQueue)
+    );
+  }
+
   newApiService.idNumber = id;
 
   respData = await newApiService.serviceIdMovie();
@@ -67,10 +88,10 @@ export default async function openModal(id) {
 
   // подставляем дефолтное изображение если нет постера
 
-    const imgBox = document.querySelector('.image-box');
+  const imgBox = document.querySelector('.image-box');
 
-    if (respData.poster_path === null) {
-      imgBox.innerHTML = `<img
+  if (respData.poster_path === null) {
+    imgBox.innerHTML = `<img
       src="https://cdn.pixabay.com/photo/2014/03/25/16/27/movie-297135_960_720.png"
       alt="Txt"
       class="modal__image"
@@ -157,17 +178,136 @@ export default async function openModal(id) {
   window.addEventListener('click', onModalCloseBckdrp);
 
   // Слушатели на кнопки для локалсторедж (Олег)
-    const modalBtnWatched = document.querySelector('.button__watch');
-    modalBtnWatched.addEventListener('click', onBtnWatchedClick);
 
-    const removeBtnWatch = document.querySelector('.button__remove--watch');
-    removeBtnWatch.addEventListener('click', onBtnWatchedRemoveClick);
+  const modalBtnWatched = document.querySelector('.button__watch');
+  modalBtnWatched.addEventListener('click', e => {
+    const watchedFilmsById = JSON.parse(
+      localStorage.getItem(STORAGE_KEY_WATCHED)
+    );
 
-    const modalBtnWQueue = document.querySelector('.button__queue');
-    modalBtnWQueue.addEventListener('click', onBtnQueueClick);
+    if (watchedFilmsById && watchedFilmsById.includes(id)) {
+      return;
+    }
+    if (!watchedFilmsById) {
+      modalBtnWatched.classList.toggle('visually-hidden');
+      removeBtnWatch.classList.toggle('visually-hidden');
+      localstorageFilmIdWatched.push(id);
+      localStorage.setItem(
+        STORAGE_KEY_WATCHED,
+        JSON.stringify(localstorageFilmIdWatched)
+      );
+    }
 
-    const removeBtnQueue = document.querySelector('.button__remove--queue');
-    removeBtnQueue.addEventListener('click', onBtnQueueRemoveClick);
+    if (watchedFilmsById) {
+      modalBtnWatched.classList.toggle('visually-hidden');
+      removeBtnWatch.classList.toggle('visually-hidden');
+      localstorageFilmIdWatched = watchedFilmsById.concat(id);
+      localStorage.setItem(
+        STORAGE_KEY_WATCHED,
+        JSON.stringify(localstorageFilmIdWatched)
+      );
+    }
+
+    if (cardImgL) {
+      cardImgL.innerHTML = '';
+    }
+
+    renderCards(localstorageFilmIdWatched);
+  });
+
+  const removeBtnWatch = document.querySelector('.button__remove--watch');
+  removeBtnWatch.addEventListener('click', e => {
+    const watchedFilmsById = JSON.parse(
+      localStorage.getItem(STORAGE_KEY_WATCHED)
+    );
+
+    localstorageFilmIdWatched = watchedFilmsById;
+
+    const filmId = id;
+    const index = localstorageFilmIdWatched.indexOf(filmId);
+
+    if (!watchedFilmsById.includes(filmId)) {
+      return;
+    }
+    modalBtnWatched.classList.toggle('visually-hidden');
+    removeBtnWatch.classList.toggle('visually-hidden');
+    localstorageFilmIdWatched.splice(index, 1);
+    localStorage.setItem(
+      STORAGE_KEY_WATCHED,
+      JSON.stringify(localstorageFilmIdWatched)
+    );
+
+    if (cardImgL) {
+      cardImgL.innerHTML = '';
+    }
+
+    renderCards(watchedFilmsById);
+  });
+
+  const modalBtnWQueue = document.querySelector('.button__queue');
+  modalBtnWQueue.addEventListener('click', e => {
+    const watchedFilmsById = JSON.parse(
+      localStorage.getItem(STORAGE_KEY_QUEUE)
+    );
+
+    if (watchedFilmsById && watchedFilmsById.includes(id)) {
+      return;
+    }
+    if (!watchedFilmsById) {
+      modalBtnWQueue.classList.toggle('visually-hidden');
+      removeBtnQueue.classList.toggle('visually-hidden');
+      localstorageFilmIdQueue.push(id);
+      localStorage.setItem(
+        STORAGE_KEY_QUEUE,
+        JSON.stringify(localstorageFilmIdQueue)
+      );
+    }
+
+    if (watchedFilmsById) {
+      modalBtnWQueue.classList.toggle('visually-hidden');
+      removeBtnQueue.classList.toggle('visually-hidden');
+      localstorageFilmIdQueue = watchedFilmsById.concat(id);
+      localStorage.setItem(
+        STORAGE_KEY_QUEUE,
+        JSON.stringify(localstorageFilmIdQueue)
+      );
+    }
+
+    if (cardImgL) {
+      cardImgL.innerHTML = '';
+    }
+
+    renderCards(localstorageFilmIdQueue);
+  });
+
+  const removeBtnQueue = document.querySelector('.button__remove--queue');
+  removeBtnQueue.addEventListener('click', e => {
+    const watchedFilmsById = JSON.parse(
+      localStorage.getItem(STORAGE_KEY_QUEUE)
+    );
+
+    localstorageFilmIdQueue = watchedFilmsById;
+
+    const filmId = id;
+    const index = localstorageFilmIdQueue.indexOf(filmId);
+
+    if (!watchedFilmsById.includes(filmId)) {
+      return;
+    }
+    modalBtnWQueue.classList.toggle('visually-hidden');
+    removeBtnQueue.classList.toggle('visually-hidden');
+    localstorageFilmIdQueue.splice(index, 1);
+    localStorage.setItem(
+      STORAGE_KEY_QUEUE,
+      JSON.stringify(localstorageFilmIdQueue)
+    );
+
+    if (cardImgL) {
+      cardImgL.innerHTML = '';
+    }
+
+    renderCards(watchedFilmsById);
+  });
   // Конец)
 }
 
@@ -175,13 +315,21 @@ export default async function openModal(id) {
 
 function createModal() {
   modalBox.innerHTML = '';
-  const markup = `
-<div class="modal-window">
+
+  const watchedFilmsById = JSON.parse(
+    localStorage.getItem(STORAGE_KEY_WATCHED)
+  );
+
+  const queueFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_QUEUE));
+
+  if (!watchedFilmsById.includes(id) && !queueFilmsById.includes(id)) {
+    const markup = `
+    <div class="modal-window">
         <div class="film-card" data-id=${id}>
             <div class="image-box">
             <img src="https://image.tmdb.org/t/p/original${
-                          respData.poster_path
-                        }" alt="${respData.title}" class="modal__image" loading='lazy'/>
+              respData.poster_path
+            }" alt="${respData.title}" class="modal__image" loading='lazy'/>
             </div>
             <div>
                 <h2 class="film-card__title">${respData.title}</h2>
@@ -191,22 +339,22 @@ function createModal() {
                         <tr class="film-card__feature-list">
                             <td class="film-card__feature-name">Vote / Votes</td>
                             <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(
-                                    1
-                                    )}</span> <span class="divider"> / </span> ${
-                                respData.vote_count
-                                }</td>
+                              1
+                            )}</span> <span class="divider"> / </span> ${
+      respData.vote_count
+    }</td>
                         </tr>
                         <tr class="film-card__feature-list">
                             <td class="film-card__feature-name">Popularity</td>
                             <td class="film-card__feature-description">${respData.popularity.toFixed(
-                                1
-                                )}</td>
+                              1
+                            )}</td>
                         </tr>
                         <tr class="film-card__feature-list">
                             <td class="film-card__feature-name">Original Title</td>
                             <td class="film-card__feature-description original-title">${
-                                respData.original_title
-                                }</td>
+                              respData.original_title
+                            }</td>
                         </tr>
                         <tr class="film-card__feature-list">
                             <td class="film-card__feature-name">Genre</td>
@@ -219,33 +367,251 @@ function createModal() {
                 <p class="about__text">
                     ${respData.overview}
                 </p>
-    
-                <div class="button__box">
-                    <button type="button" class="button__watch button">Add to watched</button>
-                    <button type="button" class="button__remove--watch">Remove watched</button>
-                    <button type="button" class="button__queue button">Add to queue</button>
-                    <button type="button" class="button__remove--queue">Remove queue</button>
-                </div>
-    
-                <button class="button__modal-close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" class="bi bi-x-lg" viewBox="0 0 32 32">
-                        <path
-                            d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z">
-                        </path>
-                    </svg>
-                </button>
-            </div>
-        </div>
+            
+          <div class="button__box">
+            <button type="button" class="button__watch button">Add to watched</button>
+            <button type="button" class="button__remove--watch button visually-hidden">Remove from watched</button>
+            <button type="button" class="button__queue button">Add to queue</button>
+            <button type="button" class="button__remove--queue button visually-hidden">Remove from queue</button>
+          </div>
+
+        <button class="button__modal-close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            class="bi bi-x-lg"
+            viewBox="0 0 32 32"
+          >
+            <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
+          </svg>
+        </button>
+      </div>
     </div>
+  </div>
   `;
-  return markup;
+    return markup;
+  }
+
+  if (watchedFilmsById.includes(id) && !queueFilmsById.includes(id)) {
+    const markup = `
+    <div class="modal-window">
+        <div class="film-card" data-id=${id}>
+            <div class="image-box">
+            <img src="https://image.tmdb.org/t/p/original${
+              respData.poster_path
+            }" alt="${respData.title}" class="modal__image" loading='lazy'/>
+            </div>
+            <div>
+                <h2 class="film-card__title">${respData.title}</h2>
+    
+                <table class="film-card__features">
+                    <tbody>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Vote / Votes</td>
+                            <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(
+                              1
+                            )}</span> <span class="divider"> / </span> ${
+      respData.vote_count
+    }</td>
+                        </tr>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Popularity</td>
+                            <td class="film-card__feature-description">${respData.popularity.toFixed(
+                              1
+                            )}</td>
+                        </tr>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Original Title</td>
+                            <td class="film-card__feature-description original-title">${
+                              respData.original_title
+                            }</td>
+                        </tr>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Genre</td>
+                            <td class="film-card__feature-description">${listOfGenres}</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <h3 class="about__title">About</h3>
+                <p class="about__text">
+                    ${respData.overview}
+                </p>
+            
+          <div class="button__box">
+            <button type="button" class="button__watch button visually-hidden">Add to watched</button>
+            <button type="button" class="button__remove--watch button ">Remove from watched</button>
+            <button type="button" class="button__queue button">Add to queue</button>
+            <button type="button" class="button__remove--queue button visually-hidden">Remove from queue</button>
+          </div>
+
+        <button class="button__modal-close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            class="bi bi-x-lg"
+            viewBox="0 0 32 32"
+          >
+            <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  `;
+    return markup;
+  }
+
+  if (!watchedFilmsById.includes(id) && queueFilmsById.includes(id)) {
+    const markup = `
+    <div class="modal-window">
+        <div class="film-card" data-id=${id}>
+            <div class="image-box">
+            <img src="https://image.tmdb.org/t/p/original${
+              respData.poster_path
+            }" alt="${respData.title}" class="modal__image" loading='lazy'/>
+            </div>
+            <div>
+                <h2 class="film-card__title">${respData.title}</h2>
+    
+                <table class="film-card__features">
+                    <tbody>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Vote / Votes</td>
+                            <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(
+                              1
+                            )}</span> <span class="divider"> / </span> ${
+      respData.vote_count
+    }</td>
+                        </tr>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Popularity</td>
+                            <td class="film-card__feature-description">${respData.popularity.toFixed(
+                              1
+                            )}</td>
+                        </tr>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Original Title</td>
+                            <td class="film-card__feature-description original-title">${
+                              respData.original_title
+                            }</td>
+                        </tr>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Genre</td>
+                            <td class="film-card__feature-description">${listOfGenres}</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <h3 class="about__title">About</h3>
+                <p class="about__text">
+                    ${respData.overview}
+                </p>
+            
+          <div class="button__box">
+            <button type="button" class="button__watch button">Add to watched</button>
+            <button type="button" class="button__remove--watch button visually-hidden">Remove from watched</button>
+            <button type="button" class="button__queue button  visually-hidden">Add to queue</button>
+            <button type="button" class="button__remove--queue button">Remove from queue</button>
+          </div>
+
+        <button class="button__modal-close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            class="bi bi-x-lg"
+            viewBox="0 0 32 32"
+          >
+            <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  `;
+    return markup;
+  }
+
+  if (watchedFilmsById.includes(id) && queueFilmsById.includes(id)) {
+    const markup = `
+    <div class="modal-window">
+        <div class="film-card" data-id=${id}>
+            <div class="image-box">
+            <img src="https://image.tmdb.org/t/p/original${
+              respData.poster_path
+            }" alt="${respData.title}" class="modal__image" loading='lazy'/>
+            </div>
+            <div>
+                <h2 class="film-card__title">${respData.title}</h2>
+    
+                <table class="film-card__features">
+                    <tbody>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Vote / Votes</td>
+                            <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(
+                              1
+                            )}</span> <span class="divider"> / </span> ${
+      respData.vote_count
+    }</td>
+                        </tr>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Popularity</td>
+                            <td class="film-card__feature-description">${respData.popularity.toFixed(
+                              1
+                            )}</td>
+                        </tr>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Original Title</td>
+                            <td class="film-card__feature-description original-title">${
+                              respData.original_title
+                            }</td>
+                        </tr>
+                        <tr class="film-card__feature-list">
+                            <td class="film-card__feature-name">Genre</td>
+                            <td class="film-card__feature-description">${listOfGenres}</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <h3 class="about__title">About</h3>
+                <p class="about__text">
+                    ${respData.overview}
+                </p>
+            
+          <div class="button__box">
+            <button type="button" class="button__watch button visually-hidden">Add to watched</button>
+            <button type="button" class="button__remove--watch button ">Remove from watched</button>
+            <button type="button" class="button__queue button  visually-hidden">Add to queue</button>
+            <button type="button" class="button__remove--queue button">Remove from queue</button>
+          </div>
+
+        <button class="button__modal-close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            class="bi bi-x-lg"
+            viewBox="0 0 32 32"
+          >
+            <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  `;
+    return markup;
+  }
 }
 
 // функция закрытия модалки при клике на кнопку закрытия
 
 function onModalClose() {
-  modalBox.classList.add('is-hidden')
-  
+  modalBox.classList.add('is-hidden');
+
   genreList = [];
 
   document.body.style.overflow = 'scroll';
