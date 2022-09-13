@@ -17,65 +17,65 @@ const newServiceApi = new NewServiceApi();
 
 renderWatchedList();
 
-function onBtnWatchedClick() {
-  const watchedFilmsById = JSON.parse(
-    localStorage.getItem(STORAGE_KEY_WATCHED)
-  );
+// function onBtnWatchedClick() {
+//   const watchedFilmsById = JSON.parse(
+//     localStorage.getItem(STORAGE_KEY_WATCHED)
+//   );
 
-  if (watchedFilmsById && watchedFilmsById.includes(id)) {
-    return;
-  }
-  if (!watchedFilmsById) {
-    localstorageFilmIdWatched.push(id);
-    localStorage.setItem(
-      STORAGE_KEY_WATCHED,
-      JSON.stringify(localstorageFilmIdWatched)
-    );
-  }
+//   if (watchedFilmsById && watchedFilmsById.includes(id)) {
+//     return;
+//   }
+//   if (!watchedFilmsById) {
+//     localstorageFilmIdWatched.push(id);
+//     localStorage.setItem(
+//       STORAGE_KEY_WATCHED,
+//       JSON.stringify(localstorageFilmIdWatched)
+//     );
+//   }
 
-  if (watchedFilmsById) {
-    localstorageFilmIdWatched = watchedFilmsById.concat(id);
-    localStorage.setItem(
-      STORAGE_KEY_WATCHED,
-      JSON.stringify(localstorageFilmIdWatched)
-    );
-  }
+//   if (watchedFilmsById) {
+//     localstorageFilmIdWatched = watchedFilmsById.concat(id);
+//     localStorage.setItem(
+//       STORAGE_KEY_WATCHED,
+//       JSON.stringify(localstorageFilmIdWatched)
+//     );
+//   }
 
-  if (libraryDiv) {
-    libraryDiv.innerHTML = '';
-  }
+//   if (libraryDiv) {
+//     libraryDiv.innerHTML = '';
+//   }
 
-  renderCards(localstorageFilmIdWatched);
-}
+//   renderCards(localstorageFilmIdWatched);
+// }
 
-function onBtnQueueClick() {
-  const watchedFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_QUEUE));
+// function onBtnQueueClick() {
+//   const watchedFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_QUEUE));
 
-  if (watchedFilmsById && watchedFilmsById.includes(id)) {
-    return;
-  }
-  if (!watchedFilmsById) {
-    localstorageFilmIdQueue.push(id);
-    localStorage.setItem(
-      STORAGE_KEY_QUEUE,
-      JSON.stringify(localstorageFilmIdQueue)
-    );
-  }
+//   if (watchedFilmsById && watchedFilmsById.includes(id)) {
+//     return;
+//   }
+//   if (!watchedFilmsById) {
+//     localstorageFilmIdQueue.push(id);
+//     localStorage.setItem(
+//       STORAGE_KEY_QUEUE,
+//       JSON.stringify(localstorageFilmIdQueue)
+//     );
+//   }
 
-  if (watchedFilmsById) {
-    localstorageFilmIdQueue = watchedFilmsById.concat(id);
-    localStorage.setItem(
-      STORAGE_KEY_QUEUE,
-      JSON.stringify(localstorageFilmIdQueue)
-    );
-  }
+//   if (watchedFilmsById) {
+//     localstorageFilmIdQueue = watchedFilmsById.concat(id);
+//     localStorage.setItem(
+//       STORAGE_KEY_QUEUE,
+//       JSON.stringify(localstorageFilmIdQueue)
+//     );
+//   }
 
-  if (libraryDiv) {
-    libraryDiv.innerHTML = '';
-  }
+//   if (libraryDiv) {
+//     libraryDiv.innerHTML = '';
+//   }
 
-  renderCards(localstorageFilmIdQueue);
-}
+//   renderCards(localstorageFilmIdQueue);
+// }
 
 if (libraryDiv) {
   btnWatchedHeader.addEventListener('click', renderWatchedList);
@@ -179,4 +179,5 @@ export {
   onBtnWatchedRemoveClick,
   onBtnQueueClick,
   onBtnQueueRemoveClick,
+  renderCards,
 };

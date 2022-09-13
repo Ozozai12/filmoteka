@@ -1,39 +1,50 @@
 * {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    color: $main-black-color;
-    background-color: $main-white-color;
+  color: $main-black-color;
+  background-color: $main-white-color;
 
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.2;
-    margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0;
 }
 
 .container {
-    margin: 0 auto;
-    
-    @include mq(mobile-only) {
-        max-width: 280px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+  margin: 0 auto;
 
-    @include mq(tablet-only) {
-        max-width: 704px;
-        padding-left: 32px;
-        padding-right: 32px;
-    }
+  @include mq(mobile-only) {
+    max-width: 280px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
-    @include mq (desktop) {
-        max-width: 1214px;
-        padding-left: 32px;
-        padding-right: 32px;
-    }
+  @include mq(tablet-only) {
+    max-width: 704px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @include mq(desktop) {
+    max-width: 1214px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
 
-
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
