@@ -63,6 +63,11 @@ export default async function openModal(id) {
 
   modalBox.insertAdjacentHTML('afterBegin', createModal());
 
+  document.body.style.position = 'fixed';
+  document.body.style.top = '0';
+  document.body.style.left = '0';
+  document.body.style.right = '0'
+
   // подставляем дефолтное изображение если нет постера
 
     const imgBox = document.querySelector('.image-box');
@@ -244,6 +249,10 @@ function onModalClose() {
   modalBox.classList.add('is-hidden')
   modalBox.innerHTML = '';
   genreList = [];
+
+  document.body.style.position = '';
+  document.body.style.top = '';
+
   window.removeEventListener('keydown', onModalCloseEsc);
 }
 

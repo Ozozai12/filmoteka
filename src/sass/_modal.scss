@@ -11,12 +11,18 @@
     opacity: 1;
     visibility: visible;
 
-    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity $animation-timing-function,
+                transform $animation-timing-function,
+                visibility $animation-timing-function;
 
     @include mq(mobile-only) {
         overflow-y: scroll;
     }
+
+    &.modal-window {
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
 }
 
 .modal-window {
@@ -31,6 +37,8 @@
             23px 0 20px -23px rgba(0, 0, 0, .6),
             inset 0 0 40px rgba(0, 0, 0, .1);
 
+    transition: transform $animation-timing-function;
+
     @media screen and (min-width: 330px) {
         left: 50%;
         transform: translateX(-50%);
@@ -42,10 +50,12 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(1);
         max-width: 704px;
         display: flex;
         padding: 40px 72px 40px 36px;
+
+        transition: transform $animation-timing-function;
     }
 
     @include mq (desktop) {
@@ -94,7 +104,7 @@
     }
 
     @include mq (desktop) {
-        max-width: 266px;
+        min-width: 300px;
         min-height: 31px;
 
         font-size: 30px;
@@ -224,10 +234,10 @@
     min-width: 110px;
     height: 44px;
 
-    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                border 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                color 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                scale 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color $animation-timing-function,
+                border $animation-timing-function,
+                color $animation-timing-function,
+                scale $animation-timing-function;
 
     &:hover,
     &:focus {
@@ -287,8 +297,8 @@
     width: 30px;
     height: 30px;
 
-    transition: fill 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                scale 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: fill $animation-timing-function,
+                scale $animation-timing-function;
 
     &:hover {
         fill: $accent-orange;
@@ -324,7 +334,7 @@
     stroke: #ff6b01;
     stroke-dasharray: 650;
     stroke-dashoffset: 650;
-    transition: all 0.5s ease-in-out;
+    transition: all $animation-timing-function;
     opacity: 0.3;
 }
 
@@ -334,7 +344,7 @@
     transition: all 0.5s ease;
 
     .triangle {
-        transition: all 0.7s ease-in-out;
+        transition: all $animation-timing-function;
         stroke-dasharray: 240;
         stroke-dashoffset: 480;
         stroke: #ff6b01;
@@ -346,7 +356,7 @@
             stroke-dashoffset: 0;
             opacity: 1;
             stroke: #ff6b01;
-            animation: nudge 0.7s ease-in-out;
+            animation: nudge $animation-timing-function;
 
             @keyframes nudge {
                 0% {
