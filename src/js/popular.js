@@ -34,7 +34,13 @@ function testTargetClick(e){
 }
 
 
-
+function testting ( ){
+  const tuibtn = document.querySelectorAll('.tui-page-btn')
+  const body = document.body;
+  if(body.classList.contains("dark-theme")){
+    tuibtn.forEach(el => el.classList.add('dark-btn'))
+  }
+}
 
 
 async function popularMovies() {
@@ -56,6 +62,7 @@ async function popularMovies() {
          centerAlign: true,
          firstItemClassName: 'tui-first-child',
          lastItemClassName: 'tui-last-child',
+         visiblePages:5,
          template: {
              page: '<a href="#" class="tui-page-btn">{{page}}</a>',
              currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
@@ -71,6 +78,7 @@ async function popularMovies() {
                  '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
                      '<span class="tui-ico-ellip">...</span>' +
                  '</a>'
+              
          }
     };
 
@@ -78,12 +86,11 @@ async function popularMovies() {
     const pagination = new Pagination(container, options);
 
   const test = document.querySelector(".tui-prev")
-
   if(currentPage === 1){
     test.classList.add('visibility')
   }
   
-  
+  testting()
 
 
       return res;});

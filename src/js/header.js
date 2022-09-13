@@ -39,10 +39,13 @@ const body = document.body;
 
 toggle.addEventListener('input', (e) => {
 	const isChecked = e.target.checked;
-	
+	const tuibtn = document.querySelectorAll('.tui-page-btn')
 	if(isChecked) {
+    
 		body.classList.add('dark-theme');
+    tuibtn.forEach(el => el.classList.add('dark-btn'))
 	} else {
+    tuibtn.forEach(el => el.classList.remove('dark-btn'))
 		body.classList.remove('dark-theme');
 	}
 });
