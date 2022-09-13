@@ -161,9 +161,9 @@ function onBtnQueueRemoveClick() {
 
 function renderCards(watchedFilmsById) {
 
-  if (watchedFilmsById.length===0) { 
-    libraryDiv.innerHTML = `<img src="${nothingHereUrl}" STYLE="margin:0 auto" width="300" alt="nothingHere"></img>`;
-}
+  if (!watchedFilmsById || watchedFilmsById.length === 0) {
+    libraryDiv.innerHTML = `<img src="${nothingHereUrl}" STYLE="margin:0 auto" width="600" alt="nothingHere"></img>`;
+  }
   if (watchedFilmsById) {
     watchedFilmsById.map(film => {
       newServiceApi.id = Number(film);
