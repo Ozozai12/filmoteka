@@ -65,7 +65,7 @@ function testTargetClick(e){
 
     newServiceApi.serviceSearchMovie().then(res => {substitutionOfValues(res.results)
       
-      console.log(res);
+      // console.log(res);
       gallery.innerHTML = createCardMarkup(res.results)})
       // test(res)
       window.scrollTo(0, 0) 
