@@ -13,11 +13,13 @@ const modalBox = document.querySelector('.backdrop-modal');
 const cardImgG = document.querySelector('.gallery');
 const cardImgL = document.querySelector('.library');
 
+
 let id;
 let respData;
 let genreList = [];
 let listOfGenres;
 let newApiService = new ApiService();
+let imgBox;
 
 let STORAGE_KEY_WATCHED = 'watched';
 let STORAGE_KEY_QUEUE = 'queue';
@@ -104,7 +106,7 @@ export default async function openModal(id) {
 
   // подставляем дефолтное изображение если нет постера
 
-  const imgBox = document.querySelector('.image-box');
+  imgBox = document.querySelector('.image-box');
 
   if (respData.poster_path === null) {
     imgBox.innerHTML = `<img
@@ -912,7 +914,10 @@ function createModal() {
 
 function onModalClose() {
   modalBox.classList.add('is-hidden');
-
+  imgBox.innerHTML = `<img src="https://image.tmdb.org/t/p/original${
+                          respData.poster_path
+                        }" alt="${respData.title}" class="modal__image" loading='lazy'/>
+                      </div>`
   genreList = [];
 
   document.body.style.overflow = 'scroll';
