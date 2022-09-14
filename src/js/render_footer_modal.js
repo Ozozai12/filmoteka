@@ -17,28 +17,6 @@ export function openModal() {
   refs.addBodyClass.classList.add('modal-open');
   document.addEventListener('keydown', onClickEscape);
   refs.footerModal.innerHTML = '';
-    // test markup
-    // const markup = `
-    // <div class="glide">
-    //     <div data-glide-el="track" class="glide__track">
-    //         <ul class="glide__slides">
-    //             <li class="glide__slide"><img src="https://avatars.githubusercontent.com/u/101360953?v=4"></li>
-    //             <li class="glide__slide"><img src="https://avatars.githubusercontent.com/u/100313107?v=4"></li>
-    //             <li class="glide__slide"><img src="https://avatars.githubusercontent.com/u/101360953?v=4"></li>
-    //         </ul>
-    //         <div class="glide">
-    //             <div class="glide__track" data-glide-el="track">...</div>
-    //                 <div class="glide__arrows" data-glide-el="controls">
-    //                     <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
-    //                     <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
-    //                 </div>
-    //         </div>
-    //     </div>
-    // </div>
-    // `;
-
-// test markup
-
 
   const markup = `
   <div class="glide_footer">
@@ -72,9 +50,11 @@ export function openModal() {
   const slide = document.querySelector('.glide__slides--footer');
   const closeModalBtn = document.querySelector('[data-footer-close]');
 
+
+
   slide.insertAdjacentHTML('beforeend', memberTpl(members));
 
-//   glideFooter.destroy();
+  glideFooter.destroy();
   let glidFooter = new Glide('.glide_footer', options);
   glidFooter.mount();
 

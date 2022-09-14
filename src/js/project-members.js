@@ -20,6 +20,7 @@ export const members = [
     LinkdInLink: '',
     movies:`Forrest Gump (1994),  Don't Look Up (2021)`,
     series: 'Bron/Broen, Black Mirror',  
+    blockquote: `If it's stupid, but it works - it's not stupid`,
   },
   {
     id: '3',
@@ -30,6 +31,7 @@ export const members = [
     LinkdInLink: '',
     movies: '',
     series: 'The Expanse, The Umbrella Academy',
+    blockquote: `If it's stupid, but it works - it's not stupid`,
   },
   {
     id: '4',
@@ -40,6 +42,7 @@ export const members = [
     LinkdInLink: '',
     movies: '',
     series: '',
+    blockquote: '',
   },
   {
     id: '5',
@@ -50,6 +53,7 @@ export const members = [
     LinkdInLink: '',
     movies: 'Shutter Island, The Shawshank Redemption, Harry Potter, The Lord of the Rings',
     series: 'The Simpsons, 11.22.63, Ozark, Game of Thrones, Arcane',
+    blockquote: '',
   },
   {
     id: '6',
@@ -60,6 +64,7 @@ export const members = [
     LinkdInLink: '',
     movies: '',
     series: 'Family Guy',
+    blockquote: '',
   },
   {
     id: '7',
@@ -70,6 +75,7 @@ export const members = [
     LinkdInLink: '',
     movies: 'Snatch, RocknRolla, Django Unchained',
     series: 'The Sopranos, Sons of Anarchy',
+    blockquote: '',
   },
   {
     id: '8',
@@ -80,6 +86,7 @@ export const members = [
     LinkdInLink: '',
     movies: ' ',
     series: '',
+    blockquote: '',
   },
   {
     id: '9',
@@ -88,18 +95,20 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/99878558?v=4',
     gitHubLink: 'https://github.com/ValeriiaMasiuk',
     LinkdInLink: '',
-    movies: ' ',
+    movies: 'The Age of Adaline',
     series: '',
+    blockquote:'',
   },
   {
     id: '10',
-    name: 'Valeriia Masiuk',
+    name: 'Oleg Kaminskyi',
     role: 'Developer',
-    img: 'https://avatars.githubusercontent.com/u/99878558?v=4',
-    gitHubLink: 'https://github.com/ValeriiaMasiuk',
+    img: 'https://avatars.githubusercontent.com/u/100085494?v=4',
+    gitHubLink: 'https://https://github.com/Psychedell',
     LinkdInLink: '',
-    movies: 'The Age of Adaline',
+    movies: '11 friends of ocean, Free Guy, Riddick, Guardians of the Galaxy,  Kong: Skull Island, Avatar, Men in Black, The Lord of the Rings, The Hunger Games, The Maze Runner',
     series: '',
+    blockquote:'',
   },
   {
     id: '11',
@@ -110,6 +119,7 @@ export const members = [
     LinkdInLink: '',
     movies: 'Shutter Island, Inception, Inglourious Basterds,',
     series: '',
+    blockquote:'',
   },
   {
     id: '12',
@@ -120,5 +130,6 @@ export const members = [
     LinkdInLink: '',
     movies: 'The Prestige, Titanic, Citizen Kane',
     series: 'Dark, One Piece, Office',
+    blockquote:'',
   },
 ];
