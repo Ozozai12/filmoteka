@@ -67,6 +67,10 @@
       outline: none;
       border-radius: 10px;
     }
+    @include mq(mobile) {
+      width: 300px;
+      height: 500px;
+    }
     @include mq(tablet) {
       width: 600px;
       height: 500px;
@@ -222,7 +226,7 @@
     color: #000;
   }
   
-  p.fav_serie {
+  .fav_serie {
     font-family: 'Roboto';
     padding-bottom: 8px;
     font-size: 18px;
@@ -232,22 +236,8 @@
   
     color: #fff;
   }
+  p.fav-serie {
+    color: #fff;
+}
 
-// quotes
-.quotes {
-  border-radius: 5px;
-  background-color: #f7f7f7;
-  &.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;}
-}
-.quote {
-  font-style: italic;
-  font-size: .9em;
-  text-indent: 0em;
-  margin: 0em 0 0.25em 0;
-  line-height: 1.25em;
-  z-index: 1;
-  
-}
+
