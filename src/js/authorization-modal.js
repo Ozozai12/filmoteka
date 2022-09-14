@@ -2,6 +2,9 @@ const ui = new firebaseui.auth.AuthUI(firebase.auth());
 const userName = document.querySelector('.sign-name');
 const logOutBtn = document.querySelector('.btn__autorisation');
 const logIcon = document.querySelector('.icon-enter');
+const loginText = document.querySelector('.login-text');
+const loginText2 = document.querySelector('.login-text2');
+const logoutText = document.querySelector('.logout-text');
 
 // 2) These are our configurations.
 const uiConfig = {
@@ -33,8 +36,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       displayName = 'guest';
     }
     userName.innerHTML = `${displayName}`;
-    logOutBtn.classList.remove('is-hidden');
-    logIcon.style.display = 'none';
+    logIn();
   } else {
     notLogged();
   }
@@ -46,6 +48,13 @@ function notLogged() {
   uiStart();
 }
 
+function logIn() {
+  loginText.classList.add('visually-hidden');
+  loginText2.classList.add('visually-hidden');
+  logoutText.classList.remove('visually-hidden');
+  logOutBtn.classList.remove('is-hidden');
+  logIcon.style.display = 'none';
+}
 function logOut() {
   firebase.auth().signOut();
   window.location.reload();
