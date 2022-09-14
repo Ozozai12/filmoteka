@@ -40,8 +40,8 @@ export const members = [
     img: 'https://avatars.githubusercontent.com/u/93829935?v=4',
     gitHubLink: 'https://github.com/AnastasiyaOlhovik',
     LinkdInLink: '',
-    movies: '',
-    series: '',
+    movies: `Everybody's Fine`,
+    series: 'Millionaires, Westworld',
      
   },
   {
@@ -79,13 +79,13 @@ export const members = [
   },
   {
     id: '8',
-    name: 'wi2410',
+    name: 'Vadim Vasilenko',
     role: 'Developer',
     img: 'https://avatars.githubusercontent.com/u/101503219?v=4',
     gitHubLink: 'https://github.com/wi2410',
     LinkdInLink: '',
-    movies: ' ',
-    series: '',
+    movies: 'Marvel Movies, Fast & Furious, Jason Statham movies',
+    series: 'The Big Bang Theory, Person of Interest, The Blacklist, Men at Work, Why Women Kill.',
      
   },
   {
