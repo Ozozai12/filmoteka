@@ -114,13 +114,6 @@
     }
   }
   
-  .footer__social {
-    display: flex;
-    // @media screen and(min-width:768px) {
-    //   margin-bottom: 15px;
-    // }
-  }
-  
   .student__card {
     flex-direction: column;
     display: flex;
@@ -226,10 +219,10 @@
     line-height: 1.15;
     letter-spacing: 0.04em;
   
-    color: #332f2e;
+    color: #000;
   }
   
-  .fav_serie {
+  p.fav_serie {
     font-family: 'Roboto';
     padding-bottom: 8px;
     font-size: 18px;
@@ -237,7 +230,7 @@
     line-height: 1.15;
     letter-spacing: 0.04em;
   
-    color: #271606;
+    color: #fff;
   }
 
 // quotes

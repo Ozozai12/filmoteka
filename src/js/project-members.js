@@ -57,7 +57,7 @@ export const members = [
   },
   {
     id: '6',
-    name: 'Timofiy ',
+    name: 'Timofiy Tatarenko',
     role: 'Developer',
     img: 'https://avatars.githubusercontent.com/u/100188867?v=4',
     gitHubLink: 'https://github.com/Xdecent0',
@@ -79,7 +79,7 @@ export const members = [
   },
   {
     id: '8',
-    name: 'Vadim Vasilenko',
+    name: 'Vadym Vasylenko',
     role: 'Developer',
     img: 'https://avatars.githubusercontent.com/u/101503219?v=4',
     gitHubLink: 'https://github.com/wi2410',
