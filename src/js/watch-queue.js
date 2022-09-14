@@ -3,7 +3,7 @@ import filmCard from './templates/markupOneCard.hbs';
 import filmCards from './templates/cardMarkup.hbs';
 import { NewServiceApi } from './authorization';
 import modal, { id } from './modal';
-import nothingHereUrl from '../images/nothingHere.webp';
+import nothingHereUrl from '../images/nothingHere.svg';
 
 const btnWatchedHeader = document.querySelector('#watched-header');
 const btnQueueHeader = document.querySelector('#queue-header');
