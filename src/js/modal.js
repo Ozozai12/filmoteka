@@ -48,7 +48,7 @@ function getId(evt) {
     return;
   }
 
-  modalBox.classList.remove('is-hidden');
+  // modalBox.classList.remove('is-hidden');
   id = evt.target.getAttribute('data-id');
 
   openModal(id);
@@ -87,7 +87,7 @@ export default async function openModal(id) {
   listOfGenres = genreList.join(', ');
 
   // рендерим динамическую разметку модалки при клике на карточку с фильмом
-
+  modalBox.classList.remove('is-hidden');
   modalBox.insertAdjacentHTML('afterBegin', createModal());
 
   const savedTheme = localStorage.getItem('theme');
