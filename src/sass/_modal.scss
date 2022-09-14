@@ -44,6 +44,10 @@
   transform: translate(-50%, -50%) scale(0.9);
   transition: transform $long-animation-timing-function;
 
+  @include mq(mobile-only) {
+    transform: none;
+    }
+  
   @media screen and (min-width: 330px) {
     left: 50%;
     transform: translateX(-50%);
