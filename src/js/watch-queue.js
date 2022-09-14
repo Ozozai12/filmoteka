@@ -160,11 +160,11 @@ function onBtnQueueRemoveClick() {
 }
 
 function renderCards(watchedFilmsById) {
+  let intViewportHeight = window.innerHeight-462;
 
   if (libraryDiv) {
     if (!watchedFilmsById || watchedFilmsById.length === 0) {
       libraryDiv.innerHTML = `<div STYLE="margin:auto auto"><img src="${nothingHereUrl}" width="600" height="600" alt="nothingHere" class="kitten"></img></div>`;
-      let intViewportHeight = window.innerHeight-462;
       libraryDiv.style.minHeight = `${intViewportHeight}px`;
     }
     if (watchedFilmsById) {
@@ -177,6 +177,7 @@ function renderCards(watchedFilmsById) {
 
           if (libraryDiv) {
             libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
+            libraryDiv.style.minHeight = `${intViewportHeight}px`;
           }
         });
 
