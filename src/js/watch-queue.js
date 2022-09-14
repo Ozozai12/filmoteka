@@ -163,7 +163,7 @@ function renderCards(watchedFilmsById) {
 
   if (libraryDiv) {
     if (!watchedFilmsById || watchedFilmsById.length === 0) {
-      libraryDiv.innerHTML = `<div STYLE="margin:auto auto"><img src="${nothingHereUrl}" width="600" height="600" alt="nothingHere"></img></div>`;
+      libraryDiv.innerHTML = `<div STYLE="margin:auto auto"><img src="${nothingHereUrl}" width="600" height="600" alt="nothingHere" class="kitten"></img></div>`;
       let intViewportHeight = window.innerHeight-462;
       libraryDiv.style.minHeight = `${intViewportHeight}px`;
     }
