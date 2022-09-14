@@ -163,7 +163,9 @@ function renderCards(watchedFilmsById) {
 
   if (libraryDiv) {
     if (!watchedFilmsById || watchedFilmsById.length === 0) {
-      libraryDiv.innerHTML = `<img src="${nothingHereUrl}" STYLE="margin:0 auto" width="600" alt="nothingHere"></img>`;
+      libraryDiv.innerHTML = `<div STYLE="margin:auto auto"><img src="${nothingHereUrl}" width="600" height="600" alt="nothingHere"></img></div>`;
+      let intViewportHeight = window.innerHeight-462;
+      libraryDiv.style.minHeight = `${intViewportHeight}px`;
     }
     if (watchedFilmsById) {
       watchedFilmsById.map(film => {
