@@ -39,8 +39,8 @@
     }
     
     @include mq(desktop){
-        width: 100px;
-        height: 100px;
+        width: 60px;
+        height: 60px;
     }
 
     &__icon {
@@ -55,7 +55,7 @@
         transform: rotate(-45deg);
 
         @include mq(desktop){
-            margin-bottom: -20px;
+            margin-bottom: -12px;
             border-right-width: 5px;
             border-top-width: 5px;
         }
