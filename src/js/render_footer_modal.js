@@ -24,13 +24,10 @@ export function openModal() {
         <ul class="glide__slides--footer"></ul>
       </div>
       <div class="glide__arrows" data-glide-el="controls">
-            <button style="padding: 10px;
-      box-shadow: none;
-      border: none; left: 10px" class="glide__arrow glide__arrow--left arrow__footer" data-glide-dir="<">&#x21e6;</button>
-            <button style="padding: 10px;
-      box-shadow: none;
-      border: none; right: 10px" class="glide__arrow glide__arrow--right arrow__footer" data-glide-dir=">">&#x21e8;</button>
+            <button class="glide__arrow glide__arrow--left arrow__footer" data-glide-dir="<"><svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.667 8H3.333M8 12.667 3.333 8 8 3.333" stroke="#000" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="glide__arrow glide__arrow--right arrow__footer" data-glide-dir=">"><svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.333 8h9.334M8 12.667 12.667 8 8 3.333" stroke="#000" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
+        
         <button class="button__modal-close" data-footer-close>
           <svg
             xmlns="http://www.w3.org/2000/svg"
