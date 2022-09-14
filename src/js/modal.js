@@ -24,6 +24,9 @@ let STORAGE_KEY_QUEUE = 'queue';
 let localstorageFilmIdWatched = [];
 let localstorageFilmIdQueue = [];
 
+const savedTheme = localStorage.getItem('theme');
+const modal = document.querySelector('.modal-window');
+
 const btnWatchedHeader = document.querySelector('#watched-header');
 const btnQueueHeader = document.querySelector('#queue-header');
 
@@ -86,6 +89,16 @@ export default async function openModal(id) {
   // рендерим динамическую разметку модалки при клике на карточку с фильмом
 
   modalBox.insertAdjacentHTML('afterBegin', createModal());
+
+  const savedTheme = localStorage.getItem('theme');
+  const modal = document.querySelector('.modal-window');
+
+  updataModalTheme();
+  function updataModalTheme() {
+    if (savedTheme === 'loaded dark-theme') {
+      modal.classList.add('dark-theme');
+    }
+  }
 
   document.body.style.overflow = 'hidden';
 
@@ -445,6 +458,7 @@ export default async function openModal(id) {
         // renderCards(watchedFilmsById);
       });
     }
+   
   }
   const modalBtnWatched = document.querySelector('.button__watch');
   modalBtnWatched.addEventListener('click', e => {
@@ -577,7 +591,12 @@ export default async function openModal(id) {
   });
 }
 
+
+
 // Конец)
+
+
+
 
 // console.log(btnWatchedHeader.classList.contains('btn__library--current'));
 // разметка одной карточки модального окна фильма
@@ -585,6 +604,8 @@ export default async function openModal(id) {
 function createModal() {
   modalBox.innerHTML = '';
 
+  
+  
   const watchedFilmsById = JSON.parse(
     localStorage.getItem(STORAGE_KEY_WATCHED)
   );
@@ -874,7 +895,18 @@ function createModal() {
   `;
     return markup;
   }
+  updataModalTheme();
 }
+
+
+
+// function updataModalTheme() {
+//   if (savedTheme === 'loaded dark-theme') {
+    
+//       modal.classList.add('dark-theme');
+    
+//   }
+// }
 
 // функция закрытия модалки при клике на кнопку закрытия
 

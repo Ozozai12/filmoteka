@@ -25,6 +25,7 @@
 }
 
 .modal-window {
+  background-color: inherit;
   position: relative;
   background-color: $main-white-color;
   max-width: 280px;
@@ -66,6 +67,11 @@
     min-height: 643px;
     padding: 40px 12px;
   }
+}
+
+.modal-window.dark-theme {
+  background-color: #333;
+  color: #fff;
 }
 
 .film-card {
