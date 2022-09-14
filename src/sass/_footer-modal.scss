@@ -67,6 +67,10 @@
       outline: none;
       border-radius: 10px;
     }
+    @include mq(mobile) {
+      width: 300px;
+      height: 500px;
+    }
     @include mq(tablet) {
       width: 600px;
       height: 500px;
@@ -112,13 +116,6 @@
       transform: scale(1.2);
       color: var(--accent-color);
     }
-  }
-  
-  .footer__social {
-    display: flex;
-    // @media screen and(min-width:768px) {
-    //   margin-bottom: 15px;
-    // }
   }
   
   .student__card {
@@ -226,7 +223,7 @@
     line-height: 1.15;
     letter-spacing: 0.04em;
   
-    color: #332f2e;
+    color: #000;
   }
   
   .fav_serie {
@@ -237,24 +234,10 @@
     line-height: 1.15;
     letter-spacing: 0.04em;
   
-    color: #271606;
+    color: #fff;
   }
+  p.fav-serie {
+    color: #fff;
+}
 
-// quotes
-.quotes {
-  border-radius: 5px;
-  background-color: #f7f7f7;
-  &.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;}
-}
-.quote {
-  font-style: italic;
-  font-size: .9em;
-  text-indent: 0em;
-  margin: 0em 0 0.25em 0;
-  line-height: 1.25em;
-  z-index: 1;
-  
-}
+
