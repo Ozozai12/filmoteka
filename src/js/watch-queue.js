@@ -161,27 +161,26 @@ function onBtnQueueRemoveClick() {
 
 function renderCards(watchedFilmsById) {
 
-  if (!watchedFilmsById || watchedFilmsById.length === 0) {
-    libraryDiv.innerHTML = `<div STYLE="margin:0 auto"><img src="${nothingHereUrl}" min-width="600" min-height="600" alt="nothingHere" class="kitten"></img></div>`;
-    let intViewportHeight = window.innerHeight-522;
-    libraryDiv.style.minHeight = `${intViewportHeight}px`;
-  }
-  if (watchedFilmsById) {
-    watchedFilmsById.map(film => {
-      newServiceApi.id = Number(film);
-      newServiceApi.serviceIdMovie().then(res => {
+  if (libraryDiv) {
+    if (!watchedFilmsById || watchedFilmsById.length === 0) {
+      libraryDiv.innerHTML = `<img src="${nothingHereUrl}" STYLE="margin:0 auto" width="600" alt="nothingHere"></img>`;
+    }
+    if (watchedFilmsById) {
+      watchedFilmsById.map(film => {
+        newServiceApi.id = Number(film);
+        newServiceApi.serviceIdMovie().then(res => {
+          res.genres = res.genres.splice(0, 2);
+          res.release_date = res.release_date.slice(0, 4);
+          res.vote_average = res.vote_average.toFixed(1);
 
-     
-      res.genres = res.genres.splice(0, 2)
-      res.release_date = res.release_date.slice(0, 4);
-      res.vote_average = res.vote_average.toFixed(1);
-        
+          if (libraryDiv) {
+            libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
+          }
+        });
 
-        if (libraryDiv) {
-          libraryDiv.insertAdjacentHTML('beforeend', filmCard(res));
-        } 
+
       });
-    });
+    }
   }
 }
 
