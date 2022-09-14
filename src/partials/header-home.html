@@ -60,8 +60,11 @@
             </svg>
         </span>
         
-        <input type="checkbox" id="toggle" />
-        <label for="toggle"></label>
+        <div>
+            <input class="theme-switch__toggle" type="checkbox" id="toggle" />
+            <label aria-hidden="true" class="theme-switch__track" for="toggle"></label>
+            <div aria-hidden="true" class="theme-switch__marker"></div>
+        </div>
         <span class="theme-icon">
             <svg class="theme-icon--moon" width="25" height="25">
                 <use href="./images/icons.svg#moon"></use>
@@ -78,8 +81,14 @@
                     <use href="./images/icons.svg#icon-close-btn"></use>
                 </svg>
             </button>
+            <h3>Welcome to the film library! <br> Please choose a login method:</h3>
             <div class="wrapper" id="firebaseui-auth-container"></div>
+
+            <span class="modal__header--text">It doesn't provide any benefits, but it does make your name look so cool here.</span>
+            <h3 class="visually-hidden">As we promised - no benefits from sign in! If you want to log out - click the button below:</h3>
             <button type="button" class="btn__autorisation is-hidden">Logout</button>
+
+          
         </div>
 
     </div>
