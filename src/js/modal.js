@@ -13,7 +13,6 @@ const modalBox = document.querySelector('.backdrop-modal');
 const cardImgG = document.querySelector('.gallery');
 const cardImgL = document.querySelector('.library');
 
-
 let id;
 let respData;
 let genreList = [];
@@ -46,7 +45,10 @@ if (cardImgL) {
 // получаем id карточки, на которую кликнули
 
 function getId(evt) {
-  if (evt.target.nodeName !== 'P' && evt.target.nodeName !== 'IMG' || evt.target.classList.contains('kitten')) {
+  if (
+    (evt.target.nodeName !== 'P' && evt.target.nodeName !== 'IMG') ||
+    evt.target.classList.contains('kitten')
+  ) {
     return;
   }
 
@@ -460,7 +462,6 @@ export default async function openModal(id) {
         // renderCards(watchedFilmsById);
       });
     }
-   
   }
   const modalBtnWatched = document.querySelector('.button__watch');
   modalBtnWatched.addEventListener('click', e => {
@@ -593,12 +594,7 @@ export default async function openModal(id) {
   });
 }
 
-
-
 // Конец)
-
-
-
 
 // console.log(btnWatchedHeader.classList.contains('btn__library--current'));
 // разметка одной карточки модального окна фильма
@@ -606,16 +602,12 @@ export default async function openModal(id) {
 function createModal() {
   modalBox.innerHTML = '';
 
-  
-  
   const watchedFilmsById = JSON.parse(
     localStorage.getItem(STORAGE_KEY_WATCHED)
   );
 
   const queueFilmsById = JSON.parse(localStorage.getItem(STORAGE_KEY_QUEUE));
-
-  if (!watchedFilmsById.includes(id) && !queueFilmsById.includes(id)) {
-    const markup = `
+  const baseMarkup = `
     <div class="modal-window">
         <div class="film-card" data-id=${id}>
             <div class="image-box">
@@ -633,8 +625,8 @@ function createModal() {
                             <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(
                               1
                             )}</span> <span class="divider"> / </span> ${
-      respData.vote_count
-    }</td>
+    respData.vote_count
+  }</td>
                         </tr>
                         <tr class="film-card__feature-list">
                             <td class="film-card__feature-name">Popularity</td>
@@ -660,12 +652,7 @@ function createModal() {
                     ${respData.overview}
                 </p>
             
-          <div class="button__box">
-            <button type="button" class="button__watch button">Add to watched</button>
-            <button type="button" class="button__remove--watch button visually-hidden">Remove from watched</button>
-            <button type="button" class="button__queue button">Add to queue</button>
-            <button type="button" class="button__remove--queue button visually-hidden">Remove from queue</button>
-          </div>
+          
 
         <button class="button__modal-close">
           <svg
@@ -677,236 +664,69 @@ function createModal() {
           >
             <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
           </svg>
-        </button>
+        </button>`;
+
+  if (!watchedFilmsById.includes(id) && !queueFilmsById.includes(id)) {
+    return `${baseMarkup}
+      <div class="button__box">
+            <button type="button" class="button__watch button">Add to watched</button>
+            <button type="button" class="button__remove--watch button visually-hidden">Remove from watched</button>
+            <button type="button" class="button__queue button">Add to queue</button>
+            <button type="button" class="button__remove--queue button visually-hidden">Remove from queue</button>
+          </div>
       </div>
     </div>
-  </div>
-  `;
-    return markup;
+  </div>`;
   }
 
   if (watchedFilmsById.includes(id) && !queueFilmsById.includes(id)) {
-    const markup = `
-    <div class="modal-window">
-        <div class="film-card" data-id=${id}>
-            <div class="image-box">
-            <img src="https://image.tmdb.org/t/p/original${
-              respData.poster_path
-            }" alt="${respData.title}" class="modal__image" loading='lazy'/>
-            </div>
-            <div>
-                <h2 class="film-card__title">${respData.title}</h2>
-    
-                <table class="film-card__features">
-                    <tbody>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Vote / Votes</td>
-                            <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(
-                              1
-                            )}</span> <span class="divider"> / </span> ${
-      respData.vote_count
-    }</td>
-                        </tr>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Popularity</td>
-                            <td class="film-card__feature-description">${respData.popularity.toFixed(
-                              1
-                            )}</td>
-                        </tr>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Original Title</td>
-                            <td class="film-card__feature-description original-title">${
-                              respData.original_title
-                            }</td>
-                        </tr>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Genre</td>
-                            <td class="film-card__feature-description">${listOfGenres}</td>
-                        </tr>
-                    </tbody>
-                </table>
-    
-                <h3 class="about__title">About</h3>
-                <p class="about__text">
-                    ${respData.overview}
-                </p>
-            
+    return `${baseMarkup}
           <div class="button__box">
             <button type="button" class="button__watch button visually-hidden">Add to watched</button>
             <button type="button" class="button__remove--watch button ">Remove from watched</button>
             <button type="button" class="button__queue button">Add to queue</button>
             <button type="button" class="button__remove--queue button visually-hidden">Remove from queue</button>
           </div>
-
-        <button class="button__modal-close">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            class="bi bi-x-lg"
-            viewBox="0 0 32 32"
-          >
-            <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
-          </svg>
-        </button>
+        </div>
       </div>
-    </div>
-  </div>
-  `;
-    return markup;
+    </div>`;
   }
 
   if (!watchedFilmsById.includes(id) && queueFilmsById.includes(id)) {
-    const markup = `
-    <div class="modal-window">
-        <div class="film-card" data-id=${id}>
-            <div class="image-box">
-            <img src="https://image.tmdb.org/t/p/original${
-              respData.poster_path
-            }" alt="${respData.title}" class="modal__image" loading='lazy'/>
-            </div>
-            <div>
-                <h2 class="film-card__title">${respData.title}</h2>
-    
-                <table class="film-card__features">
-                    <tbody>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Vote / Votes</td>
-                            <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(
-                              1
-                            )}</span> <span class="divider"> / </span> ${
-      respData.vote_count
-    }</td>
-                        </tr>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Popularity</td>
-                            <td class="film-card__feature-description">${respData.popularity.toFixed(
-                              1
-                            )}</td>
-                        </tr>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Original Title</td>
-                            <td class="film-card__feature-description original-title">${
-                              respData.original_title
-                            }</td>
-                        </tr>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Genre</td>
-                            <td class="film-card__feature-description">${listOfGenres}</td>
-                        </tr>
-                    </tbody>
-                </table>
-    
-                <h3 class="about__title">About</h3>
-                <p class="about__text">
-                    ${respData.overview}
-                </p>
-            
+    return `${baseMarkup}
           <div class="button__box">
             <button type="button" class="button__watch button">Add to watched</button>
             <button type="button" class="button__remove--watch button visually-hidden">Remove from watched</button>
             <button type="button" class="button__queue button  visually-hidden">Add to queue</button>
             <button type="button" class="button__remove--queue button">Remove from queue</button>
           </div>
-
-        <button class="button__modal-close">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            class="bi bi-x-lg"
-            viewBox="0 0 32 32"
-          >
-            <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
-          </svg>
-        </button>
       </div>
     </div>
   </div>
   `;
-    return markup;
   }
 
   if (watchedFilmsById.includes(id) && queueFilmsById.includes(id)) {
-    const markup = `
-    <div class="modal-window">
-        <div class="film-card" data-id=${id}>
-            <div class="image-box">
-            <img src="https://image.tmdb.org/t/p/original${
-              respData.poster_path
-            }" alt="${respData.title}" class="modal__image" loading='lazy'/>
-            </div>
-            <div>
-                <h2 class="film-card__title">${respData.title}</h2>
-    
-                <table class="film-card__features">
-                    <tbody>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Vote / Votes</td>
-                            <td class="film-card__feature-description"><span class="vote">${respData.vote_average.toFixed(
-                              1
-                            )}</span> <span class="divider"> / </span> ${
-      respData.vote_count
-    }</td>
-                        </tr>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Popularity</td>
-                            <td class="film-card__feature-description">${respData.popularity.toFixed(
-                              1
-                            )}</td>
-                        </tr>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Original Title</td>
-                            <td class="film-card__feature-description original-title">${
-                              respData.original_title
-                            }</td>
-                        </tr>
-                        <tr class="film-card__feature-list">
-                            <td class="film-card__feature-name">Genre</td>
-                            <td class="film-card__feature-description">${listOfGenres}</td>
-                        </tr>
-                    </tbody>
-                </table>
-    
-                <h3 class="about__title">About</h3>
-                <p class="about__text">
-                    ${respData.overview}
-                </p>
-            
-          <div class="button__box">
+    return `${baseMarkup}
+    <div class="button__box">
             <button type="button" class="button__watch button visually-hidden">Add to watched</button>
             <button type="button" class="button__remove--watch button ">Remove from watched</button>
             <button type="button" class="button__queue button  visually-hidden">Add to queue</button>
             <button type="button" class="button__remove--queue button">Remove from queue</button>
           </div>
-
-        <button class="button__modal-close">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            class="bi bi-x-lg"
-            viewBox="0 0 32 32"
-          >
-            <path d="M32 3.223l-3.223-3.223-12.777 12.777-12.777-12.777-3.223 3.223 12.777 12.777-12.777 12.777 3.223 3.223 12.777-12.777 12.777 12.777 3.223-3.223-12.777-12.777 12.777-12.777z"></path>
-          </svg>
-        </button>
       </div>
     </div>
   </div>
   `;
-    return markup;
   }
   updataModalTheme();
 }
 
-
-
 // function updataModalTheme() {
 //   if (savedTheme === 'loaded dark-theme') {
-    
+
 //       modal.classList.add('dark-theme');
-    
+
 //   }
 // }
 
@@ -914,10 +734,8 @@ function createModal() {
 
 function onModalClose() {
   modalBox.classList.add('is-hidden');
-  imgBox.innerHTML = `<img src="https://image.tmdb.org/t/p/original${
-                          respData.poster_path
-                        }" alt="${respData.title}" class="modal__image" loading='lazy'/>
-                      </div>`
+  imgBox.innerHTML = `<img src="https://image.tmdb.org/t/p/original${respData.poster_path}" alt="${respData.title}" class="modal__image" loading='lazy'/>
+                      `;
   genreList = [];
 
   document.body.style.overflow = 'scroll';
